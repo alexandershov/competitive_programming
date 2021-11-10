@@ -27,7 +27,7 @@ def test_subsets(seq, expected):
 
 
 def assert_same_subsets(actual, expected):
-    return normalized_subsets(actual) == normalized_subsets(expected)
+    assert normalized_subsets(actual) == normalized_subsets(expected)
 
 
 def normalized_subsets(subsets):
