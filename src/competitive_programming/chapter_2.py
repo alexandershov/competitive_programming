@@ -1,3 +1,6 @@
+import itertools
+
+
 def factorial_modulo(n: int, m: int) -> int:
     assert n >= 0
     result = 1
@@ -6,14 +9,14 @@ def factorial_modulo(n: int, m: int) -> int:
     return result
 
 
-def iter_combinations(seq, n):
+def iter_combinations(seq, n, start=0):
     if n == 0:
         yield frozenset()
         return
     if n > len(seq):
         return
-    for i, item in enumerate(seq):
-        for combination in iter_combinations(seq[i + 1:], n - 1):
+    for i, item in enumerate(itertools.islice(seq, start, len(seq)), start=start):
+        for combination in iter_combinations(seq, n - 1, i + 1):
             yield combination | {item}
 
 
