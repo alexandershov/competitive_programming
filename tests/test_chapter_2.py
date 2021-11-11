@@ -15,23 +15,26 @@ def test_factorial_modulo(n, modulo):
     assert chapter_2.factorial_modulo(n, modulo) == expected
 
 
+@pytest.mark.parametrize('seq, n, expected', [
+    ([], 0, [[]]),
+    ([1], 1, [[1]]),
+    ([1, 2], 1, [[1], [2]]),
+    ([1, 2], 2, [[1, 2]]),
+    ([1, 2, 3], 2, [[1, 2], [2, 3], [1, 3]]),
+])
+def test_iter_combinations(seq, n, expected):
+    actual = set(chapter_2.iter_combinations(seq, n))
+    expected = set(map(frozenset, expected))
+    assert actual == expected
+
+
 @pytest.mark.parametrize('seq, expected', [
     ([], [[]]),
     ([1], [[], [1]]),
-    ([1, 2], [[], [1], [1, 2], [2]]),
-    ([1, 2, 3], [[], [1], [1, 2], [1, 3], [1, 2, 3], [2], [2, 3], [3]]),
+    ([1, 2], [[], [1], [2], [1, 2]]),
+    ([1, 2, 3], [[], [1], [2], [3], [1, 2], [2, 3], [1, 3], [1, 2, 3]]),
 ])
-def test_subsets(seq, expected):
-    actual = chapter_2.iter_subsets(seq)
-    assert_same_subsets(actual, expected)
-
-
-def assert_same_subsets(actual, expected):
-    assert normalized_subsets(actual) == normalized_subsets(expected)
-
-
-def normalized_subsets(subsets):
-    return sorted(
-        sorted(subset)
-        for subset in subsets
-    )
+def test_iter_subsets(seq, expected):
+    actual = set(chapter_2.iter_subsets(seq))
+    expected = set(map(frozenset, expected))
+    assert actual == expected
