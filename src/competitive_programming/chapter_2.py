@@ -10,7 +10,7 @@ def iter_combinations(seq, n, start=0):
     if n == 0:
         yield frozenset()
         return
-    if n > len(seq):
+    if n > len(seq) - start:
         return
     for i in range(start, len(seq)):
         for combination in iter_combinations(seq, n - 1, i + 1):
