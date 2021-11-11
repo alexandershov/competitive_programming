@@ -1,3 +1,4 @@
+import collections
 import math
 
 import pytest
@@ -35,6 +36,10 @@ def test_iter_combinations(seq, n, expected):
     ([1, 2, 3], [[], [1], [2], [3], [1, 2], [2, 3], [1, 3], [1, 2, 3]]),
 ])
 def test_iter_subsets(seq, expected):
-    actual = set(chapter_2.iter_subsets(seq))
-    expected = set(map(frozenset, expected))
+    assert_same_sets(chapter_2.iter_subsets(seq), expected)
+
+
+def assert_same_sets(actual_sets, expected):
+    actual = collections.Counter(actual_sets)
+    expected = collections.Counter(map(frozenset, expected))
     assert actual == expected
