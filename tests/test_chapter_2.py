@@ -34,7 +34,7 @@ def test_iter_combinations(seq, n, expected):
     ([1, 2], [[], [1], [2], [1, 2]]),
     ([1, 2, 3], [[], [1], [2], [3], [1, 2], [2, 3], [1, 3], [1, 2, 3]]),
 ])
-def test_iter_subsets(subsets_algorithm, seq, expected):
+def test_subsets(subsets_algorithm, seq, expected):
     assert_same_sets(subsets_algorithm(seq), expected)
 
 
