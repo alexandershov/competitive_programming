@@ -22,11 +22,11 @@ def naive_iter_subsets(seq):
         yield from iter_combinations(seq, i)
 
 
-def rec_iter_subsets(seq):
+def rec_subsets(seq):
     if not seq:
         yield frozenset()
         return
-    for subset in rec_iter_subsets(seq[1:]):
+    for subset in rec_subsets(seq[1:]):
         yield subset
         yield subset | {seq[0]}
 
