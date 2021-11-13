@@ -6,20 +6,20 @@ def factorial_modulo(n: int, m: int) -> int:
     return result
 
 
-def iter_combinations(seq, n, start=0):
+def combinations(seq, n, start=0):
     if n == 0:
         yield frozenset()
         return
     if n > len(seq) - start:
         return
     for i in range(start, len(seq)):
-        for combination in iter_combinations(seq, n - 1, i + 1):
+        for combination in combinations(seq, n - 1, i + 1):
             yield combination | {seq[i]}
 
 
 def naive_iter_subsets(seq):
     for i in range(len(seq) + 1):
-        yield from iter_combinations(seq, i)
+        yield from combinations(seq, i)
 
 
 def rec_subsets(seq):
