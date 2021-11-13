@@ -34,8 +34,13 @@ def test_iter_combinations(seq, n, expected):
     ([1, 2], [[], [1], [2], [1, 2]]),
     ([1, 2, 3], [[], [1], [2], [3], [1, 2], [2, 3], [1, 3], [1, 2, 3]]),
 ])
-def test_iter_subsets(seq, expected):
-    assert_same_sets(chapter_2.iter_subsets(seq), expected)
+def test_iter_subsets(subsets_algorithm, seq, expected):
+    assert_same_sets(subsets_algorithm(seq), expected)
+
+
+@pytest.fixture(params=[chapter_2.iter_subsets])
+def subsets_algorithm(request):
+    return request.param
 
 
 def assert_same_sets(actual_sets, expected):
