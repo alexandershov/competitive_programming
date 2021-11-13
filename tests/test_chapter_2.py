@@ -18,6 +18,7 @@ def test_factorial_modulo(n, modulo):
 
 @pytest.mark.parametrize('seq, n, expected', [
     ([], 0, [[]]),
+    ([], 1, []),
     ([1], 1, [[1]]),
     ([1, 2], 1, [[1], [2]]),
     ([1, 2], 2, [[1, 2]]),
