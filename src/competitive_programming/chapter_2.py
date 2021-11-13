@@ -17,7 +17,7 @@ def combinations(seq, n, start=0):
             yield combination | {seq[i]}
 
 
-def naive_iter_subsets(seq):
+def naive_subsets(seq):
     for i in range(len(seq) + 1):
         yield from combinations(seq, i)
 
