@@ -34,12 +34,12 @@ def test_combinations(seq, n, expected):
     ([1, 2], [[], [1], [2], [1, 2]]),
     ([1, 2, 3], [[], [1], [2], [3], [1, 2], [2, 3], [1, 3], [1, 2, 3]]),
 ])
-def test_subsets(subsets_algorithm, seq, expected):
-    assert_same_sets(subsets_algorithm(seq), expected)
+def test_subsets(subsets_algo, seq, expected):
+    assert_same_sets(subsets_algo(seq), expected)
 
 
 @pytest.fixture(params=[chapter_2.naive_subsets, chapter_2.rec_subsets])
-def subsets_algorithm(request):
+def subsets_algo(request):
     return request.param
 
 
