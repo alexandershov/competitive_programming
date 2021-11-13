@@ -24,7 +24,7 @@ def test_factorial_modulo(n, modulo):
     ([1, 2], 2, [[1, 2]]),
     ([1, 2, 3], 2, [[1, 2], [2, 3], [1, 3]]),
 ])
-def test_iter_combinations(seq, n, expected):
+def test_combinations(seq, n, expected):
     assert_same_sets(chapter_2.combinations(seq, n), expected)
 
 
