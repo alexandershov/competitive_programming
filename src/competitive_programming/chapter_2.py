@@ -18,6 +18,15 @@ def iter_combinations(seq, n, start=0):
 
 
 def naive_iter_subsets(seq):
-    # TODO: prove that result length is 2^n
     for i in range(len(seq) + 1):
         yield from iter_combinations(seq, i)
+
+
+def rec_iter_subsets(seq):
+    if not seq:
+        yield frozenset()
+        return
+    for subset in rec_iter_subsets(seq[1:]):
+        yield subset
+        yield subset | {seq[0]}
+

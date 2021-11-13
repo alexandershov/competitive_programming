@@ -38,7 +38,7 @@ def test_iter_subsets(subsets_algorithm, seq, expected):
     assert_same_sets(subsets_algorithm(seq), expected)
 
 
-@pytest.fixture(params=[chapter_2.naive_iter_subsets])
+@pytest.fixture(params=[chapter_2.naive_iter_subsets, chapter_2.rec_iter_subsets])
 def subsets_algorithm(request):
     return request.param
 
