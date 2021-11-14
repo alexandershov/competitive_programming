@@ -30,3 +30,17 @@ def rec_subsets(seq, start=0):
         yield subset
         yield subset | {seq[start]}
 
+
+def rec_efficient_subsets(seq, start=0, output=None):
+    if output is None:
+        output = []
+
+    if start == len(seq):
+        yield frozenset(output)
+        return
+
+    yield from rec_efficient_subsets(seq, start + 1, output)
+
+    output.append(seq[start])
+    yield from rec_efficient_subsets(seq, start + 1, output)
+    output.pop()
