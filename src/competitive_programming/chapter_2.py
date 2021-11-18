@@ -45,6 +45,17 @@ def rec_efficient_subsets(seq, start=0, output=None):
     yield from rec_efficient_subsets(seq, start + 1, output)
     output.pop()
 
+def iter_subsets(seq):
+    frontier = [(0, [])]
+
+    while frontier:
+        level, path = frontier.pop()
+        if level == len(seq):
+            yield frozenset(path)
+            continue
+        frontier.append((level + 1, path + [seq[level]]))
+        frontier.append((level + 1, path))
+
 
 def iter_efficient_subsets(seq):
     # TODO: prove that it works
