@@ -59,7 +59,6 @@ def iter_subsets(seq):
 
 
 def iter_efficient_subsets(seq):
-    # TODO: prove that it works
     output = []
     frontier = [(0, False)]
     while frontier:
