@@ -45,6 +45,7 @@ def rec_efficient_subsets(seq, start=0, output=None):
     yield from rec_efficient_subsets(seq, start + 1, output)
     output.pop()
 
+
 def iter_subsets(seq):
     frontier = [(0, [])]
 
