@@ -75,15 +75,14 @@ def iter_efficient_subsets(seq):
         output.append(seq[level])
 
 
-def rec_permutations(seq):
-    if not seq:
-        yield []
+def rec_permutations(seq, start=0):
+    if start == len(seq):
+        yield list(seq)
         return
-    for i in range(len(seq)):
-        swap(seq, 0, i)
-        for permutation in rec_permutations(seq[1:]):
-            yield [seq[0]] + permutation
-        swap(seq, 0, i)
+    for i in range(start, len(seq)):
+        swap(seq, start, i)
+        yield from rec_permutations(seq, start + 1)
+        swap(seq, start, i)
 
 
 def swap(seq, i, j):
