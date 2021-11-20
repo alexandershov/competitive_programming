@@ -73,3 +73,18 @@ def iter_efficient_subsets(seq):
         frontier.append((level + 1, True))
         frontier.append((level + 1, False))
         output.append(seq[level])
+
+
+def rec_permutations(seq):
+    if not seq:
+        yield []
+        return
+    for i in range(seq):
+        swap(seq, 0, i)
+        for permutation in rec_permutations(seq[1:]):
+            yield [seq[0]] + permutation
+        swap(seq, 0, i)
+
+
+def swap(seq, i, j):
+    seq[i], seq[j] = seq[j], seq[i]
