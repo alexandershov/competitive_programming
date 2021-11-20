@@ -61,6 +61,7 @@ def subsets_algo(request):
 
 @pytest.fixture(params=[
     chapter_2.rec_permutations,
+    chapter_2.iter_permutations,
 ])
 def permutations_algo(request):
     return request.param
