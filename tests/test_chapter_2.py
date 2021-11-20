@@ -38,6 +38,13 @@ def test_subsets(subsets_algo, seq, expected):
     assert_same_sets(subsets_algo(seq), expected)
 
 
+@pytest.mark.parametrize('seq, expected', [
+])
+def test_permutations(seq, expected):
+    actual = list(chapter_2.rec_permutations(seq))
+    assert sorted(actual) == sorted(expected)
+
+
 @pytest.fixture(params=[
     chapter_2.naive_subsets,
     chapter_2.rec_subsets,
