@@ -79,7 +79,7 @@ def rec_permutations(seq):
     if not seq:
         yield []
         return
-    for i in range(seq):
+    for i in range(len(seq)):
         swap(seq, 0, i)
         for permutation in rec_permutations(seq[1:]):
             yield [seq[0]] + permutation

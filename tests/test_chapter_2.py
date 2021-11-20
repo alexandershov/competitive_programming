@@ -39,7 +39,8 @@ def test_subsets(subsets_algo, seq, expected):
 
 
 @pytest.mark.parametrize('seq, expected', [
-    ([], [[]])
+    ([], [[]]),
+    ([1], [[1]]),
 ])
 def test_permutations(seq, expected):
     actual = list(chapter_2.rec_permutations(seq))
