@@ -44,8 +44,8 @@ def test_subsets(subsets_algo, seq, expected):
     ([1, 2], [[1, 2], [2, 1]]),
     ([1, 2, 3], [[1, 2, 3], [1, 3, 2], [2, 1, 3], [2, 3, 1], [3, 1, 2], [3, 2, 1]]),
 ])
-def test_permutations(seq, expected):
-    actual = list(chapter_2.rec_permutations(seq))
+def test_permutations(permutations_algo, seq, expected):
+    actual = list(permutations_algo(seq))
     assert sorted(actual) == sorted(expected)
 
 
@@ -56,6 +56,13 @@ def test_permutations(seq, expected):
     chapter_2.iter_subsets,
     chapter_2.iter_efficient_subsets])
 def subsets_algo(request):
+    return request.param
+
+
+@pytest.fixture(params=[
+    chapter_2.rec_permutations,
+])
+def permutations_algo(request):
     return request.param
 
 
