@@ -86,16 +86,23 @@ def rec_permutations(seq, start=0):
 
 
 def iter_permutations(seq):
-    frontier = [([], list(seq), 0)]
+    frontier = [(None, False, 0)]
     while frontier:
-        path, tail, level = frontier.pop()
+        index_to_add, cancel_level, level = frontier.pop()
+
+        if cancel_level:
+            swap(seq, level, -1)
+            continue
+
+        if index_to_add is not None:
+            swap(seq, index_to_add, level - 1)
+
         if level == len(seq):
-            yield path
+            yield list(seq)
         else:
-            for i in range(len(tail)):
-                new_tail = list(tail)
-                swap(new_tail, 0, i)
-                frontier.append((path + [new_tail[0]], new_tail[1:], level + 1))
+            frontier.append((None, True, level))
+            for i in reversed(range(level, len(seq))):
+                frontier.append((i, False, level + 1))
 
 
 def swap(seq, i, j):
