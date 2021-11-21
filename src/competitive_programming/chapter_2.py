@@ -86,6 +86,7 @@ def rec_permutations(seq, start=0):
 
 
 def iter_permutations(seq):
+    # TODO: prove that it's correct
     frontier = [(None, False, 0)]
     while frontier:
         index_to_add, cancel_level, level = frontier.pop()
