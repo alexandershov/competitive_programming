@@ -1,3 +1,6 @@
+from dataclasses import dataclass
+
+
 def factorial_modulo(n: int, m: int) -> int:
     assert n >= 0
     result = 1
@@ -109,32 +112,58 @@ def swap(seq, i, j):
     seq[i], seq[j] = seq[j], seq[i]
 
 
-def solve_queen_problem(
-        n, column=0, taken_rows=[], taken_up=[],
-        taken_down=[]):
+@dataclass
+class QueensState:
+    taken_rows: list[int]
+    taken_up_diagonals: list[int]
+    taken_down_diagonals: list[int]
 
-    if n == 0:
+    @staticmethod
+    def initial():
+        return QueensState(
+            taken_rows=[],
+            taken_up_diagonals=[],
+            taken_down_diagonals=[]
+        )
+
+    def can_take_square(self, column, row, size) -> bool:
+        up_diagonal = get_up_diagonal(column, row, size)
+        down_diagonal = get_down_diagonal(column, row)
+        if row in self.taken_rows:
+            return False
+        if up_diagonal in self.taken_up_diagonals:
+            return False
+        if down_diagonal in self.taken_down_diagonals:
+            return False
+        return True
+
+    def take_square(self, column, row, size):
+        up_diagonal = get_up_diagonal(column, row, size)
+        down_diagonal = get_down_diagonal(column, row)
+        self.taken_rows.append(row)
+        self.taken_up_diagonals.append(up_diagonal)
+        self.taken_down_diagonals.append(down_diagonal)
+
+    def pop(self):
+        self.taken_rows.pop()
+        self.taken_up_diagonals.pop()
+        self.taken_down_diagonals.pop()
+
+
+def solve_queen_problem(size, column=0, state=None):
+    if state is None:
+        state = QueensState.initial()
+    if size == 0:
         return
-    if column == n:
+    if column == size:
         yield 'solution'
         return
-    for row in range(n):
-        up = get_up_diagonal(column, row, n)
-        down = get_down_diagonal(column, row)
-        if row in taken_rows:
+    for row in range(size):
+        if not state.can_take_square(column, row, size):
             continue
-        if up in taken_up:
-            continue
-        if down in taken_down:
-            continue
-        taken_rows.append(row)
-        taken_up.append(up)
-        taken_down.append(down)
-        yield from solve_queen_problem(n, column + 1, taken_rows, taken_up,
-                                       taken_down)
-        taken_rows.pop()
-        taken_up.pop()
-        taken_down.pop()
+        state.take_square(column, row, size)
+        yield from solve_queen_problem(size, column + 1, state)
+        state.pop()
 
 
 def get_down_diagonal(column, row):
