@@ -168,12 +168,8 @@ def solve_queen_problem(size, column=0, state=None):
 
 
 def get_down_diagonal(column, row):
-    # TODO(aershov182): use math
     assert row >= 0
-    while row > 0:
-        row -= 1
-        column += 1
-    return column
+    return column + row
 
 
 def get_up_diagonal(column, row, size):
