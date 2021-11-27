@@ -74,7 +74,14 @@ def assert_same_sets(actual_sets, expected):
 
 
 @pytest.mark.parametrize('n, expected', [
+    (0, 0),
+    (1, 1),
+    (2, 0),
+    (3, 0),
     (4, 2),
+    (5, 10),
+    (6, 4),
+    (7, 40),
     (8, 92),
 ])
 def test_solve_queen_problem(n, expected):
