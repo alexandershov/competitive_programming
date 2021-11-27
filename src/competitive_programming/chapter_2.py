@@ -112,6 +112,14 @@ def swap(seq, i, j):
     seq[i], seq[j] = seq[j], seq[i]
 
 
+class Square:
+    def __init__(self, column, row, size):
+        self.column = column
+        self.row = row
+        self.down_diagonal = get_down_diagonal(column, row)
+        self.up_diagonal = get_up_diagonal(column, row, size)
+
+
 @dataclass
 class QueensState:
     taken_rows: list[int]
@@ -126,23 +134,19 @@ class QueensState:
             taken_down_diagonals=[]
         )
 
-    def can_take_square(self, column, row, size) -> bool:
-        up_diagonal = get_up_diagonal(column, row, size)
-        down_diagonal = get_down_diagonal(column, row)
-        if row in self.taken_rows:
+    def can_take_square(self, square: Square) -> bool:
+        if square.row in self.taken_rows:
             return False
-        if up_diagonal in self.taken_up_diagonals:
+        if square.up_diagonal in self.taken_up_diagonals:
             return False
-        if down_diagonal in self.taken_down_diagonals:
+        if square.down_diagonal in self.taken_down_diagonals:
             return False
         return True
 
-    def take_square(self, column, row, size):
-        up_diagonal = get_up_diagonal(column, row, size)
-        down_diagonal = get_down_diagonal(column, row)
-        self.taken_rows.append(row)
-        self.taken_up_diagonals.append(up_diagonal)
-        self.taken_down_diagonals.append(down_diagonal)
+    def take_square(self, square: Square):
+        self.taken_rows.append(square.row)
+        self.taken_up_diagonals.append(square.up_diagonal)
+        self.taken_down_diagonals.append(square.down_diagonal)
 
     def pop(self):
         self.taken_rows.pop()
@@ -160,9 +164,10 @@ def solve_queen_problem(size, column=0, state=None):
         yield 'solution'
         return
     for row in range(size):
-        if not state.can_take_square(column, row, size):
+        square = Square(column, row, size)
+        if not state.can_take_square(square):
             continue
-        state.take_square(column, row, size)
+        state.take_square(square)
         yield from solve_queen_problem(size, column + 1, state)
         state.pop()
 
