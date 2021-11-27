@@ -92,7 +92,7 @@ def iter_permutations(seq):
         index_to_add, cancel_level, level = frontier.pop()
 
         if cancel_level:
-            swap(seq, level, -1)
+            swap(seq, level - 1, -1)
             continue
 
         if index_to_add is not None:
@@ -101,7 +101,7 @@ def iter_permutations(seq):
         if level == len(seq):
             yield list(seq)
         else:
-            frontier.append((None, True, level))
+            frontier.append((None, True, level + 1))
             for i in reversed(range(level, len(seq))):
                 frontier.append((i, False, level + 1))
 
