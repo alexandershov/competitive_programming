@@ -173,9 +173,5 @@ def get_down_diagonal(column, row):
 
 
 def get_up_diagonal(column, row, size):
-    # TODO(aershov182): use math
     assert 0 <= row <= size - 1
-    while row != size - 1:
-        column += 1
-        row += 1
-    return column
+    return column + size - 1 - row
