@@ -151,10 +151,11 @@ class QueensState:
 
 
 def solve_queen_problem(size, column=0, state=None):
-    if state is None:
-        state = QueensState.initial()
     if size == 0:
         return
+
+    if state is None:
+        state = QueensState.initial()
     if column == size:
         yield 'solution'
         return
