@@ -134,7 +134,7 @@ class QueensState:
             taken_down_diagonals=[]
         )
 
-    def can_take_square(self, square: Square) -> bool:
+    def can_take(self, square: Square) -> bool:
         if square.row in self.taken_rows:
             return False
         if square.up_diagonal in self.taken_up_diagonals:
@@ -143,7 +143,7 @@ class QueensState:
             return False
         return True
 
-    def take_square(self, square: Square):
+    def take(self, square: Square):
         self.taken_rows.append(square.row)
         self.taken_up_diagonals.append(square.up_diagonal)
         self.taken_down_diagonals.append(square.down_diagonal)
@@ -165,9 +165,9 @@ def solve_queen_problem(size, column=0, state=None):
         return
     for row in range(size):
         square = Square(column, row, size)
-        if not state.can_take_square(square):
+        if not state.can_take(square):
             continue
-        state.take_square(square)
+        state.take(square)
         yield from solve_queen_problem(size, column + 1, state)
         state.pop()
 
