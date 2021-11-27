@@ -122,6 +122,11 @@ def test_get_up_diagonal(column, row, expected):
 
 
 @pytest.mark.parametrize('number, expected', [
+    (0, '0'),
+    (1, '1'),
+    (2, '10'),
+    (4, '100'),
+    (15, '1111'),
 ])
 def test_binary(number, expected):
     assert chapter_2.binary(number) == expected

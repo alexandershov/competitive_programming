@@ -180,3 +180,13 @@ def get_down_diagonal(column, row):
 def get_up_diagonal(column, row, size):
     assert 0 <= row <= size - 1
     return column + size - 1 - row
+
+
+def binary(number: int) -> str:
+    result = []
+    while True:
+        result.append(str(number & 1))
+        number = number >> 1
+        if not number:
+            break
+    return ''.join(reversed(result))
