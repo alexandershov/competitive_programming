@@ -119,3 +119,9 @@ def test_get_down_diagonal(column, row, expected):
 def test_get_up_diagonal(column, row, expected):
     actual = chapter_2.get_up_diagonal(column, row, 3)
     assert actual == expected
+
+
+@pytest.mark.parametrize('number, expected', [
+])
+def test_binary(number, expected):
+    assert chapter_2.binary(number) == expected
