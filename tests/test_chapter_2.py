@@ -71,3 +71,44 @@ def assert_same_sets(actual_sets, expected):
     actual = collections.Counter(actual_sets)
     expected = collections.Counter(map(frozenset, expected))
     assert actual == expected
+
+
+@pytest.mark.parametrize('n, expected', [
+    (4, 2),
+    (8, 92),
+])
+def test_solve_queen_problem(n, expected):
+    actual = len(list(chapter_2.solve_queen_problem(n)))
+    assert actual == expected
+
+
+@pytest.mark.parametrize('column, row, expected', [
+    (0, 0, 0),
+    (1, 0, 1),
+    (2, 0, 2),
+    (0, 1, 1),
+    (1, 1, 2),
+    (2, 1, 3),
+    (0, 2, 2),
+    (1, 2, 3),
+    (2, 2, 4),
+])
+def test_get_down_diagonal(column, row, expected):
+    actual = chapter_2.get_down_diagonal(column, row)
+    assert actual == expected
+
+
+@pytest.mark.parametrize('column, row, expected', [
+    (0, 0, 2),
+    (1, 0, 3),
+    (2, 0, 4),
+    (0, 1, 1),
+    (1, 1, 2),
+    (2, 1, 3),
+    (0, 2, 0),
+    (1, 2, 1),
+    (2, 2, 2),
+])
+def test_get_up_diagonal(column, row, expected):
+    actual = chapter_2.get_up_diagonal(column, row, 3)
+    assert actual == expected

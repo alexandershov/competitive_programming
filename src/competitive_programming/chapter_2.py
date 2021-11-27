@@ -107,3 +107,49 @@ def iter_permutations(seq):
 
 def swap(seq, i, j):
     seq[i], seq[j] = seq[j], seq[i]
+
+
+def solve_queen_problem(
+        n, column=0, taken_rows=[], taken_up=[],
+        taken_down=[]):
+
+    if n == 0:
+        return
+    if column == n:
+        yield 'solution'
+        return
+    for row in range(n):
+        up = get_up_diagonal(column, row, n)
+        down = get_down_diagonal(column, row)
+        if row in taken_rows:
+            continue
+        if up in taken_up:
+            continue
+        if down in taken_down:
+            continue
+        taken_rows.append(row)
+        taken_up.append(up)
+        taken_down.append(down)
+        yield from solve_queen_problem(n, column + 1, taken_rows, taken_up,
+                                       taken_down)
+        taken_rows.pop()
+        taken_up.pop()
+        taken_down.pop()
+
+
+def get_down_diagonal(column, row):
+    # TODO(aershov182): use math
+    assert row >= 0
+    while row > 0:
+        row -= 1
+        column += 1
+    return column
+
+
+def get_up_diagonal(column, row, size):
+    # TODO(aershov182): use math
+    assert 0 <= row <= size - 1
+    while row != size - 1:
+        column += 1
+        row += 1
+    return column
