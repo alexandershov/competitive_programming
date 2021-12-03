@@ -4,6 +4,7 @@ import pytest
 
 
 @pytest.mark.parametrize('function, n, expected', [
+    (chapter_3.binary_function, 1, 1),
 ])
 def test_recursive_num_calls(function, n, expected):
     actual = len(list(function(n)))
