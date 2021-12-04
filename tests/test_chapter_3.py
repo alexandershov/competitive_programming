@@ -19,6 +19,11 @@ def test_recursive_num_calls(n, x, expected):
 
 @pytest.mark.parametrize('seq, expected', [
     pytest.param(
+        [],
+        0,
+        id='should return 0 on empty array'
+    ),
+    pytest.param(
         [1, 2, 3],
         6,
         id='should work on lists with positive numbers'

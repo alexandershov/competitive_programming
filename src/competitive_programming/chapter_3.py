@@ -10,6 +10,7 @@ def get_max_subarray_sum_brute_force(seq: list[int]) -> int:
     max_sum = 0
     for start in range(len(seq)):
         for end in range(start + 1, len(seq) + 1):
+
             cur_sum = 0
             for i in range(start, end):
                 cur_sum += seq[i]
