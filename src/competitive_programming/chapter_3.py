@@ -7,7 +7,10 @@ def n_ary_function(n, x):
 
 
 def get_max_subarray_sum_brute_force(seq: list[int]) -> int:
-    max_sum = 0
+    if not seq:
+        return 0
+
+    max_sum = seq[0]
     for start in range(len(seq)):
         for end in range(start + 1, len(seq) + 1):
 
