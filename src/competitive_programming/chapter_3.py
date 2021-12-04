@@ -1,6 +1,6 @@
-def binary_function(n):
-    yield f'binary_function({n})'
-    if n == 1:
+def n_ary_function(n, x):
+    yield f'n_ary_function({n}, {x})'
+    if x == 1:
         return
-    yield from binary_function(n - 1)
-    yield from binary_function(n - 1)
+    for _ in range(n):
+        yield from n_ary_function(n, x - 1)

@@ -3,12 +3,12 @@ from competitive_programming import chapter_3
 import pytest
 
 
-@pytest.mark.parametrize('function, n, expected', [
-    (chapter_3.binary_function, 1, 1),
-    (chapter_3.binary_function, 2, 3),
-    (chapter_3.binary_function, 3, 7),
-    (chapter_3.binary_function, 10, 1023),
+@pytest.mark.parametrize('n, x, expected', [
+    (2, 1, 1),
+    (2, 2, 3),
+    (2, 3, 7),
+    (2, 10, 1023),
 ])
-def test_recursive_num_calls(function, n, expected):
-    actual = len(list(function(n)))
+def test_recursive_num_calls(n, x, expected):
+    actual = len(list(chapter_3.n_ary_function(n, x)))
     assert actual == expected
