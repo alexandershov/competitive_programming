@@ -18,6 +18,11 @@ def test_recursive_num_calls(n, x, expected):
 
 
 @pytest.mark.parametrize('seq, expected', [
+    pytest.param(
+        [1, 2, 3],
+        6,
+        id='should work on lists with positive numbers'
+    ),
 ])
 def test_get_max_subarray_sum(seq, expected):
     actual = chapter_3.get_max_subarray_sum_brute_force(seq)
