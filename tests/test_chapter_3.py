@@ -9,7 +9,8 @@ import pytest
     (2, 2, 3),
     (2, 3, 7),
     (2, 10, 1023),
-    (3, 3, 13)
+    (3, 3, 13),
+    (4, 3, 21),
 ])
 def test_recursive_num_calls(n, x, expected):
     actual = len(list(chapter_3.n_ary_function(n, x)))
