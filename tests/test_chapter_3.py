@@ -26,7 +26,7 @@ def test_recursive_num_calls(n, x, expected):
     pytest.param(
         [1, 2, 3],
         6,
-        id='should work on lists with positive numbers'
+        id='should return sum of the whole array when array has only positive numbers'
     ),
 ])
 def test_get_max_subarray_sum(max_subarray_sum_algo, seq, expected):
