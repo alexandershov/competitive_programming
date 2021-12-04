@@ -20,3 +20,22 @@ def get_max_subarray_sum_cubic(seq: list[int]) -> int:
             max_sum = max(max_sum, cur_sum)
 
     return max_sum
+
+
+def get_max_subarray_sum_quadratic(seq: list[int]) -> int:
+    if not seq:
+        return 0
+
+    max_sum = seq[0]
+
+    sums = [0] * (len(seq) + 1)  # sums[i] = sum(itertools.islice(seq, i))
+    for start in range(len(seq)):
+        for i in range(start, len(seq)):
+            sums[start] += seq[i]
+
+    for start in range(len(seq)):
+        for end in range(start + 1, len(seq) + 1):
+            cur_sum = sums[start] - sums[end]
+            max_sum = max(max_sum, cur_sum)
+
+    return max_sum
