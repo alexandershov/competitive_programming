@@ -14,4 +14,5 @@ def get_max_subarray_sum_brute_force(seq: list[int]) -> int:
             for i in range(start, end):
                 cur_sum += seq[i]
             max_sum = max(max_sum, cur_sum)
+
     return max_sum

@@ -24,6 +24,13 @@ def test_recursive_num_calls(n, x, expected):
         id='should work on lists with positive numbers'
     ),
 ])
-def test_get_max_subarray_sum(seq, expected):
-    actual = chapter_3.get_max_subarray_sum_brute_force(seq)
+def test_get_max_subarray_sum(max_subarray_sum_algo, seq, expected):
+    actual = max_subarray_sum_algo(seq)
     assert actual == expected
+
+
+@pytest.fixture(params=[
+    chapter_3.get_max_subarray_sum_brute_force,
+])
+def max_subarray_sum_algo(request):
+    return request.param
