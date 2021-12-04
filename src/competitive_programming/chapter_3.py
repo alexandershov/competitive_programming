@@ -45,12 +45,10 @@ def get_max_subarray_sum_linear(seq: list[int]) -> int:
     if not seq:
         return 0
 
-    index = 0
     prev = 0
     max_sum = seq[0]
     for i in range(len(seq)):
-        cur = seq[index] + max(prev, 0)
+        cur = seq[i] + max(prev, 0)
         max_sum = max(max_sum, cur)
         prev = cur
-        index += 1
     return max_sum
