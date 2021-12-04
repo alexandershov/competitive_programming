@@ -42,6 +42,7 @@ def test_get_max_subarray_sum(max_subarray_sum_algo, seq, expected):
 @pytest.fixture(params=[
     chapter_3.get_max_subarray_sum_cubic,
     chapter_3.get_max_subarray_sum_quadratic,
+    chapter_3.get_max_subarray_sum_linear
 ])
 def max_subarray_sum_algo(request):
     return request.param
