@@ -6,7 +6,7 @@ def n_ary_function(n, x):
         yield from n_ary_function(n, x - 1)
 
 
-def get_max_subarray_sum_brute_force(seq: list[int]) -> int:
+def get_max_subarray_sum_cubic(seq: list[int]) -> int:
     if not seq:
         return 0
 

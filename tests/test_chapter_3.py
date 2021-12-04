@@ -40,7 +40,7 @@ def test_get_max_subarray_sum(max_subarray_sum_algo, seq, expected):
 
 
 @pytest.fixture(params=[
-    chapter_3.get_max_subarray_sum_brute_force,
+    chapter_3.get_max_subarray_sum_cubic,
 ])
 def max_subarray_sum_algo(request):
     return request.param
