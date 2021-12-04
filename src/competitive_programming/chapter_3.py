@@ -42,13 +42,10 @@ def get_max_subarray_sum_quadratic(seq: list[int]) -> int:
 
 
 def get_max_subarray_sum_linear(seq: list[int]) -> int:
-    if not seq:
-        return 0
-
     sums = seq.copy()
     index = len(sums) - 2
     while index >= 0:
         if sums[index + 1] > 0:
             sums[index] += sums[index + 1]
         index -= 1
-    return max(sums)
+    return max(sums, default=0)
