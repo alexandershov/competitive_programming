@@ -32,6 +32,11 @@ def test_recursive_num_calls(n, x, expected):
         [-2, -1, -3],
         -1,
         id='should pick the maximum element when array has only negative numbers'
+    ),
+    pytest.param(
+        [-1, 2, 4, -3, 5, 2, -5, 2],
+        10,
+        id='should work on the test case from the book'
     )
 ])
 def test_get_max_subarray_sum(max_subarray_sum_algo, seq, expected):
