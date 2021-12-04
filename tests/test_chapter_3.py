@@ -21,13 +21,18 @@ def test_recursive_num_calls(n, x, expected):
     pytest.param(
         [],
         0,
-        id='should return 0 on empty array'
+        id='should return 0 on an empty array'
     ),
     pytest.param(
         [1, 2, 3],
         6,
         id='should return sum of the whole array when array has only positive numbers'
     ),
+    pytest.param(
+        [-2, -1, -3],
+        -1,
+        id='should pick the maximum element when array has only negative numbers'
+    )
 ])
 def test_get_max_subarray_sum(max_subarray_sum_algo, seq, expected):
     actual = max_subarray_sum_algo(seq)
