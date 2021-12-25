@@ -77,6 +77,7 @@ def get_all_squares(size: int) -> list[chapter_2.Square]:
 
 def queen_can_move(src: chapter_2.Square, dst: chapter_2.Square) -> bool:
     same_line = (src.row == dst.row) or (src.column == dst.column)
-    same_diagonal = (src.up_diagonal == dst.up_diagonal) or (src.down_diagonal == dst.down_diagonal)
+    same_up_diagonal = (src.up_diagonal == dst.up_diagonal)
+    same_down_diagonal = (src.down_diagonal == dst.down_diagonal)
 
-    return same_line or same_diagonal
+    return same_line or same_up_diagonal or same_down_diagonal
