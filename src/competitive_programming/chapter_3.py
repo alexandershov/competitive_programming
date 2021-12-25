@@ -60,8 +60,8 @@ def get_max_subarray_sum_linear(seq: list[int]) -> int:
 
 
 def solve_two_queens_problem_brute_force(size: int) -> int:
-    squares = get_all_squares(size)
     count = 0
+    squares = get_all_squares(size)
     for src, dst in itertools.combinations(squares, 2):
         if not queen_can_move(src, dst):
             count += 1
