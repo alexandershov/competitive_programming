@@ -58,16 +58,21 @@ def get_max_subarray_sum_linear(seq: list[int]) -> int:
 
 
 def solve_two_queens_problem_brute_force(size: int) -> int:
-    squares = []
-    for column in range(size):
-        for row in range(size):
-            squares.append(chapter_2.Square(column, row, size))
+    squares = get_all_squares(size)
     count = 0
     for i in range(len(squares)):
         for j in range(i + 1, len(squares)):
             if not queen_can_move(squares[i], squares[j]):
                 count += 1
     return count
+
+
+def get_all_squares(size: int) -> list[chapter_2.Square]:
+    squares = []
+    for column in range(size):
+        for row in range(size):
+            squares.append(chapter_2.Square(column, row, size))
+    return squares
 
 
 def queen_can_move(src: chapter_2.Square, dst: chapter_2.Square) -> bool:
