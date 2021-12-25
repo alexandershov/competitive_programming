@@ -88,3 +88,9 @@ def get_up_diagonal_length(square: chapter_2.Square) -> int:
     free_columns = square.size - square.column
     free_rows = square.size - square.row
     return min(free_rows, free_columns)
+
+
+def get_down_diagonal_length(square: chapter_2.Square) -> int:
+    free_columns = square.size - square.column
+    free_rows = square.row + 1
+    return min(free_rows, free_columns)

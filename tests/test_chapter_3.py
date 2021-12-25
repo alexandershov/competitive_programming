@@ -77,7 +77,7 @@ def solve_two_queens_problem_algo(request):
 @pytest.mark.parametrize('column, row, size, expected', [
     pytest.param(
         0, 0, 6, 6,
-        id='should return maximum up diagonal length'
+        id='should return maximum diagonal length'
     ),
     pytest.param(
         5, 5, 6, 1,
@@ -95,3 +95,26 @@ def solve_two_queens_problem_algo(request):
 def test_get_up_diagonal_length(column, row, size, expected):
     square = chapter_2.Square(column, row, size)
     assert chapter_3.get_up_diagonal_length(square) == expected
+
+
+@pytest.mark.parametrize('column, row, size, expected', [
+    pytest.param(
+        0, 5, 6, 6,
+        id='should return maximum diagonal length'
+    ),
+    pytest.param(
+        5, 0, 6, 1,
+        id='should return minimum diagonal length'
+    ),
+    pytest.param(
+        0, 0, 6, 1,
+        id='should stop when runs out of rows first'
+    ),
+    pytest.param(
+        5, 5, 6, 1,
+        id='should stop when runs out of columns first'
+    )
+])
+def test_get_down_diagonal_length(column, row, size, expected):
+    square = chapter_2.Square(column, row, size)
+    assert chapter_3.get_down_diagonal_length(square) == expected
