@@ -84,6 +84,24 @@ def queen_can_move(src: chapter_2.Square, dst: chapter_2.Square) -> bool:
     return same_line or same_up_diagonal or same_down_diagonal
 
 
+def solve_two_queens_quadratic(size: int) -> int:
+    count = 0
+
+    squares = get_all_squares(size)
+    for square in squares:
+        width = (size - square.column - 1)
+        space = size * width
+
+        up_diagonal_taken = get_up_diagonal_length(square) - 1
+        down_diagonal_taken = get_down_diagonal_length(square) - 1
+
+        total_taken = width + up_diagonal_taken + down_diagonal_taken
+
+        count += space - total_taken
+
+    return count
+
+
 def get_up_diagonal_length(square: chapter_2.Square) -> int:
     free_columns = square.size - square.column
     free_rows = square.size - square.row
