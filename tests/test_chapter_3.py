@@ -69,8 +69,8 @@ def test_solve_two_queens_problem(solve_two_queens_problem_algo, size, expected)
 
 @pytest.fixture(params=[
     chapter_3.solve_two_queens_problem_brute_force,
-    chapter_3.solve_two_queens_quadratic,
-    chapter_3.solve_two_queens_linear,
+    chapter_3.solve_two_queens_problem_quadratic,
+    chapter_3.solve_two_queens_problem_linear,
 ])
 def solve_two_queens_problem_algo(request):
     return request.param

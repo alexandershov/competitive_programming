@@ -84,7 +84,7 @@ def queen_can_move(src: chapter_2.Square, dst: chapter_2.Square) -> bool:
     return same_line or same_up_diagonal or same_down_diagonal
 
 
-def solve_two_queens_quadratic(size: int) -> int:
+def solve_two_queens_problem_quadratic(size: int) -> int:
     count = 0
 
     squares = get_all_squares(size)
@@ -114,7 +114,7 @@ def get_down_diagonal_length(square: chapter_2.Square) -> int:
     return min(free_rows, free_columns)
 
 
-def solve_two_queens_linear(size: int) -> int:
+def solve_two_queens_problem_linear(size: int) -> int:
     count = 0
     for column in range(size):
         width = size - column - 1
