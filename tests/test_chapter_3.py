@@ -53,7 +53,10 @@ def max_subarray_sum_algo(request):
     return request.param
 
 
-@pytest.mark.parametrize('n, expected', [
+@pytest.mark.parametrize('size, expected', [
+    (1, 0),
+    (2, 0),
+    (3, 8),
 ])
-def test_two_queens_problem(n, expected):
-    assert len(chapter_3.two_queens_problem(n)) == expected
+def test_solve_two_queens_problem(size, expected):
+    assert chapter_3.solve_two_queens_problem_quadratic(size) == expected

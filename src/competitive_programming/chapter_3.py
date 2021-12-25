@@ -1,3 +1,6 @@
+from competitive_programming import chapter_2
+
+
 def n_ary_function(n, x):
     yield f'n_ary_function({n}, {x})'
     if x == 1:
@@ -52,3 +55,21 @@ def get_max_subarray_sum_linear(seq: list[int]) -> int:
         max_sum = max(max_sum, cur)
         prev = cur
     return max_sum
+
+
+def solve_two_queens_problem_quadratic(size: int) -> int:
+    squares = []
+    for column in range(size):
+        for row in range(size):
+            squares.append(chapter_2.Square(column, row, size))
+    count = 0
+    for i in range(len(squares)):
+        for j in range(i + 1, len(squares)):
+            if not queen_can_move(squares[i], squares[j]):
+                count += 1
+    return count
+
+
+def queen_can_move(src: chapter_2.Square, dst: chapter_2.Square) -> bool:
+    return (src.row == dst.row) or (src.column == dst.column) or (
+                src.up_diagonal == dst.up_diagonal) or (src.down_diagonal == dst.down_diagonal)
