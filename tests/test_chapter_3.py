@@ -82,6 +82,14 @@ def solve_two_queens_problem_algo(request):
     pytest.param(
         5, 5, 6, 1,
         id='should return minimum diagonal length'
+    ),
+    pytest.param(
+        0, 5, 6, 1,
+        id='should stop when runs out of rows first'
+    ),
+    pytest.param(
+        5, 0, 6, 1,
+        id='should stop when runs out of columns first'
     )
 ])
 def test_get_up_diagonal_length(column, row, size, expected):
