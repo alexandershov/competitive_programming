@@ -112,3 +112,22 @@ def get_down_diagonal_length(square: chapter_2.Square) -> int:
     free_columns = square.size - square.column
     free_rows = square.row + 1
     return min(free_rows, free_columns)
+
+
+def solve_two_queens_linear(size: int) -> int:
+    count = 0
+    for column in range(size):
+        width = size - column - 1
+        total_space = size * width * size
+        max_diagonal = get_up_diagonal_length(chapter_2.Square(column, 0, size)) - 1
+
+        right_taken = width * size
+        up_diagonal_taken = get_sum_up_to(max_diagonal) + (size - (max_diagonal + 1)) * max_diagonal
+        down_diagonal_taken = up_diagonal_taken
+
+        count += total_space - right_taken - up_diagonal_taken - down_diagonal_taken
+    return count
+
+
+def get_sum_up_to(n: int) -> int:
+    return n * (n + 1) // 2
