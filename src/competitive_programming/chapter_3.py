@@ -82,3 +82,9 @@ def queen_can_move(src: chapter_2.Square, dst: chapter_2.Square) -> bool:
     same_down_diagonal = (src.down_diagonal == dst.down_diagonal)
 
     return same_line or same_up_diagonal or same_down_diagonal
+
+
+def get_up_diagonal_length(square: chapter_2.Square) -> int:
+    free_columns = square.size - square.column
+    free_rows = square.size - square.row
+    return min(free_rows, free_columns)
