@@ -77,7 +77,11 @@ def solve_two_queens_problem_algo(request):
 @pytest.mark.parametrize('column, row, size, expected', [
     pytest.param(
         0, 0, 6, 6,
-        id='should return main up diagonal length'
+        id='should return maximum up diagonal length'
+    ),
+    pytest.param(
+        5, 5, 6, 1,
+        id='should return minimum diagonal length'
     )
 ])
 def test_get_up_diagonal_length(column, row, size, expected):
