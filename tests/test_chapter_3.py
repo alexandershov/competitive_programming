@@ -57,6 +57,11 @@ def max_subarray_sum_algo(request):
     (1, 0),
     (2, 0),
     (3, 8),
+    (4, 44),
+    (5, 140),
+    (6, 340),
+    (7, 700),
+    (8, 1288),
 ])
 def test_solve_two_queens_problem(solve_two_queens_problem_algo, size, expected):
     assert solve_two_queens_problem_algo(size) == expected
