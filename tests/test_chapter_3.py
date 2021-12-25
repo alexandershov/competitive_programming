@@ -1,4 +1,4 @@
-from competitive_programming import chapter_3
+from competitive_programming import chapter_3, chapter_2
 
 import pytest
 
@@ -72,3 +72,10 @@ def test_solve_two_queens_problem(solve_two_queens_problem_algo, size, expected)
 ])
 def solve_two_queens_problem_algo(request):
     return request.param
+
+
+@pytest.mark.parametrize('column, row, size, expected', [
+])
+def test_get_up_diagonal_length(column, row, size, expected):
+    square = chapter_2.Square(column, row, size)
+    assert chapter_3.get_up_diagonal_length(square) == expected
