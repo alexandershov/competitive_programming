@@ -58,5 +58,12 @@ def max_subarray_sum_algo(request):
     (2, 0),
     (3, 8),
 ])
-def test_solve_two_queens_problem(size, expected):
-    assert chapter_3.solve_two_queens_problem_brute_force(size) == expected
+def test_solve_two_queens_problem(solve_two_queens_problem_algo, size, expected):
+    assert solve_two_queens_problem_algo(size) == expected
+
+
+@pytest.fixture(params=[
+    chapter_3.solve_two_queens_problem_brute_force,
+])
+def solve_two_queens_problem_algo(request):
+    return request.param
