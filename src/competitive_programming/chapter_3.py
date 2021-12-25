@@ -71,5 +71,7 @@ def solve_two_queens_problem_brute_force(size: int) -> int:
 
 
 def queen_can_move(src: chapter_2.Square, dst: chapter_2.Square) -> bool:
-    return (src.row == dst.row) or (src.column == dst.column) or (
-            src.up_diagonal == dst.up_diagonal) or (src.down_diagonal == dst.down_diagonal)
+    same_line = (src.row == dst.row) or (src.column == dst.column)
+    same_diagonal = (src.up_diagonal == dst.up_diagonal) or (src.down_diagonal == dst.down_diagonal)
+
+    return same_line or same_diagonal
