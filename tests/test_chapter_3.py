@@ -59,4 +59,4 @@ def max_subarray_sum_algo(request):
     (3, 8),
 ])
 def test_solve_two_queens_problem(size, expected):
-    assert chapter_3.solve_two_queens_problem_quadratic(size) == expected
+    assert chapter_3.solve_two_queens_problem_brute_force(size) == expected
