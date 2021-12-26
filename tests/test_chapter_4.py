@@ -4,7 +4,7 @@ from competitive_programming import chapter_4
 
 @pytest.mark.parametrize('seq, expected', [
     pytest.param(
-        [3, 1, 2],
+        [3, 2, 1],
         [1, 2, 3],
         id='should sort input'
     ),
@@ -17,7 +17,7 @@ from competitive_programming import chapter_4
         [1, 2, 3],
         [1, 2, 3],
         id='should leave sorted input unchanged'
-    )
+    ),
 ])
 def test_sorting(sorting_algo, seq, expected):
     copy = seq.copy()
