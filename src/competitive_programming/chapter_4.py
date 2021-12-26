@@ -27,18 +27,12 @@ def merge(seq, start, mid, end):
     right = mid
 
     while (left < mid) or (right < end):
-        if left == mid:
+        if (right != end) and ((left == mid) or seq[right] < seq[left]):
             item = seq[right]
             right += 1
-        elif right == end:
-            item = seq[left]
-            left += 1
-        elif seq[left] < seq[right]:
-            item = seq[left]
-            left += 1
         else:
-            item = seq[right]
-            right += 1
+            item = seq[left]
+            left += 1
 
         merged.append(item)
 
