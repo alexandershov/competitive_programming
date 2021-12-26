@@ -28,6 +28,7 @@ def test_sorting(sorting_algo, seq, expected):
 @pytest.fixture(
     params=[
         chapter_4.bubble_sort,
+        chapter_4.merge_sort,
     ]
 )
 def sorting_algo(request):
