@@ -7,7 +7,12 @@ from competitive_programming import chapter_4
         [3, 1, 2],
         [1, 2, 3],
         id='should sort input'
-    )
+    ),
+    pytest.param(
+        [],
+        [],
+        id='should work on empty input'
+    ),
 ])
 def test_sorting(sorting_algo, seq, expected):
     copy = seq.copy()
