@@ -20,8 +20,7 @@ def merge_sort(seq: list, start: int = 0, end: Optional[int] = None) -> None:
     merge_sort(seq, mid, end)
     merged = merge(islice(seq, start, mid), islice(seq, mid, end))
 
-    for i in range(start, end):
-        seq[i] = next(merged)
+    seq[start:end] = merged
 
 
 def merge(*iters):
