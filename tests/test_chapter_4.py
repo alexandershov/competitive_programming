@@ -52,3 +52,9 @@ def test_islice():
     assert next(it) == 10
     with pytest.raises(StopIteration):
         next(it)
+
+
+@pytest.mark.parametrize('seq, expected', [
+])
+def test_all_unique(seq, expected):
+    assert chapter_4.all_unique(seq) is expected
