@@ -33,7 +33,7 @@ def merge(*iters):
             pass
 
     while values_by_it:
-        min_it = min(values_by_it, key=lambda x: values_by_it[x])
+        min_it = min(values_by_it, key=values_by_it.__getitem__)
         yield values_by_it.pop(min_it)
 
         try:
