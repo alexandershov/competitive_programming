@@ -23,6 +23,27 @@ def merge_sort(seq: list, start: int = 0, end: Optional[int] = None) -> None:
     seq[start:end] = merged
 
 
+def counting_sort(seq: list) -> None:
+    if not seq:
+        return
+
+    minimum = min(seq)
+    maximum = max(seq)
+
+    counts = [0] * (maximum - minimum + 1)
+
+    for item in seq:
+        bucket = item - minimum
+        counts[bucket] += 1
+
+    index = 0
+    for bucket, count in enumerate(counts):
+        for _ in range(count):
+            item = bucket + minimum
+            seq[index] = item
+            index += 1
+
+
 def merge(*iters):
     values_by_it = {}
     for it in iters:

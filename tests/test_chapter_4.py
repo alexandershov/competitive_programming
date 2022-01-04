@@ -29,6 +29,7 @@ def test_sorting(sorting_algo, seq, expected):
     params=[
         chapter_4.bubble_sort,
         chapter_4.merge_sort,
+        chapter_4.counting_sort,
     ]
 )
 def sorting_algo(request):
