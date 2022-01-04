@@ -33,3 +33,11 @@ def test_sorting(sorting_algo, seq, expected):
 )
 def sorting_algo(request):
     return request.param
+
+
+def test_islice():
+    it = chapter_4.islice([8, 9, 10, 11], 1, 3)
+    assert next(it) == 9
+    assert next(it) == 10
+    with pytest.raises(StopIteration):
+        next(it)

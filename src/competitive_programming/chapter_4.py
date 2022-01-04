@@ -41,3 +41,8 @@ def merge(seq, start, mid, end):
 
 def swap(seq, i, j):
     seq[i], seq[j] = seq[j], seq[i]
+
+
+def islice(seq, start, end):
+    for i in range(start, end):
+        yield seq[i]
