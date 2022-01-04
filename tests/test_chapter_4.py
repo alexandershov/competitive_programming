@@ -73,3 +73,9 @@ def test_islice():
 ])
 def test_all_unique(seq, expected):
     assert chapter_4.all_unique(seq) is expected
+
+
+@pytest.mark.parametrize('intervals, expected', [
+])
+def test_restaurant_problem(intervals, expected):
+    assert chapter_4.solve_restaurant_problem(intervals) == expected
