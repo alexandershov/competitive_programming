@@ -55,6 +55,11 @@ def test_islice():
 
 
 @pytest.mark.parametrize('seq, expected', [
+    pytest.param(
+        [8, 9, 10],
+        True,
+        id='it should return True if all elements are unique'
+    )
 ])
 def test_all_unique(seq, expected):
     assert chapter_4.all_unique(seq) is expected

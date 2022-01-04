@@ -70,3 +70,11 @@ def swap(seq, i, j):
 def islice(seq, start, end):
     for i in range(start, end):
         yield seq[i]
+
+
+def all_unique(seq: list) -> bool:
+    merge_sort(seq)
+    for i in range(1, len(seq)):
+        if seq[i] == seq[i - 1]:
+            return False
+    return True
