@@ -9,6 +9,11 @@ from competitive_programming import chapter_4
         id='should sort input'
     ),
     pytest.param(
+        [-3, 2, 1],
+        [-3, 1, 2],
+        id='should sort input with negative elements'
+    ),
+    pytest.param(
         [3, 2, 3, 1],
         [1, 2, 3, 3],
         id='should sort input with duplicate elements'
