@@ -61,6 +61,11 @@ def test_islice():
         id='it should return True if all elements are unique'
     ),
     pytest.param(
+        [],
+        True,
+        id='it should return True on an empty sequence'
+    ),
+    pytest.param(
         [8, 9, 8],
         False,
         id='it should return False if some elements are duplicated'
