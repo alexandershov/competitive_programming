@@ -26,19 +26,20 @@ def merge_sort(seq: list, start: int = 0, end: Optional[int] = None) -> None:
 def merge(*iters):
     values_by_it = {}
     for it in iters:
-        try:
-            values_by_it[it] = next(it)
-        except StopIteration:
-            pass
+        try_add_next_value(values_by_it, it)
 
     while values_by_it:
         min_it = min(values_by_it, key=values_by_it.__getitem__)
         yield values_by_it.pop(min_it)
 
-        try:
-            values_by_it[min_it] = next(min_it)
-        except StopIteration:
-            pass
+        try_add_next_value(values_by_it, min_it)
+
+
+def try_add_next_value(values_by_it, it):
+    try:
+        values_by_it[it] = next(it)
+    except StopIteration:
+        pass
 
 
 def swap(seq, i, j):
