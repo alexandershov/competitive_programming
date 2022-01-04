@@ -18,25 +18,28 @@ def merge_sort(seq: list, start: int = 0, end: Optional[int] = None) -> None:
     mid = (start + end) // 2
     merge_sort(seq, start, mid)
     merge_sort(seq, mid, end)
-    merge(seq, start, mid, end)
+    merged = merge(islice(seq, start, mid), islice(seq, mid, end))
+
+    for i in range(start, end):
+        seq[i] = next(merged)
 
 
-def merge(seq, start, mid, end):
-    merged = []
-    left = start
-    right = mid
+def merge(*iters):
+    values_by_it = {}
+    for it in iters:
+        try:
+            values_by_it[it] = next(it)
+        except StopIteration:
+            pass
 
-    while (left < mid) or (right < end):
-        if (right != end) and ((left == mid) or seq[right] < seq[left]):
-            item = seq[right]
-            right += 1
-        else:
-            item = seq[left]
-            left += 1
+    while values_by_it:
+        min_it = min(values_by_it, key=lambda x: values_by_it[x])
+        yield values_by_it.pop(min_it)
 
-        merged.append(item)
-
-    seq[start:end] = merged
+        try:
+            values_by_it[min_it] = next(min_it)
+        except StopIteration:
+            pass
 
 
 def swap(seq, i, j):
