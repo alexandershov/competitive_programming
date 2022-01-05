@@ -105,3 +105,9 @@ def test_restaurant_problem(intervals, expected):
 ])
 def test_solve_scheduling_problem(intervals, expected):
     assert chapter_4.solve_scheduling_problem(intervals) == expected
+
+
+@pytest.mark.parametrize('tasks, expected', [
+])
+def test_solve_deadline_problem(tasks, expected):
+    assert chapter_4.solve_deadline_problem(tasks) == expected

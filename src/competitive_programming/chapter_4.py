@@ -114,3 +114,7 @@ def are_disjoint(left: Interval, right: Interval) -> bool:
 
 def _by_end(interval: Interval) -> int:
     return interval[1]
+
+
+def solve_deadline_problem(tasks: list[tuple[int, int]]) -> int:
+    pass
