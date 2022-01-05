@@ -86,6 +86,11 @@ def test_all_unique(seq, expected):
         1,
         id='it should handle back-to-back visits'
     ),
+    pytest.param(
+        [],
+        0,
+        id='it should handle empty list of visits'
+    ),
 ])
 def test_restaurant_problem(intervals, expected):
     assert chapter_4.solve_restaurant_problem(intervals) == expected
