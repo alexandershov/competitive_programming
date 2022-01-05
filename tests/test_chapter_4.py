@@ -76,6 +76,11 @@ def test_all_unique(seq, expected):
 
 
 @pytest.mark.parametrize('intervals, expected', [
+    pytest.param(
+        [(18, 19), (10, 20), (15, 25), (23, 24)],
+        3,
+        id='it should return number of simultaneous visitors'
+    ),
 ])
 def test_restaurant_problem(intervals, expected):
     assert chapter_4.solve_restaurant_problem(intervals) == expected

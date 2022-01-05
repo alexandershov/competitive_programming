@@ -78,3 +78,17 @@ def all_unique(seq: list) -> bool:
         if seq[i] == seq[i - 1]:
             return False
     return True
+
+
+def solve_restaurant_problem(intervals: list[tuple[int, int]]) -> int:
+    events = []
+    for (start, end) in intervals:
+        events.append((start, +1))
+        events.append((end, -1))
+    events.sort()
+    cur = 0
+    result = 0
+    for time, action in events:
+        cur += action
+        result = max(result, cur)
+    return result
