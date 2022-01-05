@@ -81,6 +81,11 @@ def test_all_unique(seq, expected):
         3,
         id='it should return number of simultaneous visitors'
     ),
+    pytest.param(
+        [(2, 3), (1, 2)],
+        1,
+        id='it should handle back-to-back visits'
+    ),
 ])
 def test_restaurant_problem(intervals, expected):
     assert chapter_4.solve_restaurant_problem(intervals) == expected
