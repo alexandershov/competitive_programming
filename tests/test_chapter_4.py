@@ -97,6 +97,11 @@ def test_restaurant_problem(intervals, expected):
 
 
 @pytest.mark.parametrize('intervals, expected', [
+    pytest.param(
+        [(1, 100), (0, 4), (8, 15)],
+        2,
+        id='it should maximize the number of events'
+    ),
 ])
 def test_solve_scheduling_problem(intervals, expected):
     assert chapter_4.solve_scheduling_problem(intervals) == expected

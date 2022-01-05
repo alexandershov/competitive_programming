@@ -1,5 +1,7 @@
 from typing import Optional
 
+Interval = tuple[int, int]
+
 
 def bubble_sort(seq: list) -> None:
     for i in range(len(seq)):
@@ -80,7 +82,7 @@ def all_unique(seq: list) -> bool:
     return True
 
 
-def solve_restaurant_problem(intervals: list[tuple[int, int]]) -> int:
+def solve_restaurant_problem(intervals: list[Interval]) -> int:
     events = []
     for (start, end) in intervals:
         events.append((start, +1))
@@ -94,5 +96,21 @@ def solve_restaurant_problem(intervals: list[tuple[int, int]]) -> int:
     return result
 
 
-def solve_scheduling_problem(intervals: list[tuple[int, int]]) -> int:
-    pass
+def solve_scheduling_problem(intervals: list[Interval]) -> int:
+    intervals.sort(key=_by_end)
+    schedule = []
+    for cur in intervals:
+        if not schedule:
+            schedule.append(cur)
+        elif are_disjoint(schedule[-1], cur):
+            schedule.append(cur)
+
+    return len(schedule)
+
+
+def are_disjoint(left: Interval, right: Interval) -> bool:
+    return right[0] >= left[1] or right[1] <= left[0]
+
+
+def _by_end(interval: Interval) -> int:
+    return interval[1]
