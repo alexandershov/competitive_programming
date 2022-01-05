@@ -94,3 +94,9 @@ def test_all_unique(seq, expected):
 ])
 def test_restaurant_problem(intervals, expected):
     assert chapter_4.solve_restaurant_problem(intervals) == expected
+
+
+@pytest.mark.parametrize('intervals, expected', [
+])
+def test_solve_scheduling_problem(intervals, expected):
+    assert chapter_4.solve_scheduling_problem(intervals) == expected

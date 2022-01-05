@@ -92,3 +92,7 @@ def solve_restaurant_problem(intervals: list[tuple[int, int]]) -> int:
         cur += action
         result = max(result, cur)
     return result
+
+
+def solve_scheduling_problem(intervals: list[tuple[int, int]]) -> int:
+    pass
