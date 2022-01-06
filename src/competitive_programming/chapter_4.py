@@ -128,12 +128,18 @@ def solve_deadline_problem(tasks: list[tuple[int, int]]) -> int:
 def binary_search(seq: list, value) -> int:
     start = 0
     end = len(seq)
+    result = -1
     while start < end:
         middle = (start + end) // 2
         if seq[middle] == value:
-            return middle
+            if result == -1:
+                result = middle
+            else:
+                result = min(middle, result)
+            end = middle
         elif seq[middle] > value:
             end = middle
         else:
             start = middle + 1
-    return -1
+
+    return result
