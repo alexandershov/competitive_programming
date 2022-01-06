@@ -124,6 +124,12 @@ def test_solve_deadline_problem(tasks, expected):
 
 
 @pytest.mark.parametrize('seq, value, expected', [
+    pytest.param(
+        [1, 3, 20, 40, 80],
+        40,
+        3,
+        id='it should return an index of the value in seq'
+    )
 ])
 def test_binary_search(seq, value, expected):
     assert chapter_4.binary_search(seq, value) == expected

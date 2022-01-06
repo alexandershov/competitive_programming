@@ -126,4 +126,14 @@ def solve_deadline_problem(tasks: list[tuple[int, int]]) -> int:
 
 
 def binary_search(seq: list, value) -> int:
-    pass
+    start = 0
+    end = len(seq)
+    while start < end:
+        middle = (start + end) // 2
+        if seq[middle] == value:
+            return middle
+        elif seq[middle] > value:
+            end = middle
+        else:
+            start = middle + 1
+    return -1
