@@ -117,4 +117,9 @@ def _by_end(interval: Interval) -> int:
 
 
 def solve_deadline_problem(tasks: list[tuple[int, int]]) -> int:
-    pass
+    score = 0
+    cur_time = 0
+    for duration, deadline in sorted(tasks):
+        cur_time += duration
+        score += deadline - cur_time
+    return score

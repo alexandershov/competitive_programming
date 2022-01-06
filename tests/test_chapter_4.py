@@ -108,6 +108,16 @@ def test_solve_scheduling_problem(intervals, expected):
 
 
 @pytest.mark.parametrize('tasks, expected', [
+    pytest.param(
+        [
+            (4, 2),
+            (3, 10),
+            (2, 8),
+            (4, 15),
+        ],
+        6,
+        id='it should greedy choose the task with the minimum duration',
+    )
 ])
 def test_solve_deadline_problem(tasks, expected):
     assert chapter_4.solve_deadline_problem(tasks) == expected
