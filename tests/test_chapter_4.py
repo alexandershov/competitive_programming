@@ -129,6 +129,12 @@ def test_solve_deadline_problem(tasks, expected):
         40,
         3,
         id='it should return an index of the value in seq'
+    ),
+    pytest.param(
+        [],
+        40,
+        -1,
+        id='it should return -1 on an empty array'
     )
 ])
 def test_binary_search(seq, value, expected):
