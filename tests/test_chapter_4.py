@@ -131,6 +131,12 @@ def test_solve_deadline_problem(tasks, expected):
         id='it should return an index of the value in seq'
     ),
     pytest.param(
+        [1, 3, 20, 40, 80],
+        41,
+        -1,
+        id='it should return -1 if value is not in seq'
+    ),
+    pytest.param(
         [],
         40,
         -1,
