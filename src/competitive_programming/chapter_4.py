@@ -123,3 +123,7 @@ def solve_deadline_problem(tasks: list[tuple[int, int]]) -> int:
         cur_time += duration
         score += deadline - cur_time
     return score
+
+
+def binary_search(seq: list, value) -> int:
+    pass
