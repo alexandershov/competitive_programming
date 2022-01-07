@@ -118,7 +118,6 @@ class Square:
         self.row = row
         self.down_diagonal = get_down_diagonal(column, row)
         self.up_diagonal = get_up_diagonal(column, row, size)
-        # TODO: does size belongs to square?
         self.size = size
 
 
