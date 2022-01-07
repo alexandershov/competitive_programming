@@ -146,4 +146,6 @@ def binary_search(seq: list, value) -> int:
 
 
 def solve_machines_problem(machines: list[int], k: int) -> int:
-    pass
+    assert machines
+    if len(machines) == 1:
+        return machines[0] * k

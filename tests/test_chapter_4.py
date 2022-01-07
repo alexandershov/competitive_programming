@@ -154,6 +154,12 @@ def test_binary_search(seq, value, expected):
 
 
 @pytest.mark.parametrize('machines, k, expected', [
+    pytest.param(
+        [10],
+        5,
+        50,
+        id='it should return machines[0] * k when there\'s only one machine'
+    )
 ])
 def test_solve_machine_problem(machines, k, expected):
     assert chapter_4.solve_machines_problem(machines, k) == expected
