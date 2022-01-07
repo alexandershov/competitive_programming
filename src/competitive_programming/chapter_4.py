@@ -143,3 +143,7 @@ def binary_search(seq: list, value) -> int:
             start = middle + 1
 
     return result
+
+
+def solve_machines_problem(machines: list[int], k: int) -> int:
+    pass

@@ -151,3 +151,9 @@ def test_solve_deadline_problem(tasks, expected):
 ])
 def test_binary_search(seq, value, expected):
     assert chapter_4.binary_search(seq, value) == expected
+
+
+@pytest.mark.parametrize('machines, k, expected', [
+])
+def test_solve_machine_problem(machines, k, expected):
+    assert chapter_4.solve_machines_problem(machines, k) == expected
