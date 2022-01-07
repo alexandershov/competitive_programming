@@ -146,15 +146,18 @@ def binary_search(seq: list, value) -> int:
 
 
 def solve_machines_problem(machines: list[int], k: int) -> int:
+    return _solve_sorted_machines_problem(sorted(machines), k)
+
+
+def _solve_sorted_machines_problem(machines: list[int], k: int) -> int:
     assert machines
-    # TODO: sort once
-    machines.sort()
+
     assert k > 0
     if len(machines) == 1:
         return machines[0] * k
     best = None
     for slowest_k in range(0, k):
-        solution = solve_machines_problem(machines[:-1], k - slowest_k)
+        solution = _solve_sorted_machines_problem(machines[:-1], k - slowest_k)
         if best is None:
             best = solution
         else:
