@@ -159,6 +159,12 @@ def test_binary_search(seq, value, expected):
         5,
         50,
         id='it should return machines[0] * k when there\'s only one machine'
+    ),
+        pytest.param(
+        [2, 3, 7],
+        8,
+        9,
+        id='it should on the example from the book'
     )
 ])
 def test_solve_machine_problem(machines, k, expected):
