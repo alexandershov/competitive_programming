@@ -160,7 +160,7 @@ def test_binary_search(seq, value, expected):
         50,
         id='it should return machines[0] * k when there\'s only one machine'
     ),
-        pytest.param(
+    pytest.param(
         [2, 3, 7],
         8,
         9,
@@ -168,4 +168,4 @@ def test_binary_search(seq, value, expected):
     )
 ])
 def test_solve_machine_problem(machines, k, expected):
-    assert chapter_4.solve_machines_problem(machines, k) == expected
+    assert chapter_4.solve_machines_problem_brute_force(machines, k) == expected

@@ -145,7 +145,7 @@ def binary_search(seq: list, value) -> int:
     return result
 
 
-def solve_machines_problem(machines: list[int], k: int) -> int:
+def solve_machines_problem_brute_force(machines: list[int], k: int) -> int:
     return _solve_sorted_machines_problem(sorted(machines), k, len(machines))
 
 
