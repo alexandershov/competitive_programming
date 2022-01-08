@@ -1,4 +1,6 @@
-from typing import Callable, Optional
+import heapq
+from dataclasses import dataclass
+from typing import Callable, Iterator, Optional
 
 Interval = tuple[int, int]
 
@@ -47,20 +49,28 @@ def counting_sort(seq: list) -> None:
 
 
 def merge(*iters):
-    values_by_it = {}
+    heap = []
     for it in iters:
-        try_add_next_value(values_by_it, it)
+        try_add_next_value(heap, it)
 
-    while values_by_it:
-        min_it = min(values_by_it, key=values_by_it.__getitem__)
-        yield values_by_it.pop(min_it)
+    while heap:
+        minimum = heapq.heappop(heap)
+        yield minimum.value
+        try_add_next_value(heap, minimum.iterator)
 
-        try_add_next_value(values_by_it, min_it)
+
+@dataclass(frozen=True)
+class MergeKey:
+    value: object
+    iterator: Iterator
+
+    def __lt__(self, other):
+        return self.value < other.value
 
 
-def try_add_next_value(values_by_it, it):
+def try_add_next_value(heap, it):
     try:
-        values_by_it[it] = next(it)
+        heapq.heappush(heap, MergeKey(next(it), it))
     except StopIteration:
         pass
 
