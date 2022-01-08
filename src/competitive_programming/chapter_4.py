@@ -1,3 +1,4 @@
+import dataclasses
 import heapq
 from dataclasses import dataclass
 from typing import Callable, Iterator, Optional
@@ -59,13 +60,10 @@ def merge(*iters):
         try_add_next_value(heap, minimum.iterator)
 
 
-@dataclass(frozen=True)
+@dataclass(frozen=True, order=True)
 class MergeKey:
     value: object
-    iterator: Iterator
-
-    def __lt__(self, other):
-        return self.value < other.value
+    iterator: Iterator = dataclasses.field(compare=False)
 
 
 def try_add_next_value(heap, it):
