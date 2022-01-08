@@ -1,4 +1,4 @@
-from typing import Optional
+from typing import Callable, Optional
 
 Interval = tuple[int, int]
 
@@ -126,22 +126,23 @@ def solve_deadline_problem(tasks: list[tuple[int, int]]) -> int:
 
 
 def binary_search(seq: list, value) -> int:
-    start = 0
-    end = len(seq)
+    index = generic_binary_search(0, len(seq), lambda i: seq[i] >= value)
+    if index == -1:
+        return -1
+    if seq[index] == value:
+        return index
+    return -1
+
+
+def generic_binary_search(start: int, end: int, key: Callable[[int], bool]) -> int:
     result = -1
     while start < end:
         middle = (start + end) // 2
-        if seq[middle] == value:
-            if result == -1:
-                result = middle
-            else:
-                result = min(middle, result)
-            end = middle
-        elif seq[middle] > value:
+        if key(middle):
+            result = middle
             end = middle
         else:
             start = middle + 1
-
     return result
 
 
