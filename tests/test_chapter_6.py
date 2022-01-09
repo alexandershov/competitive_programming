@@ -28,6 +28,12 @@ def test_solve_coins_problem(coins, amount, expected):
 
 
 @pytest.mark.parametrize('coins, amount, expected', [
+    pytest.param(
+        {1, 3, 4},
+        5,
+        6,
+        id='it should count the number of ways to construct an amount'
+    )
 ])
 def test_solve_coins_count_problem(coins, amount, expected):
     assert chapter_6.solve_coins_count_problem(coins, amount) == expected
