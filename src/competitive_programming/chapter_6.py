@@ -13,4 +13,4 @@ def solve_coins_problem(coins: set[int], amount: int) -> list[int]:
                 if prev_solution is not None:
                     if cur_amount not in cache or len(cache[cur_amount]) > len(prev_solution) + 1:
                         cache[cur_amount] = prev_solution + [a_coin]
-    return cache.get(amount, [])
+    return cache.get(amount)
