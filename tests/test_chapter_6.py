@@ -27,6 +27,12 @@ def test_solve_coins_problem(coins, amount, expected):
     assert try_sorted(chapter_6.solve_coins_problem(coins, amount)) == try_sorted(expected)
 
 
+@pytest.mark.parametrize('coins, amount, expected', [
+])
+def test_solve_coins_count_problem(coins, amount, expected):
+    assert chapter_6.solve_coins_count_problem(coins, amount) == expected
+
+
 def try_sorted(opt_seq):
     if opt_seq is None:
         return None
