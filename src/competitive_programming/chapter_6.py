@@ -1,4 +1,8 @@
+from __future__ import annotations
+
 import collections
+import dataclasses
+from typing import Optional, Iterable
 
 
 def solve_coins_problem(coins: set[int], amount: int) -> list[int]:
@@ -26,5 +30,30 @@ def solve_coins_count_problem(coins: set[int], amount: int) -> int:
     return cache[amount]
 
 
+@dataclasses.dataclass(frozen=True)
+class Item:
+    value: object
+    max_len: int
+    prev: Optional[Item]
+
+
 def find_longest_increasing_subsequence(seq: list) -> list:
-    pass
+    items = []
+    for i, value in enumerate(seq):
+        less_than = (
+            an_item
+            for an_item in items
+            if an_item.value < value
+        )
+        best = _pick_best(less_than)
+        items.append(Item(value, best.max_len + 1 if best else 1, best))
+    result = []
+    best = _pick_best(items)
+    while best is not None:
+        result.append(best.value)
+        best = best.prev
+    return list(reversed(result))
+
+
+def _pick_best(items: Iterable[Item]) -> Optional[Item]:
+    return max(items, key=lambda item: item.max_len, default=None)

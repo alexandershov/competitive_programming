@@ -46,6 +46,11 @@ def try_sorted(opt_seq):
 
 
 @pytest.mark.parametrize('seq, expected', [
+    pytest.param(
+        [6, 2, 5, 1, 7, 4, 8, 3],
+        [2, 5, 7, 8],
+        id='it should work on the example from the book',
+    )
 ])
-def find_longest_increasing_subsequence(seq, expected):
+def test_find_longest_increasing_subsequence(seq, expected):
     assert chapter_6.find_longest_increasing_subsequence(seq) == expected
