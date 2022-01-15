@@ -24,3 +24,7 @@ def solve_coins_count_problem(coins: set[int], amount: int) -> int:
             prev_count = cache[cur_amount - a_coin]
             cache[cur_amount] += prev_count
     return cache[amount]
+
+
+def find_longest_increasing_subsequence(seq: list) -> list:
+    pass

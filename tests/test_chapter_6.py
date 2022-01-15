@@ -43,3 +43,9 @@ def try_sorted(opt_seq):
     if opt_seq is None:
         return None
     return sorted(opt_seq)
+
+
+@pytest.mark.parametrize('seq, expected', [
+])
+def find_longest_increasing_subsequence(seq, expected):
+    assert chapter_6.find_longest_increasing_subsequence(seq) == expected
