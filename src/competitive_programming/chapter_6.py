@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import collections
+import copy
 import dataclasses
 from typing import Optional, Iterable
 
@@ -59,5 +60,29 @@ def _pick_best(items: Iterable[Item]) -> Optional[Item]:
     return max(items, key=lambda item: item.max_len, default=None)
 
 
-def find_best_path_in_grid(grid: list[list[int]]) -> int:
-    pass
+def find_best_path_in_grid(grid: list[list[int]], cache=None, destination=None) -> int:
+    if destination is None:
+        destination = len(grid[0]) - 1, len(grid) - 1
+        cache = {(0, 0): grid[0][0]}
+    if cache.get(destination) is not None:
+        return cache[destination]
+
+    x, y = destination
+    cost = grid[y][x]
+    best = max(
+        find_best_path_in_grid(grid, cache, source)
+        for source in get_sources(destination)
+    )
+    cache[destination] = best + cost
+    return cache[destination]
+
+
+def get_sources(destination):
+    x, y = destination
+    candidates = [(x - 1, y), (x, y - 1)]
+    return [a_candidate for a_candidate in candidates if is_valid(a_candidate)]
+
+
+def is_valid(square):
+    x, y = square
+    return x >= 0 and y >= 0

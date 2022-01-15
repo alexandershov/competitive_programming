@@ -72,6 +72,17 @@ def test_find_longest_increasing_subsequence(seq, expected):
 
 
 @pytest.mark.parametrize('grid, expected', [
+    pytest.param(
+        [
+            [3, 7, 9, 2, 7],
+            [9, 8, 3, 5, 5],
+            [1, 7, 9, 8, 5],
+            [3, 8, 6, 4, 10],
+            [6, 3, 9, 7, 8],
+        ],
+        67,
+        id='it should find the path with the maximum cost'
+    )
 ])
 def test_find_best_path_in_grid(grid, expected):
     assert chapter_6.find_best_path_in_grid(grid) == expected
