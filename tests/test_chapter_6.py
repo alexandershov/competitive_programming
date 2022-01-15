@@ -52,6 +52,11 @@ def try_sorted(opt_seq):
         id='it should return an empty list if input is empty'
     ),
     pytest.param(
+        [10, 9, 8],
+        [10],
+        id='it should return one element if input is in reversed order'
+    ),
+    pytest.param(
         [8, 9, 10],
         [8, 9, 10],
         id='it should return the input unchanged is input is sorted'
