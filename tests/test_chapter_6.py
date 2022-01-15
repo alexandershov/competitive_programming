@@ -93,3 +93,9 @@ def test_find_longest_increasing_subsequence(seq, expected):
 ])
 def test_find_best_path_in_grid(grid, expected):
     assert chapter_6.find_best_path_in_grid(grid) == expected
+
+
+@pytest.mark.parametrize('weights, expected', [
+])
+def test_knapsack_sums(weights, expected):
+    assert chapter_6.find_knapsack_sums(weights) == expected

@@ -85,3 +85,7 @@ def get_sources(destination):
 def is_valid(square):
     x, y = square
     return x >= 0 and y >= 0
+
+
+def find_knapsack_sums(weights: list[int]) -> set[int]:
+    pass
