@@ -74,6 +74,13 @@ def test_find_longest_increasing_subsequence(seq, expected):
 @pytest.mark.parametrize('grid, expected', [
     pytest.param(
         [
+            [8]
+        ],
+        8,
+        id='it should return the only element when given a singleton grid'
+    ),
+    pytest.param(
+        [
             [3, 7, 9, 2, 7],
             [9, 8, 3, 5, 5],
             [1, 7, 9, 8, 5],
