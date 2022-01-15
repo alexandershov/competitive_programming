@@ -104,3 +104,9 @@ def test_find_best_path_in_grid(grid, expected):
 ])
 def test_knapsack_sums(weights, expected):
     assert chapter_6.find_knapsack_sums(weights) == expected
+
+
+@pytest.mark.parametrize('max_weight, expected', [
+])
+def test_get_min_num_rides(max_weight, weights, expected):
+    assert chapter_6.get_min_num_rides(max_weight, weights) == expected

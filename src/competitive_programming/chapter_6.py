@@ -97,3 +97,7 @@ def find_knapsack_sums(weights: list[int]) -> set[int]:
                     if i not in items:
                         sums.setdefault(a_sum, set()).add(items | {i})
     return set(sums)
+
+
+def get_min_num_rides(max_weight: int, weights: list[int]) -> int:
+    pass
