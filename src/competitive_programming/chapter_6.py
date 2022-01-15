@@ -1,7 +1,6 @@
 from __future__ import annotations
 
 import collections
-import copy
 import dataclasses
 from typing import Optional, Iterable
 
