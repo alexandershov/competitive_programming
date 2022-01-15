@@ -57,3 +57,7 @@ def find_longest_increasing_subsequence(seq: list) -> list:
 
 def _pick_best(items: Iterable[Item]) -> Optional[Item]:
     return max(items, key=lambda item: item.max_len, default=None)
+
+
+def find_best_path_in_grid(grid: list[list[int]]) -> int:
+    pass
