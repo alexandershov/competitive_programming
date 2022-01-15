@@ -88,4 +88,12 @@ def is_valid(square):
 
 
 def find_knapsack_sums(weights: list[int]) -> set[int]:
-    pass
+    sums = {0: {frozenset()}}
+    for a_sum in range(sum(weights) + 1):
+        for i, weight in enumerate(weights):
+            prev_sum = a_sum - weight
+            if prev_sum in sums:
+                for items in sums[prev_sum]:
+                    if i not in items:
+                        sums.setdefault(a_sum, set()).add(items | {i})
+    return set(sums)

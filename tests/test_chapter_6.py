@@ -96,6 +96,11 @@ def test_find_best_path_in_grid(grid, expected):
 
 
 @pytest.mark.parametrize('weights, expected', [
+    pytest.param(
+        [1, 3, 3, 5],
+        {0, 1, 3, 4, 5, 6, 7, 8, 9, 11, 12},
+        id='it should return all possible sums'
+    )
 ])
 def test_knapsack_sums(weights, expected):
     assert chapter_6.find_knapsack_sums(weights) == expected
