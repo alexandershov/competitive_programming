@@ -138,13 +138,31 @@ def test_count_tilings(width, height, expected):
 
 @pytest.mark.parametrize('square, width, height, expected', [
     pytest.param(
-        chapter_6.Square(0, 0), 4, 7,
+        chapter_6.Square(0, 0), 7, 4,
         {
             (chapter_6.Square(0, 0), chapter_6.Square(1, 0)),
             (chapter_6.Square(0, 0), chapter_6.Square(0, 1))
         },
         id='it should return two tiles for the upper left corner'
-    )
+    ),
+    pytest.param(
+        chapter_6.Square(6, 3), 7, 4,
+        {
+            (chapter_6.Square(6, 3), chapter_6.Square(6, 2)),
+            (chapter_6.Square(6, 3), chapter_6.Square(5, 3))
+        },
+        id='it should return two tiles for the bottom right corner'
+    ),
+    pytest.param(
+        chapter_6.Square(1, 1), 7, 4,
+        {
+            (chapter_6.Square(1, 1), chapter_6.Square(1, 0)),
+            (chapter_6.Square(1, 1), chapter_6.Square(0, 1)),
+            (chapter_6.Square(1, 1), chapter_6.Square(1, 2)),
+            (chapter_6.Square(1, 1), chapter_6.Square(2, 1)),
+        },
+        id='it should return four tiles for the square in the middle'
+    ),
 ])
-def test_get_tiles(square, width, height,expected):
+def test_get_tiles(square, width, height, expected):
     assert chapter_6.get_tiles(square, width, height) == expected
