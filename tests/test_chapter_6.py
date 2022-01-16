@@ -136,7 +136,15 @@ def test_count_tilings(width, height, expected):
     assert chapter_6.count_tilings(width, height) == expected
 
 
-@pytest.mark.parametrize('width, height, square, expected', [
+@pytest.mark.parametrize('square, width, height, expected', [
+    pytest.param(
+        chapter_6.Square(0, 0), 4, 7,
+        {
+            (chapter_6.Square(0, 0), chapter_6.Square(1, 0)),
+            (chapter_6.Square(0, 0), chapter_6.Square(0, 1))
+        },
+        id='it should return two tiles for the upper left corner'
+    )
 ])
-def test_get_tiles(width, height, square, expected):
-    assert chapter_6.get_tiles(width, height, square) == expected
+def test_get_tiles(square, width, height,expected):
+    assert chapter_6.get_tiles(square, width, height) == expected

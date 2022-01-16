@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 import collections
-from dataclasses import dataclass
+from dataclasses import dataclass, replace
 from typing import Optional, Iterable
 
 from competitive_programming import chapter_2
@@ -139,6 +139,28 @@ class Square:
     x: int
     y: int
 
+    def up(self) -> Square:
+        return replace(self, y=self.y - 1)
 
-def get_tiles(width: int, height: int, square: Square) -> set[tuple[Square]]:
-    pass
+    def down(self) -> Square:
+        return replace(self, y=self.y + 1)
+
+    def left(self) -> Square:
+        return replace(self, x=self.x - 1)
+
+    def right(self) -> Square:
+        return replace(self, x=self.x + 1)
+
+
+def get_tiles(square: Square, width: int, height: int) -> set[tuple[Square, Square]]:
+    assert _is_inside(square, width, height)
+    neighbours = [square.up(), square.down(), square.left(), square.right()]
+    tiles = set()
+    for candidate in neighbours:
+        if _is_inside(candidate, width, height):
+            tiles.add((square, candidate))
+    return tiles
+
+
+def _is_inside(square: Square, width: int, height: int) -> bool:
+    return (0 <= square.x < width) and (0 <= square.y < height)
