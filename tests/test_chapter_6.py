@@ -135,6 +135,11 @@ def test_get_min_num_rides(max_weight, weights, expected):
         2, 1,
         1,
         id='it should return the count of different possible tilings'
+    ),
+    pytest.param(
+        2, 2,
+        2,
+        id='it should return the count of different possible tilings'
     )
 ])
 def test_count_tilings(width, height, expected):
