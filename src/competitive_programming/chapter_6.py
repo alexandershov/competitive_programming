@@ -7,6 +7,24 @@ from typing import Optional, Iterable
 from competitive_programming import chapter_2
 
 
+@dataclass(frozen=True)
+class Square:
+    x: int
+    y: int
+
+    def up(self) -> Square:
+        return replace(self, y=self.y - 1)
+
+    def down(self) -> Square:
+        return replace(self, y=self.y + 1)
+
+    def left(self) -> Square:
+        return replace(self, x=self.x - 1)
+
+    def right(self) -> Square:
+        return replace(self, x=self.x + 1)
+
+
 def solve_coins_problem(coins: set[int], amount: int) -> list[int]:
     assert amount >= 0
     assert_all_positive(coins)
@@ -131,25 +149,32 @@ def get_min_num_rides_rec(max_weight: int, weights: list[int], indexes: frozense
 
 
 def count_tilings(width: int, height: int) -> int:
-    pass
+    free = set()
+    for x in range(width):
+        for y in range(height):
+            free.add(Square(x, y))
+    return sum(1 for _ in iter_tilings(width, height, index=0, free=free))
 
 
-@dataclass(frozen=True)
-class Square:
-    x: int
-    y: int
+def iter_tilings(width: int, height: int, index: int, free: set[Square]):
+    if index == width * height:
+        if not free:
+            yield 'solution'
+        return
 
-    def up(self) -> Square:
-        return replace(self, y=self.y - 1)
+    x, y = divmod(index, width)
+    square = Square(x, y)
+    if square not in free:
+        yield from iter_tilings(width, height, index + 1, free)
+        return
 
-    def down(self) -> Square:
-        return replace(self, y=self.y + 1)
-
-    def left(self) -> Square:
-        return replace(self, x=self.x - 1)
-
-    def right(self) -> Square:
-        return replace(self, x=self.x + 1)
+    for tile in get_tiles(square, width, height):
+        if tile[1] not in free:
+            continue
+        free.remove(tile[0])
+        free.remove(tile[1])
+        yield from iter_tilings(width, height, index + 1, free)
+        free.update(tile)
 
 
 def get_tiles(square: Square, width: int, height: int) -> set[tuple[Square, Square]]:
