@@ -149,11 +149,16 @@ def get_min_num_rides_rec(max_weight: int, weights: list[int], indexes: frozense
 
 
 def count_tilings(width: int, height: int) -> int:
+    return sum(
+        1 for _ in iter_tilings(width, height, index=0, free=get_free_squares(height, width)))
+
+
+def get_free_squares(height, width):
     free = set()
     for x in range(width):
         for y in range(height):
             free.add(Square(x, y))
-    return sum(1 for _ in iter_tilings(width, height, index=0, free=free))
+    return free
 
 
 def iter_tilings(width: int, height: int, index: int, free: set[Square]):
