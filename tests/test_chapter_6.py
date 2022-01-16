@@ -119,6 +119,12 @@ def test_knapsack_sums(weights, expected):
         0,
         id="it should zero if there's no people",
     ),
+    pytest.param(
+        10,
+        [6, 7, 8, 9],
+        4,
+        id="it should number of people if only one person can take a ride at a time",
+    )
 ])
 def test_get_min_num_rides(max_weight, weights, expected):
     assert chapter_6.get_min_num_rides(max_weight, weights) == expected
