@@ -4,6 +4,8 @@ import collections
 import dataclasses
 from typing import Optional, Iterable
 
+from competitive_programming import chapter_2
+
 
 def solve_coins_problem(coins: set[int], amount: int) -> list[int]:
     # TODO: make it more elegant
@@ -100,4 +102,24 @@ def find_knapsack_sums(weights: list[int]) -> set[int]:
 
 
 def get_min_num_rides(max_weight: int, weights: list[int]) -> int:
-    pass
+    indexes = frozenset(range(len(weights)))
+    cache = {frozenset(): 0}
+    return get_min_num_rides_rec(max_weight, weights, indexes, cache)
+
+
+def get_min_num_rides_rec(max_weight: int, weights: list[int], indexes: frozenset[int],
+                          cache: dict) -> int:
+    if indexes in cache:
+        return cache[indexes]
+    num_rides = float('inf')
+    for riders in chapter_2.rec_efficient_subsets(list(indexes)):
+        if not riders:
+            continue
+        riders_weight = sum(weights[i] for i in riders)
+        if riders_weight > max_weight:
+            continue
+        left_behind = indexes - riders
+        num_rides = min(1 + get_min_num_rides_rec(max_weight, weights, left_behind, cache),
+                        num_rides)
+    cache[indexes] = num_rides
+    return num_rides

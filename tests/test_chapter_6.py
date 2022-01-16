@@ -106,7 +106,13 @@ def test_knapsack_sums(weights, expected):
     assert chapter_6.find_knapsack_sums(weights) == expected
 
 
-@pytest.mark.parametrize('max_weight, expected', [
+@pytest.mark.parametrize('max_weight, weights, expected', [
+    pytest.param(
+        12,
+        [2, 3, 4, 5, 9],
+        2,
+        id='it should return minimum number of rides'
+    )
 ])
 def test_get_min_num_rides(max_weight, weights, expected):
     assert chapter_6.get_min_num_rides(max_weight, weights) == expected
