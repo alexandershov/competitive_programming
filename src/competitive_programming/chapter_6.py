@@ -167,7 +167,7 @@ def iter_tilings(width: int, height: int, index: int, free: set[Square]):
             yield 'solution'
         return
 
-    x, y = divmod(index, width)
+    y, x = divmod(index, width)
     square = Square(x, y)
     if square not in free:
         yield from iter_tilings(width, height, index + 1, free)
