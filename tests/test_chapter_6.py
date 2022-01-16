@@ -140,7 +140,12 @@ def test_get_min_num_rides(max_weight, weights, expected):
         2, 2,
         2,
         id='it should return the count of different possible tilings'
-    )
+    ),
+    pytest.param(
+        7, 4,
+        781,
+        id='it should return the count of different possible tilings'
+    ),
 ])
 def test_count_tilings(width, height, expected):
     assert chapter_6.count_tilings(width, height) == expected
