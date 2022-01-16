@@ -128,3 +128,7 @@ def get_min_num_rides_rec(max_weight: int, weights: list[int], indexes: frozense
                         num_rides)
     cache[indexes] = num_rides
     return num_rides
+
+
+def count_tilings(width: int, height: int) -> int:
+    pass

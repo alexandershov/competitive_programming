@@ -128,3 +128,9 @@ def test_knapsack_sums(weights, expected):
 ])
 def test_get_min_num_rides(max_weight, weights, expected):
     assert chapter_6.get_min_num_rides(max_weight, weights) == expected
+
+
+@pytest.mark.parametrize('width, height, expected', [
+])
+def test_count_tilings(width, height, expected):
+    assert chapter_6.count_tilings(width, height) == expected
