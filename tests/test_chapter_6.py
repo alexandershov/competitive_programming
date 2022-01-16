@@ -20,7 +20,7 @@ from competitive_programming import chapter_6
         {100, 99, 6},
         10,
         None,
-        id='it should return None if there\'s no solution'
+        id="it should return None if there's no solution"
     )
 ])
 def test_solve_coins_problem(coins, amount, expected):
@@ -112,7 +112,13 @@ def test_knapsack_sums(weights, expected):
         [2, 3, 4, 5, 9],
         2,
         id='it should return minimum number of rides'
-    )
+    ),
+    pytest.param(
+        12,
+        [],
+        0,
+        id="it should zero if there's no people",
+    ),
 ])
 def test_get_min_num_rides(max_weight, weights, expected):
     assert chapter_6.get_min_num_rides(max_weight, weights) == expected
