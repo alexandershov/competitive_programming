@@ -10,18 +10,23 @@ from competitive_programming import chapter_2
 def solve_coins_problem(coins: set[int], amount: int) -> list[int]:
     # TODO: make it more elegant
     assert amount >= 0
-    for a_coin in coins:
-        assert a_coin > 0
+    assert_all_positive(coins)
 
     cache = {0: []}  # amount -> solution
     for cur_amount in range(0, amount + 1):
         for a_coin in coins:
             prev_solution = cache.get(cur_amount - a_coin)
-            if prev_solution is not None:
-                new_solution = prev_solution + [a_coin]
-                if cur_amount not in cache or len(cache[cur_amount]) > len(new_solution):
-                    cache[cur_amount] = new_solution
+            if prev_solution is None:
+                continue
+            new_solution = prev_solution + [a_coin]
+            if cur_amount not in cache or len(cache[cur_amount]) > len(new_solution):
+                cache[cur_amount] = new_solution
     return cache.get(amount)
+
+
+def assert_all_positive(coins):
+    for a_coin in coins:
+        assert a_coin > 0
 
 
 def solve_coins_count_problem(coins: set[int], amount: int) -> int:
