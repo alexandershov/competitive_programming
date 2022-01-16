@@ -134,3 +134,9 @@ def test_get_min_num_rides(max_weight, weights, expected):
 ])
 def test_count_tilings(width, height, expected):
     assert chapter_6.count_tilings(width, height) == expected
+
+
+@pytest.mark.parametrize('width, height, square, expected', [
+])
+def test_get_tiles(width, height, square, expected):
+    assert chapter_6.get_tiles(width, height, square) == expected

@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 import collections
-import dataclasses
+from dataclasses import dataclass
 from typing import Optional, Iterable
 
 from competitive_programming import chapter_2
@@ -37,7 +37,7 @@ def solve_coins_count_problem(coins: set[int], amount: int) -> int:
     return cache[amount]
 
 
-@dataclasses.dataclass(frozen=True)
+@dataclass(frozen=True)
 class Item:
     value: object
     max_len: int
@@ -131,4 +131,14 @@ def get_min_num_rides_rec(max_weight: int, weights: list[int], indexes: frozense
 
 
 def count_tilings(width: int, height: int) -> int:
+    pass
+
+
+@dataclass(frozen=True)
+class Square:
+    x: int
+    y: int
+
+
+def get_tiles(width: int, height: int, square: Square) -> set[tuple[Square]]:
     pass
