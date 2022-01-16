@@ -8,7 +8,6 @@ from competitive_programming import chapter_2
 
 
 def solve_coins_problem(coins: set[int], amount: int) -> list[int]:
-    # TODO: make it more elegant
     assert amount >= 0
     assert_all_positive(coins)
 
@@ -19,8 +18,8 @@ def solve_coins_problem(coins: set[int], amount: int) -> list[int]:
             if prev_solution is None:
                 continue
             new_solution = prev_solution + [a_coin]
-            if cur_amount not in cache or len(cache[cur_amount]) > len(new_solution):
-                cache[cur_amount] = new_solution
+            cache.setdefault(cur_amount, new_solution)
+            cache[cur_amount] = min(cache[cur_amount], new_solution, key=len)
     return cache.get(amount)
 
 
