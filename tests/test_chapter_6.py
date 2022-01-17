@@ -153,7 +153,7 @@ def test_count_tilings(tiling_algo, width, height, expected):
 
 @pytest.fixture(
     params=[
-        chapter_6.count_tilings,
+        chapter_6.count_tilings_brute_force,
 ])
 def tiling_algo(request):
     return request.param

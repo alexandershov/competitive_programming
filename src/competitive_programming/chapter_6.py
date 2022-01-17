@@ -148,7 +148,7 @@ def get_min_num_rides_rec(max_weight: int, weights: list[int], indexes: frozense
     return num_rides
 
 
-def count_tilings(width: int, height: int) -> int:
+def count_tilings_brute_force(width: int, height: int) -> int:
     return sum(
         1 for _ in iter_tilings(width, height, index=0, free=get_free_squares(width, height)))
 
