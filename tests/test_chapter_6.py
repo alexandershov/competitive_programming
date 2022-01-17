@@ -148,10 +148,13 @@ def test_get_min_num_rides(max_weight, weights, expected):
     ),
 ])
 def test_count_tilings(tiling_algo, width, height, expected):
-    assert chapter_6.count_tilings(width, height) == expected
+    assert tiling_algo(width, height) == expected
 
 
-@pytest.fixture(params=[])
+@pytest.fixture(
+    params=[
+        chapter_6.count_tilings,
+])
 def tiling_algo(request):
     return request.param
 
