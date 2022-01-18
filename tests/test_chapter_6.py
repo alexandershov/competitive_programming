@@ -154,7 +154,7 @@ def test_count_tilings(tiling_algo, width, height, expected):
 @pytest.fixture(
     params=[
         chapter_6.count_tilings_brute_force,
-])
+    ])
 def tiling_algo(request):
     return request.param
 
@@ -189,3 +189,9 @@ def tiling_algo(request):
 ])
 def test_get_tiles(square, width, height, expected):
     assert chapter_6.get_tiles(square, width, height) == expected
+
+
+@pytest.mark.parametrize('width, expected', [
+])
+def test_generate_row_tilings(width, expected):
+    assert chapter_6.generate_row_tilings(width) == expected

@@ -194,3 +194,7 @@ def get_tiles(square: Square, width: int, height: int) -> set[tuple[Square, Squa
 
 def _is_inside(square: Square, width: int, height: int) -> bool:
     return (0 <= square.x < width) and (0 <= square.y < height)
+
+
+def generate_row_tilings(width: int) -> set[str]:
+    pass
