@@ -191,7 +191,12 @@ def test_get_tiles(square, width, height, expected):
     assert chapter_6.get_tiles(square, width, height) == expected
 
 
-@pytest.mark.parametrize('width, expected', [
+@pytest.mark.parametrize('width, alphabet, expected', [
+    pytest.param(
+        2, '<>',
+        {'<>', '<<', '>>', '><'},
+        id='it should return all possible tilings'
+    ),
 ])
-def test_generate_row_tilings(width, expected):
-    assert chapter_6.generate_row_tilings(width) == expected
+def test_generate_row_tilings(width, alphabet, expected):
+    assert set(chapter_6.generate_row_tilings(width, alphabet)) == expected

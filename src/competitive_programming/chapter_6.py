@@ -196,5 +196,13 @@ def _is_inside(square: Square, width: int, height: int) -> bool:
     return (0 <= square.x < width) and (0 <= square.y < height)
 
 
-def generate_row_tilings(width: int) -> set[str]:
-    pass
+def generate_row_tilings(width: int, alphabet: str, tiling=None):
+    if tiling is None:
+        tiling = []
+    if len(tiling) == width:
+        yield ''.join(tiling)
+        return
+    for symbol in alphabet:
+        tiling.append(symbol)
+        yield from generate_row_tilings(width, alphabet, tiling)
+        tiling.pop()
