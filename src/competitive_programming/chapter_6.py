@@ -206,3 +206,54 @@ def generate_row_tilings(width: int, alphabet: str, tiling=None):
         tiling.append(symbol)
         yield from generate_row_tilings(width, alphabet, tiling)
         tiling.pop()
+
+
+def count_tilings_dynamic_programming(width: int, height: int) -> int:
+    # TODO: make it more elegant
+    counts = {}  # k -> {last_row -> count}
+    for k in range(height):
+        cur_counts = collections.defaultdict(int)
+        for row in generate_row_tilings(width, '<>^v'):
+            if not has_valid_tiling(row, k, height):
+                continue
+            if k == 0:
+                cur_counts[row] += 1
+            else:
+                prev = counts[k - 1]
+                for last_row, count in prev.items():
+                    if rows_match(last_row, row):
+                        cur_counts[row] += count
+        counts[k] = dict(cur_counts)
+    return sum(counts[height - 1].values())
+
+
+def rows_match(up: str, down: str) -> bool:
+    for up_part, down_part in zip(up, down, strict=True):
+        if up_part == '^' and down_part != 'v':
+            return False
+        if down_part == 'v' and up_part != '^':
+            return False
+    return True
+
+
+def has_valid_tiling(row: str, k: int, height: int) -> bool:
+    forbidden = set()
+    if k == 0:
+        forbidden.add('v')
+    if k == height - 1:
+        forbidden.add('^')
+
+    for i, tile_part in enumerate(row):
+        if tile_part in forbidden:
+            return False
+        if tile_part == '>':
+            if i == 0:
+                return False
+            if row[i - 1] != '<':
+                return False
+        if tile_part == '<':
+            if i == len(row) - 1:
+                return False
+            if row[i + 1] != '>':
+                return False
+    return True
