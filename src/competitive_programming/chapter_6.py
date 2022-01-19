@@ -210,6 +210,8 @@ def generate_row_tilings(width: int, alphabet: str, tiling=None):
 
 def count_tilings_dynamic_programming(width: int, height: int) -> int:
     # TODO: make it more elegant
+    assert width > 0
+    assert height > 0
     counts = {}  # k -> {last_row -> count}
     for k in range(height):
         cur_counts = collections.defaultdict(int)
