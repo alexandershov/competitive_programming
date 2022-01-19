@@ -132,6 +132,11 @@ def test_get_min_num_rides(max_weight, weights, expected):
 
 @pytest.mark.parametrize('width, height, expected', [
     pytest.param(
+        0, 9,
+        1,
+        id='it should return 1 if any dimension is zero'
+    ),
+    pytest.param(
         2, 1,
         1,
         id='it should return the count of different possible tilings'
