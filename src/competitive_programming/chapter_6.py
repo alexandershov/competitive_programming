@@ -210,21 +210,16 @@ def generate_row_tilings(width: int, alphabet: str, tiling=None):
 
 def count_tilings_dynamic_programming(width: int, height: int) -> int:
     # TODO: make it more elegant
-    if height == 0:
-        return 1
-    counts = {}  # k -> {last_row -> count}
+    counts = {-1: {' ' * width: 1}}  # k -> {last_row -> count}
     for k in range(height):
         cur_counts = collections.defaultdict(int)
         for row in generate_row_tilings(width, '<>^v'):
             if not has_valid_tiling(row, k, height):
                 continue
-            if k == 0:
-                cur_counts[row] += 1
-            else:
-                prev = counts[k - 1]
-                for last_row, count in prev.items():
-                    if rows_match(last_row, row):
-                        cur_counts[row] += count
+            prev = counts[k - 1]
+            for last_row, count in prev.items():
+                if rows_match(last_row, row):
+                    cur_counts[row] += count
         counts[k] = dict(cur_counts)
     return sum(counts[height - 1].values())
 
