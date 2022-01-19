@@ -134,7 +134,12 @@ def test_get_min_num_rides(max_weight, weights, expected):
     pytest.param(
         0, 9,
         1,
-        id='it should return 1 if any dimension is zero'
+        id='it should return 1 if height is zero'
+    ),
+    pytest.param(
+        9, 0,
+        1,
+        id='it should return 1 if width is zero'
     ),
     pytest.param(
         2, 1,
