@@ -239,8 +239,6 @@ def rows_match(up: str, down: str) -> bool:
 
 def has_valid_tiling(row: str, k: int, height: int) -> bool:
     forbidden = set()
-    if k == 0:
-        forbidden.add('v')
     if k == height - 1:
         forbidden.add('^')
 
