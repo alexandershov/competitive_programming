@@ -210,7 +210,7 @@ def generate_row_tilings(width: int, alphabet: str, tiling=None):
 
 def count_tilings_dynamic_programming(width: int, height: int) -> int:
     # TODO: make it more elegant
-    if width == 0 or height == 0:
+    if height == 0:
         return 1
     counts = {}  # k -> {last_row -> count}
     for k in range(height):
