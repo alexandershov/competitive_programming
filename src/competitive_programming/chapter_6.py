@@ -210,7 +210,11 @@ def generate_row_tilings(width: int, alphabet: str, tiling=None):
 
 def count_tilings_dynamic_programming(width: int, height: int) -> int:
     # TODO: make it more elegant
-    counts = {-1: {' ' * width: 1}}  # k -> {last_row -> count}
+    sentinel = ' ' * width
+    counts = {  # k -> {last_row -> count}
+        -1: {sentinel: 1},
+        height: {sentinel: 1}
+    }
     for k in range(height):
         cur_counts = collections.defaultdict(int)
         for row in generate_row_tilings(width, '<>^v'):
