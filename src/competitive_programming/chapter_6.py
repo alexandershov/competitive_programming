@@ -212,10 +212,9 @@ def count_tilings_dynamic_programming(width: int, height: int) -> int:
     # TODO: make it more elegant
     sentinel = ' ' * width
     counts = {  # k -> {last_row -> count}
-        -1: {sentinel: 1},
-        height: {sentinel: 1}
+        0: {sentinel: 1},
     }
-    for k in range(height):
+    for k in range(1, height + 1):
         cur_counts = collections.defaultdict(int)
         for row in generate_row_tilings(width, '<>^v'):
             if not has_valid_tiling(row, k, height):
@@ -225,7 +224,7 @@ def count_tilings_dynamic_programming(width: int, height: int) -> int:
                 if rows_match(last_row, row):
                     cur_counts[row] += count
         counts[k] = dict(cur_counts)
-    return sum(counts[height - 1].values())
+    return sum(counts[height].values())
 
 
 def rows_match(up: str, down: str) -> bool:
@@ -239,7 +238,7 @@ def rows_match(up: str, down: str) -> bool:
 
 def has_valid_tiling(row: str, k: int, height: int) -> bool:
     forbidden = set()
-    if k == height - 1:
+    if k == height:
         forbidden.add('^')
 
     for i, tile_part in enumerate(row):
