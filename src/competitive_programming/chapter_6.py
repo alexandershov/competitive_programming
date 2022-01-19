@@ -209,7 +209,6 @@ def generate_row_tilings(width: int, alphabet: str, tiling=None):
 
 
 def count_tilings_dynamic_programming(width: int, height: int) -> int:
-    # TODO: make it more elegant
     sentinel = ' ' * width
     counts = {  # k -> {last_row -> count}
         0: {sentinel: 1},
