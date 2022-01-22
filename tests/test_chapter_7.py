@@ -27,3 +27,9 @@ def test_bfs(search_algo):
 @pytest.fixture(params=[chapter_7.dfs, chapter_7.rec_dfs])
 def search_algo(request):
     return request.param
+
+
+@pytest.mark.parametrize('graph, expected', [
+])
+def test_has_cycle(graph, expected):
+    assert chapter_7.has_cycle(graph) is expected

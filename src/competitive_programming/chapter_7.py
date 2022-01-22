@@ -39,3 +39,7 @@ def bfs(graph, starting_node):
         visited.add(node)
         for neighbour in graph.get(node, []):
             frontier.append(neighbour)
+
+
+def has_cycle(graph) -> bool:
+    pass
