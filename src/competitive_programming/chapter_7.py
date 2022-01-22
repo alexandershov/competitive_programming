@@ -7,11 +7,12 @@ def dfs(graph, starting_node):
     visited = set()
     while frontier:
         node = frontier.pop()
+        if node in visited:
+            continue
         yield node
         visited.add(node)
         for neighbour in reversed(graph.get(node, [])):
-            if neighbour not in visited:
-                frontier.append(neighbour)
+            frontier.append(neighbour)
 
 
 def rec_dfs(graph, node, visited=None):
