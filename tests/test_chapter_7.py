@@ -11,7 +11,7 @@ def test_dfs(search_algo):
     }
 
     nodes = list(search_algo(graph, 1))
-    assert nodes == [1, 9, 11, 2, 10, 8]
+    assert nodes == [1, 8, 9, 10, 11, 2]
 
 
 @pytest.fixture(params=[chapter_7.dfs, chapter_7.rec_dfs])
