@@ -10,3 +10,16 @@ def dfs(graph, starting_node):
         for neighbour in graph.get(node, []):
             if neighbour not in visited:
                 frontier.append(neighbour)
+
+
+def rec_dfs(graph, node, visited=None):
+    if visited is None:
+        visited = set()
+
+    if node in visited:
+        return
+
+    yield node
+    visited.add(node)
+    for neighbour in reversed(graph.get(node, [])):
+        yield from rec_dfs(graph, neighbour, visited)

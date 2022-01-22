@@ -14,6 +14,6 @@ def test_dfs(search_algo):
     assert nodes == [1, 9, 11, 2, 10, 8]
 
 
-@pytest.fixture(params=[chapter_7.dfs])
+@pytest.fixture(params=[chapter_7.dfs, chapter_7.rec_dfs])
 def search_algo(request):
     return request.param
