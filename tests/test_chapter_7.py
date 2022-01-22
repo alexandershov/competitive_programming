@@ -1,7 +1,7 @@
 from competitive_programming import chapter_7
 
 
-def dfs():
+def test_dfs():
     graph = {
         1: [8, 9],
         9: [10, 11],
