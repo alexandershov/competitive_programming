@@ -6,12 +6,12 @@ from competitive_programming import chapter_7
 def test_dfs(search_algo):
     graph = {
         1: [8, 9],
-        9: [10, 11],
+        8: [10, 11],
         11: [2, 1],
     }
 
     nodes = list(search_algo(graph, 1))
-    assert nodes == [1, 8, 9, 10, 11, 2]
+    assert nodes == [1, 8, 10, 11, 2, 9]
 
 
 @pytest.fixture(params=[chapter_7.dfs, chapter_7.rec_dfs])
