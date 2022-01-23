@@ -49,7 +49,17 @@ def search_algo(request):
         },
         False,
         id='it should return False when graph has no cycle'
-    )
+    ),
+    pytest.param(
+        {
+            1: [2, 1],
+            2: [4, 3, 1],
+            3: [2],
+            4: [2],
+        },
+        True,
+        id='it should return True when graph has a cycle of length 1'
+    ),
 ])
 def test_has_cycle(graph, expected):
     assert chapter_7.has_cycle(graph) is expected
