@@ -31,6 +31,11 @@ def search_algo(request):
 
 @pytest.mark.parametrize('graph, expected', [
     pytest.param(
+        {},
+        False,
+        id='it should return False for an empty graph'
+    ),
+    pytest.param(
         {
             1: [2, 3],
             2: [4, 3, 1],
