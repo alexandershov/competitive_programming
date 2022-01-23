@@ -39,6 +39,16 @@ def search_algo(request):
         },
         True,
         id='it should return True when graph has a cycle'
+    ),
+    pytest.param(
+        {
+            1: [2],
+            2: [4, 3, 1],
+            3: [2],
+            4: [2],
+        },
+        False,
+        id='it should return False when graph has no cycle'
     )
 ])
 def test_has_cycle(graph, expected):
