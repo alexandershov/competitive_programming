@@ -30,6 +30,16 @@ def search_algo(request):
 
 
 @pytest.mark.parametrize('graph, expected', [
+    pytest.param(
+        {
+            1: [2, 3],
+            2: [4, 3, 1],
+            3: [2, 1],
+            4: [2],
+        },
+        True,
+        id='it should return True when graph has a cycle'
+    )
 ])
 def test_has_cycle(graph, expected):
     assert chapter_7.has_cycle(graph) is expected

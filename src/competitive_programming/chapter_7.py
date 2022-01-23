@@ -1,5 +1,6 @@
 # graph algorithms
 import collections
+from dataclasses import dataclass
 
 
 def dfs(graph, starting_node):
@@ -42,4 +43,50 @@ def bfs(graph, starting_node):
 
 
 def has_cycle(graph) -> bool:
-    pass
+    return any(dfs_has_cycle(graph, node) for node in graph)
+
+
+@dataclass
+class Path:
+    nodes: list[int]
+    visited: set[int]
+
+    @staticmethod
+    def empty():
+        return Path(nodes=[], visited=set())
+
+    def add(self, node: int):
+        self.nodes.append(node)
+        self.visited.add(node)
+
+    def remove(self):
+        node = self.nodes.pop()
+        self.visited.remove(node)
+
+    def has_visited(self, node: int) -> bool:
+        return node in self.visited
+
+    def will_lead_to_trivial_cycle(self, node) -> bool:
+        if len(self.nodes) < 2:
+            return False
+        return self.nodes[-2] == node
+
+
+def dfs_has_cycle(graph, node, path=None) -> bool:
+    if path is None:
+        path = Path.empty()
+
+    for neighbour in _get_neighbours(graph, node):
+        if not path.will_lead_to_trivial_cycle(neighbour):
+            if path.has_visited(neighbour):
+                return True
+            path.add(neighbour)
+            result = dfs_has_cycle(graph, neighbour, path)
+            path.remove()
+            if result:
+                return result
+    return False
+
+
+def _get_neighbours(graph, node):
+    return graph.get(node, [])
