@@ -88,5 +88,10 @@ def test_has_cycle(graph, expected):
         id='it should return the shortest paths to each node'
     )
 ])
-def test_get_shortest_paths(graph, node, expected):
-    assert chapter_7.get_shortest_paths(graph, node) == expected
+def test_get_shortest_paths(get_shortest_paths_algo, graph, node, expected):
+    assert get_shortest_paths_algo(graph, node) == expected
+
+
+@pytest.fixture(params=[chapter_7.get_shortest_paths])
+def get_shortest_paths_algo(request):
+    return request.param
