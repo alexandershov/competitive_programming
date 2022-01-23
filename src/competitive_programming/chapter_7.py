@@ -90,3 +90,7 @@ def dfs_has_cycle(graph, node, path=None) -> bool:
 
 def _get_neighbours(graph, node):
     return graph.get(node, [])
+
+
+def get_shortest_paths(graph, node):
+    pass

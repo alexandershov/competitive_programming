@@ -63,3 +63,9 @@ def search_algo(request):
 ])
 def test_has_cycle(graph, expected):
     assert chapter_7.has_cycle(graph) is expected
+
+
+@pytest.mark.parametrize('graph, node, expected', [
+])
+def test_get_shortest_paths(graph, node, expected):
+    assert chapter_7.get_shortest_paths(graph, node) == expected
