@@ -71,6 +71,22 @@ def test_has_cycle(graph, expected):
 
 
 @pytest.mark.parametrize('graph, node, expected', [
+    pytest.param(
+        {
+            'A': [('B', 3), ('C', 100), ('D', 13)],
+            'B': [('A', 3), ('C', 2)],
+            'C': [('B', 2), ('D', 9)],
+            'D': [('C', 9), ('A', 13)],
+        },
+        'A',
+        {
+            'A': 0,
+            'B': 3,
+            'C': 5,
+            'D': 13,
+        },
+        id='it should return the shortest paths to each node'
+    )
 ])
 def test_get_shortest_paths(graph, node, expected):
     assert chapter_7.get_shortest_paths(graph, node) == expected

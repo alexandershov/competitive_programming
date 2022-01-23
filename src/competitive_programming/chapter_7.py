@@ -92,5 +92,14 @@ def _get_neighbours(graph, node):
     return graph.get(node, [])
 
 
-def get_shortest_paths(graph, node):
-    pass
+def get_shortest_paths(graph, starting_node):
+    weights = {starting_node: 0}
+    frontier = collections.deque([starting_node])
+    while frontier:
+        node = frontier.popleft()
+        for neighbour, n_weight in _get_neighbours(graph, node):
+            new_weight = weights[node] + n_weight
+            if new_weight < weights.get(neighbour, float('inf')):
+                weights[neighbour] = new_weight
+                frontier.append(neighbour)
+    return weights
