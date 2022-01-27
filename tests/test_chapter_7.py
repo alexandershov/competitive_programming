@@ -92,6 +92,8 @@ def test_get_shortest_paths(get_shortest_paths_algo, graph, node, expected):
     assert get_shortest_paths_algo(graph, node) == expected
 
 
-@pytest.fixture(params=[chapter_7.get_shortest_paths])
+@pytest.fixture(params=[
+    chapter_7.get_shortest_paths_spfa,
+])
 def get_shortest_paths_algo(request):
     return request.param

@@ -92,7 +92,7 @@ def _get_neighbours(graph, node):
     return graph.get(node, [])
 
 
-def get_shortest_paths(graph, starting_node):
+def get_shortest_paths_spfa(graph, starting_node):
     weights = {starting_node: 0}
     frontier = collections.deque([starting_node])
     while frontier:
