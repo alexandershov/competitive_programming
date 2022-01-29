@@ -131,3 +131,19 @@ def get_all_shortest_paths(graph):
         for dst, weight in get_shortest_paths_spfa(graph, src).items():
             result[(src, dst)] = weight
     return result
+
+
+def get_all_shortest_paths_floyd_warshall(graph):
+    result = collections.defaultdict(lambda: float('inf'))
+    for node in graph:
+        result[(node, node)] = 0
+        for neighbour, n_weight in _get_neighbours(graph, node):
+            result[node, neighbour] = n_weight
+
+    for intermediate in graph:
+        for src in graph:
+            for dst in graph:
+                path = (src, dst)
+                new_weight = result[(src, intermediate)] + result[intermediate, dst]
+                result[path] = min(new_weight, result[path])
+    return dict(result)

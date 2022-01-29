@@ -137,7 +137,8 @@ def get_shortest_paths_algo(request):
 
 
 @pytest.fixture(params=[
-    chapter_7.get_all_shortest_paths
+    chapter_7.get_all_shortest_paths,
+    chapter_7.get_all_shortest_paths_floyd_warshall,
 ])
 def get_all_shortest_paths_algo(request):
     return request.param
