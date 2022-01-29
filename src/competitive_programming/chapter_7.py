@@ -1,5 +1,6 @@
 # graph algorithms
 import collections
+import heapq
 from dataclasses import dataclass
 
 
@@ -103,3 +104,17 @@ def get_shortest_paths_spfa(graph, starting_node):
                 weights[neighbour] = new_weight
                 frontier.append(neighbour)
     return weights
+
+
+def get_shortest_paths_dijkstra(graph, starting_node):
+    result = {}
+    frontier = [(0, starting_node)]
+    while frontier:
+        cost, node = heapq.heappop(frontier)
+        assert cost >= 0
+        if node in result:
+            continue
+        result[node] = cost
+        for neighbour, n_cost in _get_neighbours(graph, node):
+            heapq.heappush(frontier, (cost + n_cost, neighbour))
+    return result
