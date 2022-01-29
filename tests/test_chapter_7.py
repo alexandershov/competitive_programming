@@ -92,6 +92,12 @@ def test_get_shortest_paths(get_shortest_paths_algo, graph, node, expected):
     assert get_shortest_paths_algo(graph, node) == expected
 
 
+@pytest.mark.parametrize('graph, expected', [
+])
+def test_get_all_shortest_paths(graph, expected):
+    assert chapter_7.get_all_shortest_paths(graph) == expected
+
+
 @pytest.fixture(params=[
     chapter_7.get_shortest_paths_spfa,
     chapter_7.get_shortest_paths_dijkstra,

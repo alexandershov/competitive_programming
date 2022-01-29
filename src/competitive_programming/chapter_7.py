@@ -122,3 +122,7 @@ def get_shortest_paths_dijkstra(graph, starting_node):
                 heapq.heappush(frontier, (n_weight, neighbour))
                 current_weights[neighbour] = n_weight
     return result
+
+
+def get_all_shortest_paths(graph):
+    pass
