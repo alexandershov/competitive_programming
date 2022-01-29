@@ -125,4 +125,9 @@ def get_shortest_paths_dijkstra(graph, starting_node):
 
 
 def get_all_shortest_paths(graph):
-    pass
+    result = {}
+    nodes = list(graph)
+    for src in nodes:
+        for dst, weight in get_shortest_paths_spfa(graph, src).items():
+            result[(src, dst)] = weight
+    return result

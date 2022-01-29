@@ -93,6 +93,36 @@ def test_get_shortest_paths(get_shortest_paths_algo, graph, node, expected):
 
 
 @pytest.mark.parametrize('graph, expected', [
+    pytest.param(
+        {
+            'A': [('B', 3), ('C', 100), ('D', 13)],
+            'B': [('A', 3), ('C', 2)],
+            'C': [('B', 2), ('D', 9)],
+            'D': [('C', 9), ('A', 13)],
+        },
+        {
+            ('A', 'A'): 0,
+            ('A', 'B'): 3,
+            ('A', 'C'): 5,
+            ('A', 'D'): 13,
+
+            ('B', 'A'): 3,
+            ('B', 'B'): 0,
+            ('B', 'C'): 2,
+            ('B', 'D'): 11,
+
+            ('C', 'A'): 5,
+            ('C', 'B'): 2,
+            ('C', 'C'): 0,
+            ('C', 'D'): 9,
+
+            ('D', 'A'): 13,
+            ('D', 'B'): 11,
+            ('D', 'C'): 9,
+            ('D', 'D'): 0,
+        },
+        id='it should return shortest paths between all pairs'
+    )
 ])
 def test_get_all_shortest_paths(graph, expected):
     assert chapter_7.get_all_shortest_paths(graph) == expected
