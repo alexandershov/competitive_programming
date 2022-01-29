@@ -124,8 +124,8 @@ def test_get_shortest_paths(get_shortest_paths_algo, graph, node, expected):
         id='it should return shortest paths between all pairs'
     )
 ])
-def test_get_all_shortest_paths(graph, expected):
-    assert chapter_7.get_all_shortest_paths(graph) == expected
+def test_get_all_shortest_paths(graph, get_all_shortest_paths_algo, expected):
+    assert get_all_shortest_paths_algo(graph) == expected
 
 
 @pytest.fixture(params=[
@@ -133,4 +133,11 @@ def test_get_all_shortest_paths(graph, expected):
     chapter_7.get_shortest_paths_dijkstra,
 ])
 def get_shortest_paths_algo(request):
+    return request.param
+
+
+@pytest.fixture(params=[
+    chapter_7.get_all_shortest_paths
+])
+def get_all_shortest_paths_algo(request):
     return request.param
