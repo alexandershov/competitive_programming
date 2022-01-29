@@ -109,16 +109,17 @@ def get_shortest_paths_spfa(graph, starting_node):
 def get_shortest_paths_dijkstra(graph, starting_node):
     result = {}
     frontier = [(0, starting_node)]
-    costs_in_progress = collections.defaultdict(list, {starting_node: [0]})
+    current_weights = collections.defaultdict(list, {starting_node: [0]})
     while frontier:
-        cost, node = heapq.heappop(frontier)
-        heapq.heappop(costs_in_progress[node])
-        assert cost >= 0
+        weight, node = heapq.heappop(frontier)
+        heapq.heappop(current_weights[node])
+        assert weight >= 0
         if node in result:
             continue
-        result[node] = cost
-        for neighbour, n_cost in _get_neighbours(graph, node):
-            if not costs_in_progress[neighbour] or costs_in_progress[neighbour][0] > cost + n_cost:
-                heapq.heappush(frontier, (cost + n_cost, neighbour))
-                heapq.heappush(costs_in_progress[neighbour], cost + n_cost)
+        result[node] = weight
+        for neighbour, edge_weight in _get_neighbours(graph, node):
+            n_weight = weight + edge_weight
+            if not current_weights[neighbour] or current_weights[neighbour][0] > n_weight:
+                heapq.heappush(frontier, (n_weight, neighbour))
+                heapq.heappush(current_weights[neighbour], n_weight)
     return result
