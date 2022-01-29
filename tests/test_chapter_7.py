@@ -124,7 +124,7 @@ def test_get_shortest_paths(get_shortest_paths_algo, graph, node, expected):
         id='it should return shortest paths between all pairs'
     )
 ])
-def test_get_all_shortest_paths(graph, get_all_shortest_paths_algo, expected):
+def test_get_all_shortest_paths(get_all_shortest_paths_algo, graph, expected):
     assert get_all_shortest_paths_algo(graph) == expected
 
 
