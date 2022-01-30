@@ -145,6 +145,24 @@ def get_all_shortest_paths_algo(request):
 
 
 @pytest.mark.parametrize('graph, expected', [
+    pytest.param(
+        {
+            'A': ['C', 'F'],
+            'B': ['D', 'G'],
+            'C': ['G'],
+            'D': ['G'],
+            'E': ['G'],
+            'F': ['E', 'G'],
+            'G': [],
+        },
+        {
+            0: {'A', 'B'},
+            1: {'C', 'D', 'F'},
+            2: {'E'},
+            3: {'G'},
+        },
+        id='it should group nodes by their group'
+    )
 ])
 def test_topological_sort(graph, expected):
     assert chapter_7.topological_sort(graph) == expected
