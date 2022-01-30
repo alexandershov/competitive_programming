@@ -147,3 +147,7 @@ def get_all_shortest_paths_floyd_warshall(graph):
                 new_weight = result[(src, intermediate)] + result[intermediate, dst]
                 result[path] = min(new_weight, result[path])
     return dict(result)
+
+
+def topological_sort(graph):
+    pass

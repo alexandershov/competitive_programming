@@ -142,3 +142,9 @@ def get_shortest_paths_algo(request):
 ])
 def get_all_shortest_paths_algo(request):
     return request.param
+
+
+@pytest.mark.parametrize('graph, expected', [
+])
+def test_topological_sort(graph, expected):
+    assert chapter_7.topological_sort(graph) == expected
