@@ -176,7 +176,7 @@ def test_topological_sort(graph, expected):
         'A',
         'A',
         1,
-        id='it should return 1 if src is the same as dst'
+        id='it should return 1 if src == dst'
     )
 ])
 def test_count_paths(graph, src, dst, expected):
