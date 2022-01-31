@@ -193,5 +193,10 @@ def test_topological_sort(graph, expected):
         id='it should return 1 if src == dst'
     ),
 ])
-def test_count_paths(graph, src, dst, expected):
-    assert chapter_7.count_paths(graph, src, dst) == expected
+def test_count_paths(count_paths_algo, graph, src, dst, expected):
+    assert count_paths_algo(graph, src, dst) == expected
+
+
+@pytest.fixture(params=[chapter_7.count_paths])
+def count_paths_algo(request):
+    return request.param
