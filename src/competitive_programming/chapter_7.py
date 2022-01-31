@@ -168,5 +168,12 @@ def topological_sort_brute_force(graph) -> dict[int, set]:
 
 
 def count_paths(graph, src, dst) -> int:
-    if src == dst:
-        return 1
+    frontier = [src]
+    count = 0
+    while frontier:
+        node = frontier.pop()
+        if node == dst:
+            count += 1
+        else:
+            frontier.extend(_get_neighbours(graph, node))
+    return count

@@ -171,13 +171,27 @@ def test_topological_sort(graph, expected):
 @pytest.mark.parametrize('graph, src, dst, expected', [
     pytest.param(
         {
+            'A': ['B', 'D'],
+            'B': ['C', 'F'],
+            'C': ['F'],
+            'D': ['E'],
+            'E': ['B'],
+            'F': [],
+        },
+        'A',
+        'F',
+        4,
+        id='it should return number of distinct paths between src and dst'
+    ),
+    pytest.param(
+        {
             'A': []
         },
         'A',
         'A',
         1,
         id='it should return 1 if src == dst'
-    )
+    ),
 ])
 def test_count_paths(graph, src, dst, expected):
     assert chapter_7.count_paths(graph, src, dst) == expected
