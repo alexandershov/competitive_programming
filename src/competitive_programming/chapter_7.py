@@ -168,4 +168,5 @@ def topological_sort_brute_force(graph) -> dict[int, set]:
 
 
 def count_paths(graph, src, dst) -> int:
-    pass
+    if src == dst:
+        return 1
