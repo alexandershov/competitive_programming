@@ -166,3 +166,9 @@ def get_all_shortest_paths_algo(request):
 ])
 def test_topological_sort(graph, expected):
     assert chapter_7.topological_sort_brute_force(graph) == expected
+
+
+@pytest.mark.parametrize('graph, src, dst, expected', [
+])
+def test_count_paths(graph, src, dst, expected):
+    assert chapter_7.count_paths(graph, src, dst) == expected

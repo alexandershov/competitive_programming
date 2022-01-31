@@ -165,3 +165,7 @@ def topological_sort_brute_force(graph) -> dict[int, set]:
     for node, group in group_by_node.items():
         result[group].add(node)
     return dict(result)
+
+
+def count_paths(graph, src, dst) -> int:
+    pass
