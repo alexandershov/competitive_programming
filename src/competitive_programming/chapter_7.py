@@ -149,7 +149,7 @@ def get_all_shortest_paths_floyd_warshall(graph):
     return dict(result)
 
 
-def topological_sort(graph) -> dict[int, set]:
+def topological_sort_brute_force(graph) -> dict[int, set]:
     group_by_node = {}  # node -> group
     nodes_with_parents = set()
     for neighbours in graph.values():
