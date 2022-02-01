@@ -181,3 +181,33 @@ def rec_count_paths(graph, src, dst, counts):
         src_count += rec_count_paths(graph, node, dst, counts)
     counts[src] = src_count
     return src_count
+
+
+def count_paths_dynamic_programming(graph, src, dst) -> int:
+    nodes = topological_sort(graph)
+    counts = collections.Counter({src: 1})
+    parents = collections.defaultdict(set)
+    for a_node, neighbours in graph.items():
+        for a_neighbour in neighbours:
+            parents[a_neighbour].add(a_node)
+    for a_node in nodes:
+        for a_parent in parents[a_node]:
+            counts[a_node] += counts[a_parent]
+    return counts[dst]
+
+
+def topological_sort(graph):
+    result = []
+    visited = set()
+    for node in graph:
+        topological_visit(graph, node, visited, result)
+    return list(reversed(result))
+
+
+def topological_visit(graph, node, visited, result):
+    if node in visited:
+        return
+    for neighbour in _get_neighbours(graph, node):
+        topological_visit(graph, neighbour, visited, result)
+    visited.add(node)
+    result.append(node)

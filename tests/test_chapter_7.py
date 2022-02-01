@@ -197,6 +197,9 @@ def test_count_paths(count_paths_algo, graph, src, dst, expected):
     assert count_paths_algo(graph, src, dst) == expected
 
 
-@pytest.fixture(params=[chapter_7.count_paths])
+@pytest.fixture(params=[
+    chapter_7.count_paths,
+    chapter_7.count_paths_dynamic_programming,
+])
 def count_paths_algo(request):
     return request.param
