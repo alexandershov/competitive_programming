@@ -185,6 +185,16 @@ def test_topological_sort(graph, expected):
     ),
     pytest.param(
         {
+            'A': [],
+            'B': []
+        },
+        'A',
+        'B',
+        0,
+        id="it should return 0 if there's no path between src and dst"
+    ),
+    pytest.param(
+        {
             'A': []
         },
         'A',
