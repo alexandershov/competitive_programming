@@ -215,6 +215,10 @@ def topological_visit(graph, node, visited, result):
 
 def get_successor_cycle_length(graph, node) -> int:
     node_in_cycle = get_node_in_cycle(graph, node)
+    return _get_cycle_length(graph, node_in_cycle)
+
+
+def _get_cycle_length(graph, node_in_cycle):
     cur = node_in_cycle
     length = 0
     while True:
