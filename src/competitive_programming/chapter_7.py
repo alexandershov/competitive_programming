@@ -211,3 +211,7 @@ def topological_visit(graph, node, visited, result):
         topological_visit(graph, neighbour, visited, result)
     visited.add(node)
     result.append(node)
+
+
+def get_successor_cycle_length(graph):
+    pass

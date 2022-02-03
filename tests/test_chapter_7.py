@@ -213,3 +213,9 @@ def test_count_paths(count_paths_algo, graph, src, dst, expected):
 ])
 def count_paths_algo(request):
     return request.param
+
+
+@pytest.mark.parametrize('graph, expected', [
+])
+def get_successor_cycle_length(graph, expected):
+    assert chapter_7.get_successor_cycle_length(graph) == expected
