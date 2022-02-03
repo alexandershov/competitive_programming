@@ -215,7 +215,19 @@ def count_paths_algo(request):
     return request.param
 
 
-@pytest.mark.parametrize('graph, expected', [
+@pytest.mark.parametrize('graph, node, expected', [
+    pytest.param(
+        {
+            'A': ['B'],
+            'B': ['C'],
+            'C': ['D'],
+            'D': ['E'],
+            'E': ['B'],
+        },
+        'A',
+        4,
+        id='it should return cycle length in the successor graph'
+    )
 ])
-def get_successor_cycle_length(graph, expected):
-    assert chapter_7.get_successor_cycle_length(graph) == expected
+def test_get_successor_cycle_length(graph, node, expected):
+    assert chapter_7.get_successor_cycle_length(graph, node) == expected

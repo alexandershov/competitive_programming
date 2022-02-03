@@ -213,5 +213,29 @@ def topological_visit(graph, node, visited, result):
     result.append(node)
 
 
-def get_successor_cycle_length(graph):
-    pass
+def get_successor_cycle_length(graph, node) -> int:
+    node_in_cycle = get_node_in_cycle(graph, node)
+    cur = node_in_cycle
+    length = 0
+    while True:
+        cur = succ(graph, cur)
+        length += 1
+        if cur == node_in_cycle:
+            return length
+
+
+def get_node_in_cycle(graph, node):
+    slow = node
+    fast = node
+    while True:
+        for i in range(2):
+            fast = succ(graph, fast)
+            if slow == fast:
+                return slow
+        slow = succ(graph, slow)
+
+
+def succ(graph, node):
+    neighbours = _get_neighbours(graph, node)
+    assert len(neighbours) == 1
+    return neighbours[0]
