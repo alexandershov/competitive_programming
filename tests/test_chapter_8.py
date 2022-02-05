@@ -16,6 +16,15 @@ def test_get_hamming_distance(left, right, expected):
 
 
 @pytest.mark.parametrize('strings, expected', [
+    pytest.param(
+        [
+            '00111',
+            '01101',
+            '11110',
+        ],
+        2,
+        id='it should return the minimum Hamming distance between all pairs of strings'
+    )
 ])
 def test_get_minimum_hamming_distance(strings, expected):
     assert chapter_8.get_minimum_hamming_distance(strings) == expected
