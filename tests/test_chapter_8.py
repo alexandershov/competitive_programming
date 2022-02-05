@@ -13,3 +13,9 @@ from competitive_programming import chapter_8
 ])
 def test_get_hamming_distance(left, right, expected):
     assert chapter_8.get_hamming_distance(left, right) == expected
+
+
+@pytest.mark.parametrize('strings, expected', [
+])
+def test_get_minimum_hamming_distance(strings, expected):
+    assert chapter_8.get_minimum_hamming_distance(strings) == expected
