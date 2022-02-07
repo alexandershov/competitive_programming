@@ -28,3 +28,9 @@ def test_get_hamming_distance(left, right, expected):
 ])
 def test_get_minimum_hamming_distance(strings, expected):
     assert chapter_8.get_minimum_hamming_distance(strings) == expected
+
+
+@pytest.mark.parametrize('grid, expected', [
+])
+def test_count_subgrids(grid, expected):
+    assert chapter_8.count_subgrids(grid) == expected

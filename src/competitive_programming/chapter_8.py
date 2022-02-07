@@ -8,3 +8,7 @@ def get_minimum_hamming_distance(strings: list[str]) -> int:
     return min(get_hamming_distance(strings[i], strings[j])
                for i in range(len(strings))
                for j in range(i + 1, len(strings)))
+
+
+def count_subgrids(grid) -> int:
+    pass
