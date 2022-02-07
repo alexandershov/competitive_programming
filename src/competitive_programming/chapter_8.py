@@ -11,4 +11,13 @@ def get_minimum_hamming_distance(strings: list[str]) -> int:
 
 
 def count_subgrids(grid) -> int:
-    pass
+    count = 0
+    bit_masks = [
+        int(''.join(map(str, row)), 2)
+        for row in grid
+    ]
+    for top in range(len(grid)):
+        for bottom in range(top + 1, len(grid)):
+            common_count = (bit_masks[top] & bit_masks[bottom]).bit_count()
+            count += (common_count * (common_count - 1)) // 2
+    return count

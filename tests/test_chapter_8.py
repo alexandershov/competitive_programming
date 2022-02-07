@@ -31,6 +31,17 @@ def test_get_minimum_hamming_distance(strings, expected):
 
 
 @pytest.mark.parametrize('grid, expected', [
+    pytest.param(
+        [
+            [0, 1, 0, 0, 1],
+            [0, 1, 1, 0, 0],
+            [1, 0, 0, 0, 0],
+            [0, 1, 1, 0, 1],
+            [0, 0, 0, 0, 0],
+        ],
+        2,
+        id='it should return the count of subgrids'
+    )
 ])
 def test_count_subgrids(grid, expected):
     assert chapter_8.count_subgrids(grid) == expected
