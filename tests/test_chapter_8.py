@@ -56,7 +56,12 @@ def test_count_subgrids(grid, expected):
     pytest.param(
         [8, 6, 4, 3, 5], 0,
         [],
-        id='it should return an empty list when given zero'
+        id='it should return an empty list when given zero sum'
+    ),
+    pytest.param(
+        [8, 6, 4, 3, 5], 15,
+        None,
+        id="it should return None when sum can't be found"
     )
 
 ])
