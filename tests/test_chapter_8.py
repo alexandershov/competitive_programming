@@ -47,8 +47,12 @@ def test_count_subgrids(grid, expected):
     assert chapter_8.count_subgrids(grid) == expected
 
 
-@pytest.mark.parametrize('seq, expected', [
-
+@pytest.mark.parametrize('seq, sum_, expected', [
+    pytest.param(
+        [8, 6, 4, 3, 5], 13,
+        [6, 4, 3],
+        id='it should find subarray with the given sum'
+    )
 ])
-def test_find_sum(seq, expected):
-    assert chapter_8.find_sum(seq) == expected
+def test_find_sum(seq, sum_, expected):
+    assert chapter_8.find_sum(seq, sum_) == expected
