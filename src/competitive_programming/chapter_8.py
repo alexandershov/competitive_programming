@@ -31,16 +31,19 @@ def find_sum(seq, sum_):
     for i, item in enumerate(seq):
         expected_suffix = total_sum - prefix_sum - sum_
         if expected_suffix in suffix_sums:
-            cur_sum = 0
-            result = []
-            j = i
-            while cur_sum != sum_:
-                cur_sum += seq[j]
-                result.append(seq[j])
-                j += 1
-            return result
+            return take_items_to_form_sum(seq, i, sum_)
         prefix_sum += item
     return None
+
+
+def take_items_to_form_sum(seq, i, sum_):
+    cur_sum = 0
+    result = []
+    while cur_sum != sum_:
+        cur_sum += seq[i]
+        result.append(seq[i])
+        i += 1
+    return result
 
 
 def get_suffix_sums(seq):
