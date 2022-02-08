@@ -59,6 +59,11 @@ def test_count_subgrids(grid, expected):
         id='it should find subarray when sum is prefix sum'
     ),
     pytest.param(
+        [8, 6, 4, 3, 5], 12,
+        [4, 3, 5],
+        id='it should find subarray when sum is suffix sum'
+    ),
+    pytest.param(
         [8, 6, 4, 3, 5], 0,
         [],
         id='it should return an empty list when given zero sum'
