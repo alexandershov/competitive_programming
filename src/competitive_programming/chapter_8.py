@@ -24,12 +24,6 @@ def count_subgrids(grid) -> int:
 
 
 def find_sum(seq, sum_):
-    prefixes = [0]
-    prefix_sum = 0
-
-    for item in seq:
-        prefix_sum += item
-        prefixes.append(prefix_sum)
     suffixes = {0}
     suffix_sum = 0
 
@@ -38,7 +32,8 @@ def find_sum(seq, sum_):
         suffixes.add(suffix_sum)
     total_sum = sum(seq)
 
-    for i, prefix_sum in enumerate(prefixes):
+    prefix_sum = 0
+    for i, item in enumerate(seq):
         expected_suffix = total_sum - prefix_sum - sum_
         if expected_suffix in suffixes:
             cur_sum = 0
@@ -49,5 +44,6 @@ def find_sum(seq, sum_):
                 result.append(seq[j])
                 j += 1
             return result
+        prefix_sum += item
     return None
 
