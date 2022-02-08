@@ -52,7 +52,13 @@ def test_count_subgrids(grid, expected):
         [8, 6, 4, 3, 5], 13,
         [6, 4, 3],
         id='it should find subarray with the given sum'
+    ),
+    pytest.param(
+        [8, 6, 4, 3, 5], 0,
+        [],
+        id='it should return an empty list when given zero'
     )
+
 ])
 def test_find_sum(seq, sum_, expected):
     assert chapter_8.find_sum(seq, sum_) == expected
