@@ -21,3 +21,7 @@ def count_subgrids(grid) -> int:
             common_count = (bit_masks[top] & bit_masks[bottom]).bit_count()
             count += (common_count * (common_count - 1)) // 2
     return count
+
+
+def find_sum(seq):
+    pass

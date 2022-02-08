@@ -45,3 +45,10 @@ def test_get_minimum_hamming_distance(strings, expected):
 ])
 def test_count_subgrids(grid, expected):
     assert chapter_8.count_subgrids(grid) == expected
+
+
+@pytest.mark.parametrize('seq, expected', [
+
+])
+def test_find_sum(seq, expected):
+    assert chapter_8.find_sum(seq) == expected
