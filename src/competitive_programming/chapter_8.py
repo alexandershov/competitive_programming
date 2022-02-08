@@ -24,8 +24,8 @@ def count_subgrids(grid) -> int:
 
 
 def find_sum(seq, sum_):
-    suffix_sums = get_suffix_sums(seq)
     total_sum = sum(seq)
+    suffix_sums = get_suffix_sums(seq)
 
     prefix_sum = 0
     for i, item in enumerate(seq):
