@@ -55,5 +55,5 @@ def get_suffix_sums(seq):
     return suffixes
 
 
-def find_2_sum(seq):
+def find_2_sum(seq, sum_):
     pass

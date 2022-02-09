@@ -79,7 +79,7 @@ def test_find_sum(seq, sum_, expected):
     assert chapter_8.find_sum(seq, sum_) == expected
 
 
-@pytest.mark.parametrize('seq, expected', [
+@pytest.mark.parametrize('seq, sum_, expected', [
 ])
-def test_find_2_sum(seq, expected):
-    assert chapter_8.find_2_sum(seq) == expected
+def test_find_2_sum(seq, sum_, expected):
+    assert chapter_8.find_2_sum(seq, sum_) == expected
