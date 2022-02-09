@@ -56,4 +56,17 @@ def get_suffix_sums(seq):
 
 
 def find_2_sum(seq, sum_):
-    pass
+    sorted_seq = sorted(seq)
+    i = 0
+    j = len(seq) - 1
+    while i < j:
+        left = sorted_seq[i]
+        right = sorted_seq[j]
+        cur_sum = left + right
+        if cur_sum == sum_:
+            return sorted([left, right])
+        if cur_sum > sum_:
+            j -= 1
+        else:
+            i += 1
+    return None

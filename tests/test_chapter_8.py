@@ -80,6 +80,11 @@ def test_find_sum(seq, sum_, expected):
 
 
 @pytest.mark.parametrize('seq, sum_, expected', [
+    pytest.param(
+        [8, 6, 4, 3, 5], 10,
+        [4, 6],
+        id='it should return two elements that together give sum_'
+    )
 ])
 def test_find_2_sum(seq, sum_, expected):
     assert chapter_8.find_2_sum(seq, sum_) == expected
