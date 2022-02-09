@@ -53,3 +53,7 @@ def get_suffix_sums(seq):
         suffix_sum += item
         suffixes.add(suffix_sum)
     return suffixes
+
+
+def find_2_sum(seq):
+    pass

@@ -77,3 +77,9 @@ def test_count_subgrids(grid, expected):
 ])
 def test_find_sum(seq, sum_, expected):
     assert chapter_8.find_sum(seq, sum_) == expected
+
+
+@pytest.mark.parametrize('seq, expected', [
+])
+def test_find_2_sum(seq, expected):
+    assert chapter_8.find_2_sum(seq) == expected
