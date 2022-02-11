@@ -93,3 +93,10 @@ def test_find_sum(seq, sum_, expected):
 ])
 def test_find_2_sum(seq, sum_, expected):
     assert chapter_8.find_2_sum(seq, sum_) == expected
+
+
+@pytest.mark.parametrize('seq, window_size, expected', [
+
+])
+def test_get_sliding_minimums(seq, window_size, expected):
+    assert chapter_8.get_sliding_minimums(seq, window_size) == expected

@@ -70,3 +70,7 @@ def find_2_sum(seq, sum_):
         else:
             i += 1
     return None
+
+
+def get_sliding_minimums(seq, window_size):
+    pass
