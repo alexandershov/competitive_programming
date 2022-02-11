@@ -86,7 +86,7 @@ def get_sliding_minimums(seq, window_size):
     assert window_size > 0
 
     minimums = []
-    window = collections.deque(maxlen=window_size)
+    window = collections.deque()
     for i, item in enumerate(seq):
         drop_old_head(window, i, window_size)
         drop_bigger_tail(window, item)
