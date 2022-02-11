@@ -106,6 +106,11 @@ def test_find_2_sum(seq, sum_, expected):
         [8, 1, 3],
         id='it return the original list when window_size == 1'
     ),
+    pytest.param(
+        [8, 1, 3], 3,
+        [1],
+        id='it return the list minimum when window_size == len(seq)'
+    ),
 ])
 def test_get_sliding_minimums(seq, window_size, expected):
     assert chapter_8.get_sliding_minimums(seq, window_size) == expected

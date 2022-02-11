@@ -83,7 +83,7 @@ class Indexed:
 
 
 def get_sliding_minimums(seq, window_size):
-    assert window_size > 0
+    assert 0 < window_size <= len(seq)
 
     minimums = []
     window = collections.deque()
