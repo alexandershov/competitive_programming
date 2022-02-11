@@ -1,3 +1,7 @@
+import collections
+from dataclasses import dataclass
+
+
 def get_hamming_distance(left: str, right: str) -> int:
     return (int(left, 2) ^ int(right, 2)).bit_count()
 
@@ -72,5 +76,33 @@ def find_2_sum(seq, sum_):
     return None
 
 
+@dataclass(frozen=True)
+class Indexed:
+    index: int
+    value: object
+
+
 def get_sliding_minimums(seq, window_size):
-    pass
+    assert window_size > 0
+
+    minimums = []
+    window = collections.deque(maxlen=window_size)
+    for i, item in enumerate(seq):
+        drop_old_head(window, i, window_size)
+        drop_bigger_tail(window, item)
+
+        window.append(Indexed(i, item))
+        if i >= window_size - 1:
+            minimums.append(window[0].value)
+    return minimums
+
+
+def drop_bigger_tail(window, value):
+    while window and window[-1].value >= value:
+        window.pop()
+
+
+def drop_old_head(window, i, window_size):
+    start_of_new = i - window_size + 1
+    while window and window[0].index < start_of_new:
+        window.popleft()
