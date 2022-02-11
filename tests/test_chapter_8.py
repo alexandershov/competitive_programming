@@ -100,7 +100,12 @@ def test_find_2_sum(seq, sum_, expected):
         [8, 9, 10, 11, 12, 3, 8, 9, 4], 3,
         [8, 9, 10, 3, 3, 3, 4],
         id='it should return sliding window minimums'
-    )
+    ),
+    pytest.param(
+        [8, 1, 3], 1,
+        [8, 1, 3],
+        id='it return the original list when window_size == 1'
+    ),
 ])
 def test_get_sliding_minimums(seq, window_size, expected):
     assert chapter_8.get_sliding_minimums(seq, window_size) == expected
