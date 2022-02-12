@@ -8,7 +8,12 @@ import pytest
         [8, 10, 12, 6, 7], 1, 3,
         28,
         id='it should return sum of elements in the range [first; last]'
-    )
+    ),
+    pytest.param(
+        [8, 10, 12, 6, 7], 1, 1,
+        10,
+        id='it should return seq[first] when first==last'
+    ),
 ])
 def test_get_range_sum(seq, first, last, expected):
     assert chapter_9.get_range_sum(seq, first, last) == expected
