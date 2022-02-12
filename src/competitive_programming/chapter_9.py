@@ -11,3 +11,7 @@ def get_prefix_sums(seq):
         cur_sum += item
         sums.append(cur_sum)
     return sums
+
+
+def get_range_min(seq: list, first: int, last: int) -> int:
+    pass
