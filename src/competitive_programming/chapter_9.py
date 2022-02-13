@@ -14,6 +14,7 @@ def get_prefix_sums(seq):
 
 
 def get_range_min(seq: list, first: int, last: int) -> int:
+    # TODO: improve code
     assert first <= last
     sparse_table = get_sparse_table(seq)
     range_min = seq[first]
@@ -27,6 +28,7 @@ def get_range_min(seq: list, first: int, last: int) -> int:
 
 
 def get_sparse_table(seq: list):
+    # TODO: improve code
     table = {}
     range_len = 1
     while range_len <= len(seq):
