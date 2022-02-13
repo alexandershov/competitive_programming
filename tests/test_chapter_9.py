@@ -24,7 +24,12 @@ def test_get_range_sum(seq, first, last, expected):
         [8, 10, 12, 6, 7], 1, 3,
         6,
         id='it should return the minimum value in range'
-    )
+    ),
+    pytest.param(
+        [8, 10, 12, 6, 7], 1, 1,
+        10,
+        id='it should seq[first] when first == last',
+    ),
 ])
 def test_get_range_min(seq, first, last, expected):
     assert chapter_9.get_range_min(seq, first, last) == expected
