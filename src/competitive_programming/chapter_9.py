@@ -25,7 +25,6 @@ def get_range_min(seq: list, first: int, last: int) -> int:
 
 
 def get_sparse_table(seq: list):
-    # TODO: improve code
     table = {
         1: dict(enumerate(seq)),
     }
