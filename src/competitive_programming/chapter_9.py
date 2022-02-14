@@ -31,8 +31,7 @@ def get_sparse_table(seq: list):
     while range_len <= len(seq):
         row = {}
         if range_len == 1:
-            for i, item in enumerate(seq):
-                row[i] = item
+            row = dict(enumerate(seq))
         else:
             for i, item in enumerate(seq):
                 if i + range_len <= len(seq):
