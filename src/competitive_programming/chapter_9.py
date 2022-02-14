@@ -26,17 +26,16 @@ def get_range_min(seq: list, first: int, last: int) -> int:
 
 def get_sparse_table(seq: list):
     # TODO: improve code
-    table = {}
-    range_len = 1
+    table = {
+        1: dict(enumerate(seq)),
+    }
+    range_len = 2
     while range_len <= len(seq):
         row = {}
-        if range_len == 1:
-            row = dict(enumerate(seq))
-        else:
-            for i, item in enumerate(seq):
-                if i + range_len <= len(seq):
-                    prev = table[range_len // 2]
-                    row[i] = min(prev[i], prev[i + range_len // 2])
+        for i, item in enumerate(seq):
+            if i + range_len <= len(seq):
+                prev = table[range_len // 2]
+                row[i] = min(prev[i], prev[i + range_len // 2])
         table[range_len] = row
         range_len *= 2
     return table
