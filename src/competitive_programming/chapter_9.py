@@ -14,17 +14,14 @@ def get_prefix_sums(seq):
 
 
 def get_range_min(seq: list, first: int, last: int) -> int:
-    # TODO: improve code
     assert first <= last
     sparse_table = get_sparse_table(seq)
-    range_min = seq[first]
-    cur = last
-    for i, bit in enumerate(reversed(bin(last - first + 1)[2:])):
-        next_ = cur - int(bit) * (2 ** i)
-        if next_ != cur:
-            range_min = min(range_min, sparse_table[2 ** i][next_ + 1])
-            cur = next_
-    return range_min
+    range_len = last - first + 1
+    closest_len = max(size for size in sparse_table if size <= range_len)
+    return min(
+        sparse_table[closest_len][first],
+        sparse_table[closest_len][last - closest_len + 1],
+    )
 
 
 def get_sparse_table(seq: list):
