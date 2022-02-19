@@ -42,7 +42,7 @@ def test_get_range_min(seq, first, last, expected):
 @pytest.mark.parametrize('seq, expected', [
     pytest.param(
         [8, 5, 7, 3, 6, 8],
-        [8, 13, 7, 23, 6, 14],
+        chapter_9.FenwickTree([8, 13, 7, 23, 6, 14]),
         id='it should build a fenwick tree',
     )
 ])

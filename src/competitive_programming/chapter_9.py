@@ -40,15 +40,28 @@ def get_sparse_table(seq: list):
     return table
 
 
-def build_fenwick_tree(seq: list) -> list:
+class FenwickTree:
+    def __init__(self, values):
+        self._values = values
+
+    def __getitem__(self, item):
+        return self._values[item]
+
+    def __eq__(self, other):
+        if not isinstance(other, FenwickTree):
+            return False
+        return self._values == other._values
+
+
+def build_fenwick_tree(seq: list) -> FenwickTree:
     prefix_sums = get_prefix_sums(seq)
-    tree = []
+    values = []
     for last in range(0, len(seq)):
         length = (last + 1) & -(last + 1)
         first = last - length + 1
-        value = prefix_sums[last] - prefix_sums[first] + seq[first]
-        tree.append(value)
-    return tree
+        last_value = prefix_sums[last] - prefix_sums[first] + seq[first]
+        values.append(last_value)
+    return FenwickTree(values)
 
 
 def get_fenwick_range_sum_till(seq: list, last: int) -> int:
