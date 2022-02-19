@@ -55,4 +55,4 @@ def test_build_fenwick_tree(seq, expected):
 def test_update_fenwick_tree(seq, index, value, expected):
     tree = chapter_9.build_fenwick_tree(seq)
     tree[index] = value
-    assert tree._values == expected
+    assert tree == expected
