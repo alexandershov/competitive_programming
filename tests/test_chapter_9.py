@@ -33,3 +33,9 @@ def test_get_range_sum(seq, first, last, expected):
 ])
 def test_get_range_min(seq, first, last, expected):
     assert chapter_9.get_range_min(seq, first, last) == expected
+
+
+@pytest.mark.parametrize('seq, expected', [
+])
+def test_build_fenwick_tree(seq, expected):
+    assert chapter_9.build_fenwick_tree(seq) == expected

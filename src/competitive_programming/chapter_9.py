@@ -38,3 +38,7 @@ def get_sparse_table(seq: list):
         table[range_len] = row
         range_len *= 2
     return table
+
+
+def build_fenwick_tree(seq: list) -> list:
+    pass
