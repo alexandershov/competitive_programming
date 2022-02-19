@@ -3,7 +3,10 @@ from competitive_programming import chapter_9
 import pytest
 
 
-@pytest.mark.parametrize('algo', [chapter_9.get_range_sum])
+@pytest.mark.parametrize('algo', [
+    chapter_9.get_range_sum,
+    chapter_9.get_fenwick_range_sum,
+])
 @pytest.mark.parametrize('seq, first, last, expected', [
     pytest.param(
         [8, 10, 12, 6, 7], 1, 3,

@@ -49,3 +49,20 @@ def build_fenwick_tree(seq: list) -> list:
         value = prefix_sums[last] - prefix_sums[first] + seq[first]
         tree.append(value)
     return tree
+
+
+def get_fenwick_range_sum_till(seq: list, last: int) -> int:
+    tree = build_fenwick_tree(seq)
+    range_sum = 0
+    current = last + 1
+    while current >= 1:
+        length = current & (-current)
+        range_sum += tree[current - 1]
+        current -= length
+    return range_sum
+
+
+def get_fenwick_range_sum(seq: list, first: int, last: int) -> int:
+    assert first <= last
+    return get_fenwick_range_sum_till(seq, last) - get_fenwick_range_sum_till(seq, first) + seq[
+        first]
