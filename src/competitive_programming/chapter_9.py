@@ -45,6 +45,7 @@ def get_sparse_table(seq: list):
 
 @dataclass(frozen=True)
 class FenwickTree:
+    # TODO: improve the code
     values: list
 
     def __getitem__(self, item):
