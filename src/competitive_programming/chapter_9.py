@@ -41,4 +41,11 @@ def get_sparse_table(seq: list):
 
 
 def build_fenwick_tree(seq: list) -> list:
-    pass
+    prefix_sums = get_prefix_sums(seq)
+    tree = []
+    for last in range(0, len(seq)):
+        length = (last + 1) & -(last + 1)
+        first = last - length + 1
+        value = prefix_sums[last] - prefix_sums[first] + seq[first]
+        tree.append(value)
+    return tree
