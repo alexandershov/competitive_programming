@@ -48,3 +48,11 @@ def test_get_range_min(seq, first, last, expected):
 ])
 def test_build_fenwick_tree(seq, expected):
     assert chapter_9.build_fenwick_tree(seq) == expected
+
+
+@pytest.mark.parametrize('seq, index, value, expected', [
+])
+def test_update_fenwick_tree(seq, index, value, expected):
+    tree = chapter_9.build_fenwick_tree(seq)
+    tree[index] = value
+    assert tree._values == expected
