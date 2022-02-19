@@ -64,8 +64,7 @@ def build_fenwick_tree(seq: list) -> FenwickTree:
     return FenwickTree(values)
 
 
-def get_fenwick_range_sum_till(seq: list, last: int) -> int:
-    tree = build_fenwick_tree(seq)
+def get_fenwick_range_sum_till(tree: FenwickTree, last: int) -> int:
     range_sum = 0
     current = last + 1
     while current >= 1:
@@ -77,6 +76,7 @@ def get_fenwick_range_sum_till(seq: list, last: int) -> int:
 
 def get_fenwick_range_sum(seq: list, first: int, last: int) -> int:
     assert first <= last
-    sum_till_last = get_fenwick_range_sum_till(seq, last)
-    sum_till_first = get_fenwick_range_sum_till(seq, first)
+    tree = build_fenwick_tree(seq)
+    sum_till_last = get_fenwick_range_sum_till(tree, last)
+    sum_till_first = get_fenwick_range_sum_till(tree, first)
     return sum_till_last - sum_till_first + seq[first]
