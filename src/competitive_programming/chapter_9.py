@@ -1,3 +1,6 @@
+from dataclasses import dataclass
+
+
 def get_range_sum(seq: list, first: int, last: int) -> int:
     assert last >= first
     prefix_sums = get_prefix_sums(seq)
@@ -40,17 +43,17 @@ def get_sparse_table(seq: list):
     return table
 
 
+@dataclass(frozen=True)
 class FenwickTree:
-    def __init__(self, values):
-        self._values = values
+    values: list
 
     def __getitem__(self, item):
-        return self._values[item]
+        return self.values[item]
 
     def __eq__(self, other):
         if not isinstance(other, FenwickTree):
             return False
-        return self._values == other._values
+        return self.values == other.values
 
 
 def build_fenwick_tree(seq: list) -> FenwickTree:
