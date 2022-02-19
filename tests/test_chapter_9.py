@@ -51,6 +51,12 @@ def test_build_fenwick_tree(seq, expected):
 
 
 @pytest.mark.parametrize('seq, index, value, expected', [
+    pytest.param(
+        [8, 5, 7, 3, 6, 8],
+        1, 9,
+        chapter_9.FenwickTree([8, 17, 7, 27, 6, 14]),
+        id='it should update value at index and related indexes'
+    )
 ])
 def test_update_fenwick_tree(seq, index, value, expected):
     tree = chapter_9.build_fenwick_tree(seq)
