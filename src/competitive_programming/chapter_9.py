@@ -64,5 +64,6 @@ def get_fenwick_range_sum_till(seq: list, last: int) -> int:
 
 def get_fenwick_range_sum(seq: list, first: int, last: int) -> int:
     assert first <= last
-    return get_fenwick_range_sum_till(seq, last) - get_fenwick_range_sum_till(seq, first) + seq[
-        first]
+    sum_till_last = get_fenwick_range_sum_till(seq, last)
+    sum_till_first = get_fenwick_range_sum_till(seq, first)
+    return sum_till_last - sum_till_first + seq[first]
