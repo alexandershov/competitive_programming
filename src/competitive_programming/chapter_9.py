@@ -2,7 +2,7 @@ from __future__ import annotations
 
 import itertools
 from dataclasses import dataclass
-from typing import Iterator
+from typing import Iterator, Callable
 
 
 def get_range_sum(seq: list, first: int, last: int) -> int:
@@ -116,3 +116,13 @@ def _unique(it: Iterator) -> Iterator:
 def _zero_based(index: int) -> int:
     assert index >= 1
     return index - 1
+
+
+@dataclass(frozen=True)
+class SegmentTree:
+    values: list
+    operation: Callable
+
+    @staticmethod
+    def build(seq: list, operation: Callable) -> SegmentTree:
+        return SegmentTree([], operation)
