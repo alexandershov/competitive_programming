@@ -1,7 +1,6 @@
 from __future__ import annotations
 
 import itertools
-import operator
 from dataclasses import dataclass
 from typing import Iterator, Callable, Optional
 
@@ -147,9 +146,41 @@ class Node:
 @dataclass(frozen=True)
 class SegmentTree:
     root: Optional[Node]
-    leaf_by_index: dict[int, Node]
     operation: Callable
 
     @staticmethod
     def build(seq: list, operation: Callable) -> SegmentTree:
-        pass
+        root = None
+        level = [
+            Node.build_leaf(value, index)
+            for index, value in enumerate(seq)
+        ]
+        while len(level) > 1:
+            next_level = []
+            for left, right in _pairs(level):
+                next_level.append(SegmentTree.combine(left, right, operation))
+            level = next_level
+
+        if len(level) == 1:
+            root = level[0]
+        return SegmentTree(root, operation)
+
+    @staticmethod
+    def combine(left: Node, right: Node, operation: Callable) -> Node:
+        assert left.range.last + 1 == right.range.first
+        parent = Node(
+            value=operation(left.value, right.value),
+            range=Range(left.range.first, right.range.last),
+            left=left,
+            right=right,
+            parent=None,
+        )
+        left.parent = parent
+        right.parent = parent
+        return parent
+
+
+def _pairs(seq: list):
+    assert not len(seq) % 2
+    for i in range(0, len(seq), 2):
+        yield seq[i], seq[i + 1]

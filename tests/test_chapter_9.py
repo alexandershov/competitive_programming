@@ -1,3 +1,5 @@
+import operator
+
 import pytest
 
 from competitive_programming import chapter_9
@@ -82,6 +84,11 @@ def test_node_build_leaf(value, index, expected):
 
 
 @pytest.mark.parametrize('seq, operation, expected_root_value', [
+    pytest.param(
+        [5, 8, 6, 3, 2, 7, 2, 6], operator.add,
+        39,
+        id='segment tree root should store sum of all elements'
+    )
 ])
 def test_build_segment_tree(seq, operation, expected_root_value):
     tree = chapter_9.SegmentTree.build(seq, operation)
