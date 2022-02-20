@@ -73,8 +73,8 @@ class FenwickTree:
 
     @staticmethod
     def _iter_indexes_to_update(start):
-        exp = 1
         one_based_start = start + 1
+        exp = 1
         while True:
             div, mod = divmod(one_based_start, exp)
             yield _zero_based((div + int(bool(mod))) * exp)
