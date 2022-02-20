@@ -81,10 +81,8 @@ class FenwickTree:
 
     def _get_seq_value(self, item):
         if item == 0:
-            original_value = self.values[0]
-        else:
-            original_value = self.get_range_sum_till(item) - self.get_range_sum_till(item - 1)
-        return original_value
+            return self.values[0]
+        return self.get_range_sum_till(item) - self.get_range_sum_till(item - 1)
 
     def __eq__(self, other):
         if not isinstance(other, FenwickTree):
