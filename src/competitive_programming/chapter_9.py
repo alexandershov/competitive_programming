@@ -1,3 +1,4 @@
+import itertools
 from dataclasses import dataclass
 from typing import Iterator
 
@@ -56,7 +57,6 @@ class FenwickTree:
         return self.values[item]
 
     def __setitem__(self, item, value):
-        # TODO: improve this method
         change = value - self._get_seq_value(item)
         for index in _unique(FenwickTree._iter_indexes_to_update(item)):
             if index >= len(self.values):
@@ -108,8 +108,5 @@ def get_fenwick_range_sum(seq: list, first: int, last: int) -> int:
 
 
 def _unique(it: Iterator) -> Iterator:
-    prev = object()
-    for item in it:
-        if item != prev:
-            yield item
-        prev = item
+    for key, group in itertools.groupby(it):
+        yield key
