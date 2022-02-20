@@ -52,12 +52,8 @@ class FenwickTree:
         return self.values[item]
 
     def __setitem__(self, item, value):
-        if item == 0:
-            original_value = self.values[0]
-        else:
-            original_value = get_fenwick_range_sum_till(self, item) - get_fenwick_range_sum_till(
-                self, item - 1)
-        change = value - original_value
+        seq_value = self._get_seq_value(item)
+        change = value - seq_value
         power = 0
         updated = set()
         while True:
@@ -69,6 +65,14 @@ class FenwickTree:
                 self.values[index_dividing_power] += change
                 updated.add(index_dividing_power)
             power += 1
+
+    def _get_seq_value(self, item):
+        if item == 0:
+            original_value = self.values[0]
+        else:
+            original_value = get_fenwick_range_sum_till(self, item) - get_fenwick_range_sum_till(
+                self, item - 1)
+        return original_value
 
     def __eq__(self, other):
         if not isinstance(other, FenwickTree):
