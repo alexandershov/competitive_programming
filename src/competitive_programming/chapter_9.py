@@ -45,17 +45,17 @@ def get_sparse_table(seq: list):
 
 @dataclass(frozen=True)
 class FenwickTree:
-    # TODO: improve the code
     values: list
 
     @staticmethod
-    def get_length_at_index(index):
+    def get_range_length_at(index):
         return (index + 1) & -(index + 1)
 
     def __getitem__(self, item):
         return self.values[item]
 
     def __setitem__(self, item, value):
+        # TODO: improve this method
         seq_value = self._get_seq_value(item)
         change = value - seq_value
         power = 0
@@ -74,9 +74,8 @@ class FenwickTree:
         range_sum = 0
         current = last
         while current >= 0:
-            length = self.get_length_at_index(current)
             range_sum += self[current]
-            current -= length
+            current -= self.get_range_length_at(current)
         return range_sum
 
     def _get_seq_value(self, item):
@@ -95,7 +94,7 @@ def build_fenwick_tree(seq: list) -> FenwickTree:
     prefix_sums = get_prefix_sums(seq)
     values = []
     for last in range(0, len(seq)):
-        length = FenwickTree.get_length_at_index(last)
+        length = FenwickTree.get_range_length_at(last)
         first = last - length + 1
         last_value = prefix_sums[last] - prefix_sums[first] + seq[first]
         values.append(last_value)
