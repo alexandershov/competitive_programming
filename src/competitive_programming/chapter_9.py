@@ -56,18 +56,14 @@ class FenwickTree:
 
     def __setitem__(self, item, value):
         # TODO: improve this method
-        change = value - self._get_seq_value(item)
-        exp = 1
         updated = set()
-        while True:
-            div, mod = divmod(item + 1, exp)
-            index_dividing_exp = (div + int(bool(mod))) * exp - 1
-            if index_dividing_exp >= len(self.values):
-                break
-            if index_dividing_exp not in updated:
-                self.values[index_dividing_exp] += change
-                updated.add(index_dividing_exp)
-            exp *= 2
+        change = value - self._get_seq_value(item)
+        for index in FenwickTree._iter_indexes_to_update(item):
+            if index >= len(self.values):
+                return
+            if index not in updated:
+                self.values[index] += change
+                updated.add(index)
 
     def get_range_sum_till(self, last: int) -> int:
         range_sum = 0
@@ -76,6 +72,14 @@ class FenwickTree:
             range_sum += self[current]
             current -= self.get_range_length_at(current)
         return range_sum
+
+    @staticmethod
+    def _iter_indexes_to_update(start):
+        exp = 1
+        while True:
+            div, mod = divmod(start + 1, exp)
+            yield (div + int(bool(mod))) * exp - 1
+            exp *= 2
 
     def _get_seq_value(self, item):
         assert item >= 0
