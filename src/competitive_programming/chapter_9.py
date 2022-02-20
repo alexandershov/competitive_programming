@@ -56,8 +56,7 @@ class FenwickTree:
 
     def __setitem__(self, item, value):
         # TODO: improve this method
-        seq_value = self._get_seq_value(item)
-        change = value - seq_value
+        change = value - self._get_seq_value(item)
         power = 0
         updated = set()
         while True:
