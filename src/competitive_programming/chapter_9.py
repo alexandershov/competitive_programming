@@ -72,10 +72,10 @@ class FenwickTree:
 
     def get_range_sum_till(self, last: int) -> int:
         range_sum = 0
-        current = last + 1
-        while current >= 1:
-            length = current & (-current)
-            range_sum += self[current - 1]
+        current = last
+        while current >= 0:
+            length = self.get_length_at_index(current)
+            range_sum += self[current]
             current -= length
         return range_sum
 
