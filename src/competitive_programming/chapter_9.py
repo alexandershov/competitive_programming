@@ -70,12 +70,20 @@ class FenwickTree:
                 updated.add(index_dividing_power)
             power += 1
 
+    def get_range_sum_till(self, last: int) -> int:
+        range_sum = 0
+        current = last + 1
+        while current >= 1:
+            length = current & (-current)
+            range_sum += self[current - 1]
+            current -= length
+        return range_sum
+
     def _get_seq_value(self, item):
         if item == 0:
             original_value = self.values[0]
         else:
-            original_value = get_fenwick_range_sum_till(self, item) - get_fenwick_range_sum_till(
-                self, item - 1)
+            original_value = self.get_range_sum_till(item) - self.get_range_sum_till(item - 1)
         return original_value
 
     def __eq__(self, other):
@@ -96,19 +104,9 @@ def build_fenwick_tree(seq: list) -> FenwickTree:
     return FenwickTree(values)
 
 
-def get_fenwick_range_sum_till(tree: FenwickTree, last: int) -> int:
-    range_sum = 0
-    current = last + 1
-    while current >= 1:
-        length = current & (-current)
-        range_sum += tree[current - 1]
-        current -= length
-    return range_sum
-
-
 def get_fenwick_range_sum(seq: list, first: int, last: int) -> int:
     assert first <= last
     tree = build_fenwick_tree(seq)
-    sum_till_last = get_fenwick_range_sum_till(tree, last)
-    sum_till_first = get_fenwick_range_sum_till(tree, first)
+    sum_till_last = tree.get_range_sum_till(last)
+    sum_till_first = tree.get_range_sum_till(first)
     return sum_till_last - sum_till_first + seq[first]
