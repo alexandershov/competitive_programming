@@ -74,9 +74,10 @@ class FenwickTree:
     @staticmethod
     def _iter_indexes_to_update(start):
         exp = 1
+        one_based_start = start + 1
         while True:
             # TODO: is there a way to improve +1 -1 stuff?
-            div, mod = divmod(start + 1, exp)
+            div, mod = divmod(one_based_start, exp)
             yield (div + int(bool(mod))) * exp - 1
             exp *= 2
 
