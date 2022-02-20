@@ -48,6 +48,10 @@ class FenwickTree:
     # TODO: improve the code
     values: list
 
+    @staticmethod
+    def get_length_at_index(index):
+        return (index + 1) & -(index + 1)
+
     def __getitem__(self, item):
         return self.values[item]
 
@@ -84,7 +88,7 @@ def build_fenwick_tree(seq: list) -> FenwickTree:
     prefix_sums = get_prefix_sums(seq)
     values = []
     for last in range(0, len(seq)):
-        length = (last + 1) & -(last + 1)
+        length = FenwickTree.get_length_at_index(last)
         first = last - length + 1
         last_value = prefix_sums[last] - prefix_sums[first] + seq[first]
         values.append(last_value)
