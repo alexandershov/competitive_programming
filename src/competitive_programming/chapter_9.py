@@ -76,9 +76,8 @@ class FenwickTree:
         exp = 1
         one_based_start = start + 1
         while True:
-            # TODO: is there a way to improve +1 -1 stuff?
             div, mod = divmod(one_based_start, exp)
-            yield (div + int(bool(mod))) * exp - 1
+            yield _zero_based((div + int(bool(mod))) * exp)
             exp *= 2
 
     def _get_seq_value(self, item):
@@ -112,3 +111,8 @@ def get_fenwick_range_sum(seq: list, first: int, last: int) -> int:
 def _unique(it: Iterator) -> Iterator:
     for key, group in itertools.groupby(it):
         yield key
+
+
+def _zero_based(index: int) -> int:
+    assert index >= 1
+    return index - 1
