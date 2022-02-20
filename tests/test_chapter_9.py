@@ -79,3 +79,10 @@ def test_update_fenwick_tree(seq, index, value, expected):
 ])
 def test_node_build_leaf(value, index, expected):
     assert chapter_9.Node.build_leaf(value, index) == expected
+
+
+@pytest.mark.parametrize('seq, operation, expected_root_value', [
+])
+def test_build_segment_tree(seq, operation, expected_root_value):
+    tree = chapter_9.SegmentTree.build(seq, operation)
+    assert tree.root.value == expected_root_value

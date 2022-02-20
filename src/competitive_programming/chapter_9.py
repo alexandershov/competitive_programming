@@ -143,9 +143,6 @@ class Node:
             parent=None,
         )
 
-    def combine_with(self, other: Node) -> Node:
-        pass
-
 
 @dataclass(frozen=True)
 class SegmentTree:
@@ -155,13 +152,4 @@ class SegmentTree:
 
     @staticmethod
     def build(seq: list, operation: Callable) -> SegmentTree:
-        return SegmentTree(root=None, leaf_by_index={}, operation=operation)
-
-    def get_range_value(self, first: int, last: int):
         pass
-
-
-def get_segment_range_sum(seq: list, first: int, last: int) -> int:
-    assert first <= last
-    tree = SegmentTree.build(seq, operator.add)
-    return tree.get_range_value(first, last)
