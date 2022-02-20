@@ -143,6 +143,9 @@ class Node:
             parent=None,
         )
 
+    def combine_with(self, other: Node) -> Node:
+        pass
+
 
 @dataclass(frozen=True)
 class SegmentTree:

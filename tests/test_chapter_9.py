@@ -79,3 +79,9 @@ def test_update_fenwick_tree(seq, index, value, expected):
 ])
 def test_node_build_leaf(value, index, expected):
     assert chapter_9.Node.build_leaf(value, index) == expected
+
+
+@pytest.mark.parametrize('left, right, expected', [
+])
+def test_merge_nodes(left, right, expected):
+    assert left.combine_with(right) == expected
