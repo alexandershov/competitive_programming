@@ -123,6 +123,10 @@ class Range:
     first: int
     last: int
 
+    def combine_with(self, other: Range) -> Range:
+        assert self.last + 1 == other.first
+        return Range(self.first, other.last)
+
 
 @dataclass
 class Node:
@@ -170,7 +174,7 @@ class SegmentTree:
         assert left.range.last + 1 == right.range.first
         parent = Node(
             value=operation(left.value, right.value),
-            range=Range(left.range.first, right.range.last),
+            range=left.range.combine_with(right.range),
             left=left,
             right=right,
             parent=None,
