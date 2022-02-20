@@ -1,3 +1,5 @@
+from __future__ import annotations
+
 import itertools
 from dataclasses import dataclass
 from typing import Iterator
@@ -53,6 +55,18 @@ class FenwickTree:
     def get_range_length_at(index):
         return (index + 1) & -(index + 1)
 
+    @staticmethod
+    def build(seq: list) -> FenwickTree:
+        # TODO: is there a way with less extra memory
+        prefix_sums = get_prefix_sums(seq)
+        values = []
+        for last in range(0, len(seq)):
+            length = FenwickTree.get_range_length_at(last)
+            first = last - length + 1
+            last_value = prefix_sums[last] - prefix_sums[first] + seq[first]
+            values.append(last_value)
+        return FenwickTree(values)
+
     def __getitem__(self, item):
         return self.values[item]
 
@@ -90,21 +104,9 @@ class FenwickTree:
         return self.values == other.values
 
 
-def build_fenwick_tree(seq: list) -> FenwickTree:
-    # TODO: is there a way with less extra memory
-    prefix_sums = get_prefix_sums(seq)
-    values = []
-    for last in range(0, len(seq)):
-        length = FenwickTree.get_range_length_at(last)
-        first = last - length + 1
-        last_value = prefix_sums[last] - prefix_sums[first] + seq[first]
-        values.append(last_value)
-    return FenwickTree(values)
-
-
 def get_fenwick_range_sum(seq: list, first: int, last: int) -> int:
     assert first <= last
-    tree = build_fenwick_tree(seq)
+    tree = FenwickTree.build(seq)
     return tree.get_range_sum_till(last) - tree.get_range_sum_till(first - 1)
 
 
