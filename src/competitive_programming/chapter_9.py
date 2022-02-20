@@ -1,8 +1,9 @@
 from __future__ import annotations
 
 import itertools
+import operator
 from dataclasses import dataclass
-from typing import Iterator, Callable
+from typing import Iterator, Callable, Optional
 
 
 def get_range_sum(seq: list, first: int, last: int) -> int:
@@ -119,13 +120,45 @@ def _zero_based(index: int) -> int:
 
 
 @dataclass(frozen=True)
+class Range:
+    first: int
+    last: int
+
+
+@dataclass
+class Node:
+    value: object
+    range: Range
+    left: Optional[Node]
+    right: Optional[Node]
+    parent: Optional[Node]
+
+    @staticmethod
+    def build_leaf(value, index) -> Node:
+        return Node(
+            value=value,
+            range=Range(index, index),
+            left=None,
+            right=None,
+            parent=None,
+        )
+
+
+@dataclass(frozen=True)
 class SegmentTree:
-    values: list
+    root: Optional[Node]
+    leaf_by_index: dict[int, Node]
     operation: Callable
 
     @staticmethod
     def build(seq: list, operation: Callable) -> SegmentTree:
-        return SegmentTree([], operation)
+        return SegmentTree(root=None, leaf_by_index={}, operation=operation)
 
     def get_range_value(self, first: int, last: int):
         pass
+
+
+def get_segment_range_sum(seq: list, first: int, last: int) -> int:
+    assert first <= last
+    tree = SegmentTree.build(seq, operator.add)
+    return tree.get_range_value(first, last)

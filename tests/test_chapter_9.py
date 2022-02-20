@@ -64,8 +64,18 @@ def test_update_fenwick_tree(seq, index, value, expected):
     assert tree == expected
 
 
-@pytest.mark.parametrize('seq, op, first, last, expected', [
+@pytest.mark.parametrize('value, index, expected', [
+    pytest.param(
+        8, 1,
+        chapter_9.Node(
+            value=8,
+            range=chapter_9.Range(1, 1),
+            left=None,
+            right=None,
+            parent=None,
+        ),
+        id='it should build a node without parent/children and with range of length 1'
+    )
 ])
-def test_segment_tree(seq, op, first, last, expected):
-    tree = chapter_9.SegmentTree.build(seq, op)
-    assert tree.get_range_value(first, last) == expected
+def test_node_build_leaf(value, index, expected):
+    assert chapter_9.Node.build_leaf(value, index) == expected
