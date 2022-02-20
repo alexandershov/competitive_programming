@@ -155,19 +155,29 @@ class SegmentTree:
     @staticmethod
     def build(seq: list, operation: Callable) -> SegmentTree:
         root = None
-        level = [
-            Node.build_leaf(value, index)
-            for index, value in enumerate(seq)
-        ]
+        level = SegmentTree._build_initial_level(seq)
         while len(level) > 1:
-            next_level = []
-            for left, right in _pairs(level):
-                next_level.append(SegmentTree.combine(left, right, operation))
-            level = next_level
+            level = SegmentTree._build_next_level(level, operation)
 
         if len(level) == 1:
             root = level[0]
         return SegmentTree(root, operation)
+
+    @staticmethod
+    def _build_next_level(level: list[Node], operation: Callable) -> list[Node]:
+        next_level = []
+        for left, right in _pairs(level):
+            next_level.append(SegmentTree.combine(left, right, operation))
+        level = next_level
+        return level
+
+    @staticmethod
+    def _build_initial_level(seq):
+        level = [
+            Node.build_leaf(value, index)
+            for index, value in enumerate(seq)
+        ]
+        return level
 
     @staticmethod
     def combine(left: Node, right: Node, operation: Callable) -> Node:
