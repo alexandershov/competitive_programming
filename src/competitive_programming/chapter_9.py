@@ -79,8 +79,7 @@ class FenwickTree:
         return range_sum
 
     def _get_seq_value(self, item):
-        if item == 0:
-            return self.values[0]
+        assert item >= 0
         return self.get_range_sum_till(item) - self.get_range_sum_till(item - 1)
 
     def __eq__(self, other):
@@ -104,6 +103,4 @@ def build_fenwick_tree(seq: list) -> FenwickTree:
 def get_fenwick_range_sum(seq: list, first: int, last: int) -> int:
     assert first <= last
     tree = build_fenwick_tree(seq)
-    sum_till_last = tree.get_range_sum_till(last)
-    sum_till_first = tree.get_range_sum_till(first)
-    return sum_till_last - sum_till_first + seq[first]
+    return tree.get_range_sum_till(last) - tree.get_range_sum_till(first - 1)
