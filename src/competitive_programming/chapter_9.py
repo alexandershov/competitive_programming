@@ -75,6 +75,7 @@ class FenwickTree:
     def _iter_indexes_to_update(start):
         exp = 1
         while True:
+            # TODO: is there a way to improve +1 -1 stuff?
             div, mod = divmod(start + 1, exp)
             yield (div + int(bool(mod))) * exp - 1
             exp *= 2
