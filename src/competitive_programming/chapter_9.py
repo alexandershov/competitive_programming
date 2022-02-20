@@ -85,6 +85,7 @@ class FenwickTree:
 
 
 def build_fenwick_tree(seq: list) -> FenwickTree:
+    # TODO: is there a way with less extra memory
     prefix_sums = get_prefix_sums(seq)
     values = []
     for last in range(0, len(seq)):
