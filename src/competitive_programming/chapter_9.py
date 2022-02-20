@@ -1,4 +1,5 @@
 from dataclasses import dataclass
+from typing import Iterator
 
 
 def get_range_sum(seq: list, first: int, last: int) -> int:
@@ -56,14 +57,11 @@ class FenwickTree:
 
     def __setitem__(self, item, value):
         # TODO: improve this method
-        updated = set()
         change = value - self._get_seq_value(item)
-        for index in FenwickTree._iter_indexes_to_update(item):
+        for index in _unique(FenwickTree._iter_indexes_to_update(item)):
             if index >= len(self.values):
                 return
-            if index not in updated:
-                self.values[index] += change
-                updated.add(index)
+            self.values[index] += change
 
     def get_range_sum_till(self, last: int) -> int:
         range_sum = 0
@@ -107,3 +105,11 @@ def get_fenwick_range_sum(seq: list, first: int, last: int) -> int:
     assert first <= last
     tree = build_fenwick_tree(seq)
     return tree.get_range_sum_till(last) - tree.get_range_sum_till(first - 1)
+
+
+def _unique(it: Iterator) -> Iterator:
+    prev = object()
+    for item in it:
+        if item != prev:
+            yield item
+        prev = item
