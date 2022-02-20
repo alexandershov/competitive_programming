@@ -64,8 +64,8 @@ def test_update_fenwick_tree(seq, index, value, expected):
     assert tree == expected
 
 
-@pytest.mark.parametrize('seq, op, expected', [
+@pytest.mark.parametrize('seq, op, first, last, expected', [
 ])
-def test_build_segment_tree(seq, op, expected):
-    tree = chapter_9.SegmentTree(seq, op)
-    assert tree == expected
+def test_segment_tree(seq, op, first, last, expected):
+    tree = chapter_9.SegmentTree.build(seq, op)
+    assert tree.get_range_value(first, last) == expected

@@ -126,3 +126,6 @@ class SegmentTree:
     @staticmethod
     def build(seq: list, operation: Callable) -> SegmentTree:
         return SegmentTree([], operation)
+
+    def get_range_value(self, first: int, last: int):
+        pass
