@@ -93,3 +93,10 @@ def test_node_build_leaf(value, index, expected):
 def test_build_segment_tree(seq, operation, expected_root_value):
     tree = chapter_9.SegmentTree.build(seq, operation)
     assert tree.root.value == expected_root_value
+
+
+@pytest.mark.parametrize('seq, operation, first, last, expected', [
+])
+def test_segment_tree_get_range_value(seq, operation, first, last, expected):
+    tree = chapter_9.SegmentTree.build(seq, operation)
+    assert tree.get_range_value(first, last) == expected

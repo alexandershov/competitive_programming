@@ -163,6 +163,9 @@ class SegmentTree:
             root = level[0]
         return SegmentTree(root, operation)
 
+    def get_range_value(self, first: int, last: int):
+        assert first <= last
+
     @staticmethod
     def _build_next_level(level: list[Node], operation: Callable) -> list[Node]:
         next_level = []
