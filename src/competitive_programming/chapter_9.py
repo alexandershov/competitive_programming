@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import itertools
+import operator
 from dataclasses import dataclass
 from typing import Iterator, Callable, Optional
 
@@ -193,8 +194,18 @@ class SegmentTree:
             raise IndexError
         return node
 
-    def get_range_value(self, first: int, last: int):
-        pass
+    def get_range_value(self, range_: Range):
+        if self.root is None:
+            raise IndexError
+        # TODO: parametrize it
+        result = 0
+        if self.root.range == range_:
+            return self.root.value
+        for child in [self.root.left, self.root.right]:
+            intersection = child.range.intersection(range_)
+            if intersection is not None:
+                result = self.operation(result, SegmentTree(child, self.operation).get_range_value(intersection))
+        return result
 
     @staticmethod
     def _build_next_level(level: list[Node], operation: Callable) -> list[Node]:
@@ -231,3 +242,13 @@ def _pairs(seq: list):
     assert not len(seq) % 2
     for i in range(0, len(seq), 2):
         yield seq[i], seq[i + 1]
+
+
+def get_segment_tree_range_sum(seq: list, first: int, last: int) -> int:
+    assert first <= last
+    # TODO: parametrize it
+    seq.append(0)
+    seq.append(0)
+    seq.append(0)
+    tree = SegmentTree.build(seq, operator.add)
+    return tree.get_range_value(Range(first, last))
