@@ -114,6 +114,11 @@ def test_segment_tree_get_node_at(seq, operation, index, expected):
         id='it should return intersection of two ranges'
     ),
     pytest.param(
+        chapter_9.Range(2, 4), chapter_9.Range(1, 3),
+        chapter_9.Range(2, 3),
+        id='it should return intersection of two ranges'
+    ),
+    pytest.param(
         chapter_9.Range(1, 3), chapter_9.Range(4, 6),
         None,
         id="it should return None if ranges don't intersect",
