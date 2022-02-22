@@ -96,9 +96,14 @@ def test_build_segment_tree(seq, operation, expected_root_value):
 
 
 @pytest.mark.parametrize('seq, operation, index, expected', [
+    pytest.param(
+        [5, 3, 1, 7, 6, 4, 2, 8], operator.add, 2,
+        1,
+        id='it should return node at index'
+    ),
 ])
 def test_segment_tree_get_node_at(seq, operation, index, expected):
-    tree = chapter_9.SegmentTree(seq, operation)
+    tree = chapter_9.SegmentTree.build(seq, operation)
     assert tree.get_node_at(index).value == expected
 
 

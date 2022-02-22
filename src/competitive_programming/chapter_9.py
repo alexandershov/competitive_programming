@@ -127,6 +127,9 @@ class Range:
         assert self.last + 1 == other.first
         return Range(self.first, other.last)
 
+    def __contains__(self, value: int):
+        return self.first <= value <= self.last
+
 
 @dataclass
 class Node:
@@ -145,6 +148,10 @@ class Node:
             right=None,
             parent=None,
         )
+
+    @property
+    def is_leaf(self) -> bool:
+        return self.left is None and self.right is None
 
 
 @dataclass(frozen=True)
@@ -165,7 +172,19 @@ class SegmentTree:
         return SegmentTree(root, operation)
 
     def get_node_at(self, index: int) -> Node:
-        pass
+        node = self.root
+        if not node:
+            raise IndexError
+        while not node.is_leaf:
+            if index in node.left.range:
+                node = node.left
+            elif index in node.right.range:
+                node = node.right
+            else:
+                raise IndexError
+        if index not in node.range:
+            raise IndexError
+        return node
 
     def get_range_value(self, first: int, last: int):
         pass
