@@ -102,7 +102,7 @@ class FenwickTree:
         return self.values == other.values
 
 
-def get_fenwick_range_sum(seq: list, first: int, last: int) -> int:
+def get_fenwick_tree_range_sum(seq: list, first: int, last: int) -> int:
     assert first <= last
     tree = FenwickTree.build(seq)
     return tree.get_range_sum_till(last) - tree.get_range_sum_till(first - 1)
