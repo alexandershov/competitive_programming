@@ -172,10 +172,7 @@ class SegmentTree:
     @staticmethod
     def build(seq: list, operation: Callable, zero: object) -> SegmentTree:
         root = None
-        seq = seq.copy()
-        num_to_add = get_ceil_power_of_two(len(seq)) - len(seq)
-        for _ in range(num_to_add):
-            seq.append(zero)
+        seq = SegmentTree._pad_seq(seq, zero)
         level = SegmentTree._build_initial_level(seq)
         while len(level) > 1:
             level = SegmentTree._build_next_level(level, operation)
@@ -183,6 +180,14 @@ class SegmentTree:
         if len(level) == 1:
             root = level[0]
         return SegmentTree(root, operation, zero)
+
+    @staticmethod
+    def _pad_seq(seq: list, zero: object):
+        seq = seq.copy()
+        num_to_add = get_ceil_power_of_two(len(seq)) - len(seq)
+        for _ in range(num_to_add):
+            seq.append(zero)
+        return seq
 
     def get_node_at(self, index: int) -> Node:
         node = self.root
