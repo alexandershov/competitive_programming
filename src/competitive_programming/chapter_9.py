@@ -171,8 +171,11 @@ class SegmentTree:
 
     @staticmethod
     def build(seq: list, operation: Callable, zero: object) -> SegmentTree:
-        # TODO: what about seq with len that is not the power of 2?
         root = None
+        seq = seq.copy()
+        num_to_add = get_ceil_power_of_two(len(seq)) - len(seq)
+        for _ in range(num_to_add):
+            seq.append(zero)
         level = SegmentTree._build_initial_level(seq)
         while len(level) > 1:
             level = SegmentTree._build_next_level(level, operation)
@@ -247,9 +250,12 @@ def _pairs(seq: list):
 
 def get_segment_tree_range_sum(seq: list, first: int, last: int) -> int:
     assert first <= last
-    # TODO: parametrize it
-    seq.append(0)
-    seq.append(0)
-    seq.append(0)
     tree = SegmentTree.build(seq, operator.add, 0)
     return tree.get_range_value(Range(first, last))
+
+
+def get_ceil_power_of_two(value: int) -> int:
+    result = 1
+    while result < value:
+        result *= 2
+    return result
