@@ -137,3 +137,11 @@ def test_segment_tree_get_node_at(seq, operation, index, expected):
 ])
 def test_range_intersection(x, y, expected):
     assert x.intersection(y) == expected
+
+
+@pytest.mark.parametrize('seq, index, value, expected', [
+])
+def test_segment_tree_update_value(seq, index, value, expected):
+    tree = chapter_9.SegmentTree.build(seq, operator.add, 0)
+    tree[index] = value
+    assert tree.root.value == expected

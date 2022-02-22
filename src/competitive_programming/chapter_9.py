@@ -213,8 +213,12 @@ class SegmentTree:
         for child in [self.root.left, self.root.right]:
             intersection = child.range.intersection(range_)
             if intersection is not None:
-                result = self.operation(result, dataclasses.replace(self, root=child).get_range_value(intersection))
+                child_tree = dataclasses.replace(self, root=child)
+                result = self.operation(result, child_tree.get_range_value(intersection))
         return result
+
+    def __setitem__(self, key, value):
+        pass
 
     @staticmethod
     def _build_next_level(level: list[Node], operation: Callable) -> list[Node]:
