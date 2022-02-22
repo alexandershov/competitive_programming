@@ -124,7 +124,11 @@ class Range:
     last: int
 
     def intersection(self, other: Range) -> Optional[Range]:
-        pass
+        if other.first in self:
+            return Range(other.first, min(self.last, other.last))
+        if self.first in other:
+            return Range(self.first, min(self.last, other.last))
+        return None
 
     def combine_with(self, other: Range) -> Range:
         assert self.last + 1 == other.first

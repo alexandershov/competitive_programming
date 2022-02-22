@@ -108,6 +108,11 @@ def test_segment_tree_get_node_at(seq, operation, index, expected):
 
 
 @pytest.mark.parametrize('x, y, expected', [
+    pytest.param(
+        chapter_9.Range(1, 3), chapter_9.Range(2, 4),
+        chapter_9.Range(2, 3),
+        id='it should return intersection of two ranges'
+    )
 ])
 def test_range_intersection(x, y, expected):
     assert x.intersection(y) == expected
