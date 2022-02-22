@@ -92,7 +92,7 @@ def test_node_build_leaf(value, index, expected):
     )
 ])
 def test_build_segment_tree(seq, operation, expected_root_value):
-    tree = chapter_9.SegmentTree.build(seq, operation)
+    tree = chapter_9.SegmentTree.build(seq, operation, 0)
     assert tree.root.value == expected_root_value
 
 
@@ -104,7 +104,7 @@ def test_build_segment_tree(seq, operation, expected_root_value):
     ),
 ])
 def test_segment_tree_get_node_at(seq, operation, index, expected):
-    tree = chapter_9.SegmentTree.build(seq, operation)
+    tree = chapter_9.SegmentTree.build(seq, operation, 0)
     assert tree.get_node_at(index).value == expected
 
 

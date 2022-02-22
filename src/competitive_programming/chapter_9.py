@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import dataclasses
 import itertools
 import operator
 from dataclasses import dataclass
@@ -166,9 +167,10 @@ class Node:
 class SegmentTree:
     root: Optional[Node]
     operation: Callable
+    zero: object
 
     @staticmethod
-    def build(seq: list, operation: Callable) -> SegmentTree:
+    def build(seq: list, operation: Callable, zero: object) -> SegmentTree:
         # TODO: what about seq with len that is not the power of 2?
         root = None
         level = SegmentTree._build_initial_level(seq)
@@ -177,7 +179,7 @@ class SegmentTree:
 
         if len(level) == 1:
             root = level[0]
-        return SegmentTree(root, operation)
+        return SegmentTree(root, operation, zero)
 
     def get_node_at(self, index: int) -> Node:
         node = self.root
@@ -197,14 +199,13 @@ class SegmentTree:
     def get_range_value(self, range_: Range):
         if self.root is None:
             raise IndexError
-        # TODO: parametrize it
-        result = 0
+        result = self.zero
         if self.root.range == range_:
             return self.root.value
         for child in [self.root.left, self.root.right]:
             intersection = child.range.intersection(range_)
             if intersection is not None:
-                result = self.operation(result, SegmentTree(child, self.operation).get_range_value(intersection))
+                result = self.operation(result, dataclasses.replace(self, root=child).get_range_value(intersection))
         return result
 
     @staticmethod
@@ -250,5 +251,5 @@ def get_segment_tree_range_sum(seq: list, first: int, last: int) -> int:
     seq.append(0)
     seq.append(0)
     seq.append(0)
-    tree = SegmentTree.build(seq, operator.add)
+    tree = SegmentTree.build(seq, operator.add, 0)
     return tree.get_range_value(Range(first, last))
