@@ -154,6 +154,7 @@ class SegmentTree:
 
     @staticmethod
     def build(seq: list, operation: Callable) -> SegmentTree:
+        # TODO: what about seq with len that is not the power of 2?
         root = None
         level = SegmentTree._build_initial_level(seq)
         while len(level) > 1:
@@ -162,9 +163,6 @@ class SegmentTree:
         if len(level) == 1:
             root = level[0]
         return SegmentTree(root, operation)
-
-    def get_range_value(self, first: int, last: int):
-        assert first <= last
 
     @staticmethod
     def _build_next_level(level: list[Node], operation: Callable) -> list[Node]:
