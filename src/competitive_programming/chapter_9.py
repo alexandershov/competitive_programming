@@ -218,7 +218,11 @@ class SegmentTree:
         return result
 
     def __setitem__(self, key, value):
-        pass
+        node = self.get_node_at(key)
+        change = value - node.value
+        while node is not None:
+            node.value += change
+            node = node.parent
 
     @staticmethod
     def _build_next_level(level: list[Node], operation: Callable) -> list[Node]:

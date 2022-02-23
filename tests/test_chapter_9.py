@@ -140,6 +140,11 @@ def test_range_intersection(x, y, expected):
 
 
 @pytest.mark.parametrize('seq, index, value, expected', [
+    pytest.param(
+        [5, 8, 6, 3, 2, 7, 2, 6], 2, 9,
+        42,
+        id='it should update value at the index and its parents'
+    )
 ])
 def test_segment_tree_update_value(seq, index, value, expected):
     tree = chapter_9.SegmentTree.build(seq, operator.add, 0)
