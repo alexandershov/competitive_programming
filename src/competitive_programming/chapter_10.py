@@ -9,5 +9,5 @@ def get_adjacent_nodes(tree, node):
     return tree.get(node, [])
 
 
-def count_subtree_sizes(tree):
+def count_subtree_sizes(tree, root):
     pass

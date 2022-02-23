@@ -24,8 +24,8 @@ def test_tree_dfs(tree, initial_node, expected):
     assert nodes == expected
 
 
-@pytest.mark.parametrize('tree, expected', [
+@pytest.mark.parametrize('tree, root, expected', [
 ])
-def test_count_subtree_sizes(tree, expected):
-    sizes = chapter_10.count_subtree_sizes(tree)
+def test_count_subtree_sizes(tree, root, expected):
+    sizes = chapter_10.count_subtree_sizes(tree, root)
     assert sizes == expected
