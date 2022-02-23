@@ -22,3 +22,10 @@ import pytest
 def test_tree_dfs(tree, initial_node, expected):
     nodes = set(chapter_10.tree_dfs(tree, initial_node))
     assert nodes == expected
+
+
+@pytest.mark.parametrize('tree, expected', [
+])
+def test_count_subtree_sizes(tree, expected):
+    sizes = chapter_10.count_subtree_sizes(tree)
+    assert sizes == expected

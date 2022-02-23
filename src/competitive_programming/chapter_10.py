@@ -7,3 +7,7 @@ def tree_dfs(tree, initial_node, prev_node=None):
 
 def get_adjacent_nodes(tree, node):
     return tree.get(node, [])
+
+
+def count_subtree_sizes(tree):
+    pass
