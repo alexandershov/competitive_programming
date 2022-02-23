@@ -25,6 +25,26 @@ def test_tree_dfs(tree, initial_node, expected):
 
 
 @pytest.mark.parametrize('tree, root, expected', [
+    pytest.param(
+        {
+            'A': ['C', 'D'],
+            'C': ['A', 'E'],
+            'D': ['A', 'F', 'G'],
+            'E': ['C'],
+            'F': ['D'],
+            'G': ['D'],
+        },
+        'A',
+        {
+            'A': 6,
+            'C': 2,
+            'D': 3,
+            'E': 1,
+            'F': 1,
+            'G': 1,
+        },
+        id='it should count subtree size for every node'
+    )
 ])
 def test_count_subtree_sizes(tree, root, expected):
     sizes = chapter_10.count_subtree_sizes(tree, root)
