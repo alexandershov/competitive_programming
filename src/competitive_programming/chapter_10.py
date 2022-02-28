@@ -19,3 +19,7 @@ def count_subtree_sizes(tree, root, prev_node=None, sizes=None):
             cur_size += sizes[node]
     sizes[root] = cur_size
     return sizes
+
+
+def get_ancestor(tree, node, k):
+    pass

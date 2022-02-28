@@ -49,3 +49,9 @@ def test_tree_dfs(tree, initial_node, expected):
 def test_count_subtree_sizes(tree, root, expected):
     sizes = chapter_10.count_subtree_sizes(tree, root)
     assert sizes == expected
+
+
+@pytest.mark.parametrize('tree, node, k, expected', [
+])
+def test_get_ancestor(tree, node, k, expected):
+    assert chapter_10.get_ancestor(tree, node, k) == expected
