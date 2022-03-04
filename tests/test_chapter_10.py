@@ -52,6 +52,21 @@ def test_count_subtree_sizes(tree, root, expected):
 
 
 @pytest.mark.parametrize('tree, node, k, expected', [
+    pytest.param(
+        {
+            'A': ['B', 'E'],
+            'B': ['A', 'C', 'D'],
+            'C': ['B'],
+            'D': ['B'],
+            'E': ['A', 'F', 'G'],
+            'F': 'E',
+            'G': 'E',
+        },
+        'F',
+        2,
+        'A',
+        id='it should return k-th ancestor of the given node'
+    )
 ])
 def test_get_ancestor(tree, node, k, expected):
     assert chapter_10.get_ancestor(tree, node, k) == expected
