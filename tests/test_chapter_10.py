@@ -76,6 +76,13 @@ def test_count_subtree_sizes(tree, root, expected):
         None,
         id='it should return None if tree is too small'
     ),
+    pytest.param(
+        {},
+        'A',
+        1,
+        None,
+        id='it should return None for empty tree'
+    ),
 ])
 def test_get_ancestor(tree, node, k, expected):
     assert chapter_10.get_ancestor(tree, node, k) == expected
