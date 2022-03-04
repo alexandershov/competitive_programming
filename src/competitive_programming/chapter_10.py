@@ -29,7 +29,7 @@ def get_ancestor(tree, node, k):
         root=next(iter(tree)),
         node=node,
         k=k,
-        path=[]
+        path=[],
     )
 
 
