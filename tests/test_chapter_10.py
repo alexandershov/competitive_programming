@@ -66,7 +66,16 @@ def test_count_subtree_sizes(tree, root, expected):
         2,
         'A',
         id='it should return k-th ancestor of the given node'
-    )
+    ),
+    pytest.param(
+        {
+            'A': ['B', 'C'],
+        },
+        'C',
+        2,
+        None,
+        id='it should return None if tree is too small'
+    ),
 ])
 def test_get_ancestor(tree, node, k, expected):
     assert chapter_10.get_ancestor(tree, node, k) == expected
