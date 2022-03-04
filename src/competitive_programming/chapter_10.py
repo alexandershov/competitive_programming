@@ -34,7 +34,6 @@ def get_ancestor(tree, node, k):
 
 
 def walk_tree_with_path(tree, root, node, k, path):
-    # TODO: improve the code
     if root == node:
         try:
             return path[-k]
