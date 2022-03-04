@@ -40,9 +40,7 @@ def walk_tree_with_path(tree, root, node, k, path):
         except IndexError:
             return None
     for child in get_adjacent_nodes(tree, root):
-        prev = None
-        if path:
-            prev = path[-1]
+        prev = get_last_or_none(path)
         if child != prev:
             path.append(root)
             result = walk_tree_with_path(
@@ -55,4 +53,10 @@ def walk_tree_with_path(tree, root, node, k, path):
             path.pop()
             if result is not None:
                 return result
+    return None
+
+
+def get_last_or_none(seq):
+    if seq:
+        return seq[-1]
     return None
