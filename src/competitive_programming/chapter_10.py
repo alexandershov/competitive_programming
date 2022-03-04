@@ -24,21 +24,21 @@ def count_subtree_sizes(tree, root, prev_node=None, sizes=None):
 def get_ancestor(tree, node, k):
     if not tree:
         return None
-    return walk_tree_with_path(
-        tree=tree,
-        root=next(iter(tree)),
-        node=node,
-        k=k,
-        path=[],
-    )
+    try:
+        return walk_tree_with_path(
+            tree=tree,
+            root=next(iter(tree)),
+            node=node,
+            k=k,
+            path=[],
+        )
+    except IndexError:
+        return None
 
 
 def walk_tree_with_path(tree, root, node, k, path):
     if root == node:
-        try:
-            return path[-k]
-        except IndexError:
-            return None
+        return path[-k]
     for child in get_adjacent_nodes(tree, root):
         if child != get_last_or_none(path):
             path.append(root)
