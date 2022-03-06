@@ -1,10 +1,10 @@
 import collections
 
 
-def tree_dfs(tree, initial_node, prev_node=None):
+def tree_dfs(tree, initial_node, parent=None):
     yield initial_node
     for node in get_adjacent_nodes(tree, initial_node):
-        if node != prev_node:
+        if node != parent:
             yield from tree_dfs(tree, node, initial_node)
 
 
@@ -12,13 +12,13 @@ def get_adjacent_nodes(tree, node):
     return tree.get(node, [])
 
 
-def count_subtree_sizes(tree, root, prev_node=None, sizes=None):
+def count_subtree_sizes(tree, root, parent=None, sizes=None):
     if sizes is None:
         sizes = {}
     cur_size = 1
     for node in get_adjacent_nodes(tree, root):
-        if node != prev_node:
-            count_subtree_sizes(tree, node, prev_node=root, sizes=sizes)
+        if node != parent:
+            count_subtree_sizes(tree, node, parent=root, sizes=sizes)
             cur_size += sizes[node]
     sizes[root] = cur_size
     return sizes
@@ -65,7 +65,6 @@ def get_last_or_none(seq):
 
 
 def count_subtree_colors(tree, values, root, node):
-    # TODO: rename prev to parent everywhere
     # TODO: understand complexity
     # TODO: implement and understand small to large merge complexity
     counts = collections.defaultdict(int)
@@ -73,23 +72,23 @@ def count_subtree_colors(tree, values, root, node):
         tree=tree,
         values=values,
         node=root,
-        prev=None,
+        parent=None,
         counts=counts,
     )
     return counts[node]
 
 
-def distinct_values_dfs(tree, values, node, prev, counts, values_by_node=None):
+def distinct_values_dfs(tree, values, node, parent, counts, values_by_node=None):
     if values_by_node is None:
         values_by_node = {}
     node_values = {values[node]}
     for child in get_adjacent_nodes(tree, node):
-        if child != prev:
+        if child != parent:
             distinct_values_dfs(
                 tree=tree,
                 values=values,
                 node=child,
-                prev=node,
+                parent=node,
                 counts=counts,
                 values_by_node=values_by_node
             )
