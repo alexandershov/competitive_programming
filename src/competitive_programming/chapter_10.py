@@ -61,5 +61,5 @@ def get_last_or_none(seq):
     return None
 
 
-def count_subtree_colors(tree, node):
+def count_subtree_colors(tree, values, root, node):
     pass

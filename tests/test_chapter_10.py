@@ -88,7 +88,7 @@ def test_get_ancestor(tree, node, k, expected):
     assert chapter_10.get_ancestor(tree, node, k) == expected
 
 
-@pytest.mark.parametrize('tree, node, expected', [
+@pytest.mark.parametrize('tree, values, root, node, expected', [
 ])
-def test_count_subtree_colors(tree, node, expected):
-    assert chapter_10.count_subtree_colors(tree, node) == expected
+def test_count_subtree_colors(tree, values, root, node, expected):
+    assert chapter_10.count_subtree_colors(tree, values, root, node) == expected
