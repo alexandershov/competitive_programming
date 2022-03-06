@@ -68,4 +68,31 @@ def count_subtree_colors(tree, values, root, node):
     # TODO: rename prev to parent everywhere
     # TODO: understand complexity
     # TODO: implement and understand small to large merge complexity
-    pass
+    counts = collections.defaultdict(int)
+    distinct_values_dfs(
+        tree=tree,
+        values=values,
+        node=root,
+        prev=None,
+        counts=counts,
+    )
+    return counts[node]
+
+
+def distinct_values_dfs(tree, values, node, prev, counts, values_by_node=None):
+    if values_by_node is None:
+        values_by_node = {}
+    node_values = {values[node]}
+    for child in get_adjacent_nodes(tree, node):
+        if child != prev:
+            distinct_values_dfs(
+                tree=tree,
+                values=values,
+                node=child,
+                prev=node,
+                counts=counts,
+                values_by_node=values_by_node
+            )
+            node_values.update(values_by_node[child])
+    values_by_node[node] = node_values
+    counts[node] = len(node_values)

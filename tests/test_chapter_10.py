@@ -89,6 +89,20 @@ def test_get_ancestor(tree, node, k, expected):
 
 
 @pytest.mark.parametrize('tree, values, root, node, expected', [
+    pytest.param(
+        {
+            'A': ['B', 'C'],
+            'B': ['A'],
+            'C': ['A'],
+        },
+        {
+            'A': 'blue',
+            'B': 'yellow',
+            'C': 'yellow',
+        },
+        'A', 'A', 2,
+        id='it should return number of distinct colors at the given subtree'
+    )
 ])
 def test_count_subtree_colors(tree, values, root, node, expected):
     assert chapter_10.count_subtree_colors(tree, values, root, node) == expected
