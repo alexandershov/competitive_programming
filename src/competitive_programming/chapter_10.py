@@ -1,3 +1,6 @@
+import collections
+
+
 def tree_dfs(tree, initial_node, prev_node=None):
     yield initial_node
     for node in get_adjacent_nodes(tree, initial_node):
@@ -62,4 +65,7 @@ def get_last_or_none(seq):
 
 
 def count_subtree_colors(tree, values, root, node):
+    # TODO: rename prev to parent everywhere
+    # TODO: understand complexity
+    # TODO: implement and understand small to large merge complexity
     pass
