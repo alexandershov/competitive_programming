@@ -102,7 +102,18 @@ def test_get_ancestor(tree, node, k, expected):
         },
         'A', 'A', 2,
         id='it should return number of distinct colors at the given subtree'
+    ),
+    pytest.param(
+        {
+            'A': [],
+        },
+        {
+            'A': 'blue',
+        },
+        'A', 'A', 1,
+        id='it should return 1 on a singleton tree'
     )
+
 ])
 def test_count_subtree_colors(tree, values, root, node, expected):
     assert chapter_10.count_subtree_colors(tree, values, root, node) == expected
