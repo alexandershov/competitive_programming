@@ -59,3 +59,7 @@ def get_last_or_none(seq):
     if seq:
         return seq[-1]
     return None
+
+
+def count_subtree_colors(tree, node):
+    pass
