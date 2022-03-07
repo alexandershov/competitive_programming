@@ -1,4 +1,5 @@
 import collections
+import random
 
 
 def tree_dfs(tree, initial_node, parent=None):
@@ -100,7 +101,7 @@ def distinct_values_dfs(tree, values, node, parent, counts, values_by_node=None)
 def find_centroid(tree):
     if not tree:
         return None
-    root = next(iter(tree))
+    root = random.choice(list(tree))
     sizes = count_subtree_sizes(tree, root)
     total_size = sizes[root]
     node = root
