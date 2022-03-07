@@ -117,3 +117,9 @@ def test_get_ancestor(tree, node, k, expected):
 ])
 def test_count_subtree_colors(tree, values, root, node, expected):
     assert chapter_10.count_subtree_colors(tree, values, root, node) == expected
+
+
+@pytest.mark.parametrize('tree, expected_nodes', [
+])
+def test_find_centroid(tree, expected_nodes):
+    assert chapter_10.find_centroid(tree) in expected_nodes
