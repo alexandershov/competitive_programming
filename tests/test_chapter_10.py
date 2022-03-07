@@ -120,6 +120,19 @@ def test_count_subtree_colors(tree, values, root, node, expected):
 
 
 @pytest.mark.parametrize('tree, expected_nodes', [
+    pytest.param(
+        {
+            'A': ['B'],
+            'B': ['A', 'C'],
+            'C': ['B', 'D', 'F'],
+            'D': ['C', 'E'],
+            'F': ['C', 'G', 'H'],
+            'G': ['F'],
+            'H': ['F'],
+        },
+        {'C'},
+        id='it should find the centroid'
+    )
 ])
 def test_find_centroid(tree, expected_nodes):
     assert chapter_10.find_centroid(tree) in expected_nodes

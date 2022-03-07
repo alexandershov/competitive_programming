@@ -98,4 +98,32 @@ def distinct_values_dfs(tree, values, node, parent, counts, values_by_node=None)
 
 
 def find_centroid(tree):
-    pass
+    if not tree:
+        return None
+    root = next(iter(tree))
+    sizes = count_subtree_sizes(tree, root)
+    total_size = sizes[root]
+    node = root
+    parent = None
+    parent_size = 0
+    while True:
+        children = [
+            child for child in get_adjacent_nodes(tree, node)
+            if child != parent
+        ]
+
+        if _is_centroid(total_size, sizes, children, parent_size):
+            return node
+        next_ = max(children, key=lambda child: sizes[child])
+        parent_size += sizes[node] - sizes[next_]
+        parent = node
+        node = next_
+
+
+def _is_centroid(total_size, sizes, children, parent_size):
+    max_size = total_size // 2
+    cur_sizes = [parent_size]
+    for child in children:
+        cur_sizes.append(sizes[child])
+
+    return all(a_size <= max_size for a_size in cur_sizes)
