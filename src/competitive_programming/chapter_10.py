@@ -65,7 +65,6 @@ def get_last_or_none(seq):
 
 
 def count_subtree_colors(tree, values, root, node):
-    # TODO: understand small to large merge complexity
     counts = collections.defaultdict(int)
     distinct_values_dfs(
         tree=tree,
