@@ -10,4 +10,16 @@ def is_prime(number: int) -> bool:
 
 
 def factorize(number: int) -> list[int]:
-    pass
+    assert number > 1
+
+    factors = []
+    divisor = 2
+    while not is_prime(number):
+        if number % divisor == 0:
+            factors.append(divisor)
+            number = number // divisor
+        else:
+            divisor += 1
+    factors.append(1)
+    factors.append(number)
+    return factors

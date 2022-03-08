@@ -19,10 +19,12 @@ def test_is_prime(number, expected):
 
 
 @pytest.mark.parametrize('number, expected', [
+    pytest.param(2, [1, 2], id='it should return 1 and number for any prime number'),
+    pytest.param(23497, [1, 23497], id='it should return 1 and number for any prime number'),
 ])
 def test_factorize(number, expected):
     assert_same_items(chapter_11.factorize(number), expected)
 
 
 def assert_same_items(actual, expected):
-    assert sorted(actual) == expected
+    assert sorted(actual) == sorted(expected)
