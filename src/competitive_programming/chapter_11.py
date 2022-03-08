@@ -14,10 +14,12 @@ def factorize(number: int) -> list[int]:
 
     factors = []
     divisor = 2
-    while not is_prime(number):
+    number_is_prime = is_prime(number)
+    while not number_is_prime:
         if number % divisor == 0:
             factors.append(divisor)
             number = number // divisor
+            number_is_prime = is_prime(number)
         else:
             divisor += 1
     factors.append(1)
