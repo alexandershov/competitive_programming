@@ -16,3 +16,13 @@ from competitive_programming import chapter_11
 ])
 def test_is_prime(number, expected):
     assert chapter_11.is_prime(number) is expected
+
+
+@pytest.mark.parametrize('number, expected', [
+])
+def test_factorize(number, expected):
+    assert_same_items(chapter_11.factorize(number), expected)
+
+
+def assert_same_items(actual, expected):
+    assert sorted(actual) == expected

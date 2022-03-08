@@ -7,3 +7,7 @@ def is_prime(number: int) -> bool:
             return False
         factor += 1
     return True
+
+
+def factorize(number: int) -> list[int]:
+    pass
