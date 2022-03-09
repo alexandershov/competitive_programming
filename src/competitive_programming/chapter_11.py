@@ -1,12 +1,16 @@
 def is_prime(number: int) -> bool:
     if number < 2:
         return False
+    return get_smallest_factor(number) == number
+
+
+def get_smallest_factor(number: int) -> int:
     factor = 2
     while factor ** 2 <= number:
         if number % factor == 0:
-            return False
+            return factor
         factor += 1
-    return True
+    return number
 
 
 def factorize(number: int) -> list[int]:
