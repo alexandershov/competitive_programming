@@ -19,10 +19,10 @@ def test_is_prime(number, expected):
 
 
 @pytest.mark.parametrize('number, expected', [
-    pytest.param(2, [1, 2], id='it should return 1 and number for any prime number'),
-    pytest.param(12, [1, 2, 2, 3], id='it should return prime factorization for composite number'),
-    pytest.param(23497, [1, 23497], id='it should return 1 and number for any prime number'),
-    pytest.param(23497 * 23581, [1, 23497, 23581],
+    pytest.param(2, [2], id='it should the number itself for any prime number'),
+    pytest.param(12, [2, 2, 3], id='it should return prime factorization for composite number'),
+    pytest.param(23497, [23497], id='it should return the number itself for any prime number'),
+    pytest.param(23497 * 23581, [23497, 23581],
                  id='it should return prime factorization for large composite number'),
 ])
 def test_factorize(number, expected):

@@ -14,10 +14,9 @@ def get_smallest_factor(number: int, start) -> int:
 
 
 def factorize(number: int) -> list[int]:
-    # TODO: can it be improved?
     assert number > 1
 
-    factors = [1]
+    factors = []
     while number != 1:
         smallest_factor = get_smallest_factor(number, start=2)
         factors.append(smallest_factor)
