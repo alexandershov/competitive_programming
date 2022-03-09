@@ -35,6 +35,11 @@ def assert_same_items(actual, expected):
 
 @pytest.mark.parametrize('length, expected', [
     pytest.param(
+        0,
+        [],
+        id='it should return empty list when length is 0'
+    ),
+    pytest.param(
         14,
         [1, 1, 0, 0, 1, 0, 1, 0, 1, 1, 1, 0, 1, 0],
         id='it should return Eratosthenes sieve of the given length'

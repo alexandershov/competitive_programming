@@ -26,10 +26,11 @@ def factorize(number: int) -> list[int]:
 
 def build_eratosthenes_sieve(length: int) -> list[int]:
     sieve = length * [0]
-    # TODO: handle case when length < 2
-    sieve[0] = 1
-    sieve[1] = 1
-    for i in range(2, length):
+    for i in range(length):
+        if i in [0, 1]:
+            sieve[i] = 1
+            continue
+
         if not sieve[i]:
             j = 2
             while j * i < length:
