@@ -11,7 +11,6 @@ def is_prime(number: int) -> bool:
 
 def factorize(number: int) -> list[int]:
     # TODO: can it be improved?
-    # TODO: what is its complexity?
     assert number > 1
 
     factors = []
