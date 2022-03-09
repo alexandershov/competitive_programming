@@ -31,3 +31,9 @@ def test_factorize(number, expected):
 
 def assert_same_items(actual, expected):
     assert sorted(actual) == sorted(expected)
+
+
+@pytest.mark.parametrize('length, expected', [
+])
+def test_eratosthenes_sieve(length, expected):
+    assert chapter_11.build_eratosthenes_sieve(length) == expected

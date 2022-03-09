@@ -22,3 +22,7 @@ def factorize(number: int) -> list[int]:
         factors.append(smallest_factor)
         number //= smallest_factor
     return factors
+
+
+def build_eratosthenes_sieve(length: int) -> list[int]:
+    pass
