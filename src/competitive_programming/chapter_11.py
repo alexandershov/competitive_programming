@@ -1,11 +1,11 @@
 def is_prime(number: int) -> bool:
     if number < 2:
         return False
-    return get_smallest_factor(number) == number
+    return get_smallest_factor(number, start=2) == number
 
 
-def get_smallest_factor(number: int) -> int:
-    factor = 2
+def get_smallest_factor(number: int, start) -> int:
+    factor = start
     while factor ** 2 <= number:
         if number % factor == 0:
             return factor
@@ -17,16 +17,9 @@ def factorize(number: int) -> list[int]:
     # TODO: can it be improved?
     assert number > 1
 
-    factors = []
-    divisor = 2
-    number_is_prime = is_prime(number)
-    while not number_is_prime:
-        if number % divisor == 0:
-            factors.append(divisor)
-            number = number // divisor
-            number_is_prime = is_prime(number)
-        else:
-            divisor += 1
-    factors.append(1)
-    factors.append(number)
+    factors = [1]
+    while number != 1:
+        smallest_factor = get_smallest_factor(number, start=2)
+        factors.append(smallest_factor)
+        number //= smallest_factor
     return factors
