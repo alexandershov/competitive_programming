@@ -46,4 +46,4 @@ def gcd(x: int, y: int) -> int:
         return gcd(y, x)
     if x % y == 0:
         return y
-    return gcd(x % y, x)
+    return gcd(x % y, y)
