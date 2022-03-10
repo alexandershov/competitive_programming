@@ -37,3 +37,7 @@ def build_eratosthenes_sieve(length: int) -> list[int]:
                 sieve[j * i] = 1
                 j += 1
     return sieve
+
+
+def gcd(x: int, y: int) -> int:
+    pass

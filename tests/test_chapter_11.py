@@ -47,3 +47,9 @@ def assert_same_items(actual, expected):
 ])
 def test_eratosthenes_sieve(length, expected):
     assert chapter_11.build_eratosthenes_sieve(length) == expected
+
+
+@pytest.mark.parametrize('x, y, expected', [
+])
+def test_gcd(x, y, expected):
+    assert chapter_11.gcd(x, y) == expected
