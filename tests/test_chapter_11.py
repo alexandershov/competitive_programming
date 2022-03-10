@@ -54,6 +54,11 @@ def test_eratosthenes_sieve(length, expected):
         200, 150,
         50,
         id='it should return the greatest common divisor of two numbers'
+    ),
+    pytest.param(
+        11, 37,
+        1,
+        id='it should return 1 if both numbers are prime'
     )
 ])
 def test_gcd(x, y, expected):
