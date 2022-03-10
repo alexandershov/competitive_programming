@@ -58,7 +58,12 @@ def test_eratosthenes_sieve(length, expected):
     pytest.param(
         11, 37,
         1,
-        id='it should return 1 if both numbers are prime'
+        id='it should return 1 if both numbers are unequal primes'
+    ),
+    pytest.param(
+        11, 11,
+        11,
+        id='it should return the number if both numbers are the same'
     )
 ])
 def test_gcd(x, y, expected):
