@@ -40,4 +40,10 @@ def build_eratosthenes_sieve(length: int) -> list[int]:
 
 
 def gcd(x: int, y: int) -> int:
-    pass
+    assert x > 0
+    assert y > 0
+    if x == y:
+        return x
+    if x > y:
+        return gcd(x - y, y)
+    return gcd(y - x, x)

@@ -50,6 +50,11 @@ def test_eratosthenes_sieve(length, expected):
 
 
 @pytest.mark.parametrize('x, y, expected', [
+    pytest.param(
+        200, 150,
+        50,
+        id='it should return the greatest common divisor of two numbers'
+    )
 ])
 def test_gcd(x, y, expected):
     assert chapter_11.gcd(x, y) == expected
