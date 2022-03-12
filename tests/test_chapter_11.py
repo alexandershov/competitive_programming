@@ -68,3 +68,9 @@ def test_eratosthenes_sieve(length, expected):
 ])
 def test_gcd(x, y, expected):
     assert chapter_11.gcd(x, y) == expected
+
+
+@pytest.mark.parametrize('base, power, modulo, expected', [
+])
+def test_pow_modulo(base, power, modulo, expected):
+    assert chapter_11.pow_modulo(base, power, modulo) == expected

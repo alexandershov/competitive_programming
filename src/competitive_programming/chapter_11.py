@@ -45,3 +45,7 @@ def gcd(x: int, y: int) -> int:
     if x % y == 0:
         return y
     return gcd(y, x % y)
+
+
+def pow_modulo(base, power, modulo) -> int:
+    pass
