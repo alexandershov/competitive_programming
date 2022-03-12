@@ -81,6 +81,11 @@ def test_gcd(x, y, expected):
         0,
         id='it should zero if modulo == 1'
     ),
+    pytest.param(
+        2, 0, 1,
+        0,
+        id='it should zero if power == 0 and modulo == 1'
+    ),
 ])
 def test_pow_modulo(base, power, modulo, expected):
     assert chapter_11.pow_modulo(base, power, modulo) == expected
