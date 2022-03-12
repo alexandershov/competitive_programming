@@ -75,7 +75,13 @@ def test_gcd(x, y, expected):
         2, 10, 1000,
         24,
         id='it should return (base ** power) % modulo'
+    ),
+    pytest.param(
+        2, 10, 1,
+        0,
+        id='it should zero if modulo == 1'
     )
+
 ])
 def test_pow_modulo(base, power, modulo, expected):
     assert chapter_11.pow_modulo(base, power, modulo) == expected
