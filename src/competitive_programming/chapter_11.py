@@ -48,4 +48,10 @@ def gcd(x: int, y: int) -> int:
 
 
 def pow_modulo(base, power, modulo) -> int:
-    pass
+    assert modulo > 0
+    assert power >= 0
+    if power == 0:
+        return 1
+    if power % 2 == 1:
+        return (pow_modulo(base, power - 1, modulo) * base) % modulo
+    return (pow_modulo(base, power // 2, modulo) ** 2) % modulo

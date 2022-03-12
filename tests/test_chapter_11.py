@@ -71,6 +71,11 @@ def test_gcd(x, y, expected):
 
 
 @pytest.mark.parametrize('base, power, modulo, expected', [
+    pytest.param(
+        2, 10, 1000,
+        24,
+        id='it should return (base ** power) % modulo'
+    )
 ])
 def test_pow_modulo(base, power, modulo, expected):
     assert chapter_11.pow_modulo(base, power, modulo) == expected
