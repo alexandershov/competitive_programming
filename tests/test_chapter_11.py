@@ -93,6 +93,10 @@ def test_pow_modulo(base, power, modulo, expected):
 
 @pytest.mark.parametrize('n, k, expected', [
     pytest.param(
+        5, 10, 0,
+        id='it should return 0 when k > n'
+    ),
+    pytest.param(
         5, 5, 1,
         id='it should return 1 when n == k'
     ),
