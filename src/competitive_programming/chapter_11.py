@@ -62,4 +62,4 @@ def binom_coeff(n: int, k: int) -> int:
         return 0
     if k == 0:
         return 1
-    return binom_coeff(n - 1, k - 1) * n // k
+    return binom_coeff(n - 1, k - 1) + binom_coeff(n - 1, k)
