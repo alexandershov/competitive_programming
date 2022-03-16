@@ -89,3 +89,9 @@ def test_gcd(x, y, expected):
 ])
 def test_pow_modulo(base, power, modulo, expected):
     assert chapter_11.pow_modulo(base, power, modulo) == expected
+
+
+@pytest.mark.parametrize('n, k, expected', [
+])
+def test_binom_coeff(n, k, expected):
+    assert chapter_11.binom_coeff(n, k) == expected

@@ -55,3 +55,7 @@ def pow_modulo(base, power, modulo) -> int:
     if power % 2 == 1:
         return (pow_modulo(base, power - 1, modulo) * base) % modulo
     return (pow_modulo(base, power // 2, modulo) ** 2) % modulo
+
+
+def binom_coeff(n: int, k: int) -> int:
+    pass
