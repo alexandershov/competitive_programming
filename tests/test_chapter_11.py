@@ -92,6 +92,10 @@ def test_pow_modulo(base, power, modulo, expected):
 
 
 @pytest.mark.parametrize('n, k, expected', [
+    pytest.param(
+        5, 3, 10,
+        id='it should return binomial coefficient (n, k)'
+    )
 ])
 def test_binom_coeff(n, k, expected):
     assert chapter_11.binom_coeff(n, k) == expected
