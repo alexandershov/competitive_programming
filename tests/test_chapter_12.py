@@ -34,4 +34,4 @@ from competitive_programming import chapter_12
     ),
 ])
 def test_get_strongly_connected_components(graph, expected):
-    assert chapter_12.get_strongly_connected_components(graph) == expected
+    assert chapter_12.get_strongly_connected_components_brute_force(graph) == expected

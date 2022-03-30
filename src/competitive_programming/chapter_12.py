@@ -1,7 +1,7 @@
 import collections
 
 
-def get_strongly_connected_components(graph):
+def get_strongly_connected_components_brute_force(graph):
     reachable_by_node = {}
     for node in graph:
         reachable_by_node[node] = get_reachable_nodes(graph, node)
