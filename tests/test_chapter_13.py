@@ -10,6 +10,11 @@ from competitive_programming.chapter_13 import Line
         Line(Point(1, 1), Point(3, 3)), Point(2, 3),
         'left',
         id='it should return "left" when point is located on the left side of the line'
+    ),
+    pytest.param(
+        Line(Point(3, 3), Point(1, 1)), Point(2, 3),
+        'right',
+        id='it should return "right" when point is located on the right side of the line'
     )
 ])
 def test_get_point_side(line, point, expected):
