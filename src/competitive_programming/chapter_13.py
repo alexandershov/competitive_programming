@@ -20,14 +20,13 @@ class Point:
 
 @dataclass(frozen=True)
 class Line:
-    # TODO: rename a & b
-    a: Point
-    b: Point
+    begin: Point
+    end: Point
 
 
 def get_point_side(line: Line, point: Point) -> str:
-    first = line.b - line.a
-    second = point - line.b
+    first = line.end - line.begin
+    second = point - line.end
     cross_product = first * second
     if cross_product > 0:
         return 'left'
