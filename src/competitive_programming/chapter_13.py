@@ -33,3 +33,7 @@ def get_point_side(line: Line, point: Point) -> str:
     elif cross_product < 0:
         return 'right'
     return 'center'
+
+
+def segments_intersect(first: Line, second: Line) -> bool:
+    pass
