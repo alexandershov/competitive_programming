@@ -27,12 +27,17 @@ def test_get_point_side(line, point, expected):
 
 
 @pytest.mark.parametrize('first, second, expected', [
-    # TODO: tests when segments don't intersect
     pytest.param(
         Line(Point(1, 1), Point(3, 3)),
         Line(Point(3, 1), Point(1, 3)),
         True,
-        id='it should return True if two line segments intersect'
+        id='it should return True when two line segments intersect'
+    ),
+    pytest.param(
+        Line(Point(1, 1), Point(3, 3)),
+        Line(Point(5, 3), Point(3, 5)),
+        False,
+        id='it should return False when two line segments intersect'
     )
 ])
 def test_segments_intersect(first, second, expected):
