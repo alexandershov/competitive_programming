@@ -36,4 +36,8 @@ def get_point_side(line: Line, point: Point) -> str:
 
 
 def segments_intersect(first: Line, second: Line) -> bool:
-    pass
+    if get_point_side(first, second.begin) == get_point_side(first, second.end):
+        return False
+    if get_point_side(second, first.begin) == get_point_side(second, first.end):
+        return False
+    return True
