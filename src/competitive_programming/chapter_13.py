@@ -36,11 +36,8 @@ def get_point_side(line: Line, point: Point) -> str:
 
 
 def segments_intersect(first: Line, second: Line) -> bool:
-    # TODO: improve code
     if are_collinear(first, second):
-        first_xs = get_sorted_xs(first)
-        second_xs = get_sorted_xs(second)
-        return one_dimensional_intersect(first_xs, second_xs)
+        return one_dimensional_intersect(get_sorted_xs(first), get_sorted_xs(second))
     if get_point_side(first, second.begin) == get_point_side(first, second.end):
         return False
     if get_point_side(second, first.begin) == get_point_side(second, first.end):
@@ -49,8 +46,11 @@ def segments_intersect(first: Line, second: Line) -> bool:
 
 
 def one_dimensional_intersect(first: list[float], second: list[float]) -> bool:
-    return second[0] <= first[0] <= second[1] or first[0] <= second[0] <= \
-           first[1]
+    if second[0] <= first[0] <= second[1]:
+        return True
+    if first[0] <= second[0] <= first[1]:
+        return True
+    return False
 
 
 def get_sorted_xs(line: Line) -> list[float]:
