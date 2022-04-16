@@ -58,5 +58,6 @@ def get_sorted_xs(line: Line) -> list[float]:
 
 
 def are_collinear(first, second):
-    return get_point_side(first, second.begin) == 'center' and get_point_side(first,
-                                                                              second.end) == 'center'
+    begin_side = get_point_side(first, second.begin)
+    end_side = get_point_side(first, second.end)
+    return begin_side == 'center' and end_side == 'center'
