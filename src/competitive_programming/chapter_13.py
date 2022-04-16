@@ -40,13 +40,17 @@ def segments_intersect(first: Line, second: Line) -> bool:
     if are_collinear(first, second):
         first_xs = get_sorted_xs(first)
         second_xs = get_sorted_xs(second)
-        return second_xs[0] <= first_xs[0] <= second_xs[1] or first_xs[0] <= second_xs[0] <= \
-               first_xs[1]
+        return one_dimensional_intersect(first_xs, second_xs)
     if get_point_side(first, second.begin) == get_point_side(first, second.end):
         return False
     if get_point_side(second, first.begin) == get_point_side(second, first.end):
         return False
     return True
+
+
+def one_dimensional_intersect(first: list[float], second: list[float]) -> bool:
+    return second[0] <= first[0] <= second[1] or first[0] <= second[0] <= \
+           first[1]
 
 
 def get_sorted_xs(line: Line) -> list[float]:
