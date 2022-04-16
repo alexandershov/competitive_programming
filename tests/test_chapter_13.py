@@ -40,6 +40,12 @@ def test_get_point_side(line, point, expected):
         id="it should return False when two line segments don't intersect"
     ),
     pytest.param(
+        Line(Point(1, 1), Point(3, 3)),
+        Line(Point(2, 2), Point(3, 1)),
+        True,
+        id="it should return True when two lines has exactly one common point"
+    ),
+    pytest.param(
         Line(Point(1, 2), Point(5, 6)),
         Line(Point(2, 3), Point(4, 5)),
         True,
