@@ -37,7 +37,7 @@ def test_get_point_side(line, point, expected):
         Line(Point(1, 1), Point(3, 3)),
         Line(Point(5, 3), Point(3, 5)),
         False,
-        id='it should return False when two line segments intersect'
+        id="it should return False when two line segments don't intersect"
     ),
     pytest.param(
         Line(Point(1, 2), Point(5, 6)),
