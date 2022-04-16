@@ -36,9 +36,19 @@ def get_point_side(line: Line, point: Point) -> str:
 
 
 def segments_intersect(first: Line, second: Line) -> bool:
-    # TODO: handle edge cases
+    # TODO: improve code
+    if are_collinear(first, second):
+        first_xs = sorted([first.begin.x, first.end.x])
+        second_xs = sorted([second.begin.x, second.end.x])
+        return second_xs[0] <= first_xs[0] <= second_xs[1] or first_xs[0] <= second_xs[0] <= \
+               first_xs[1]
     if get_point_side(first, second.begin) == get_point_side(first, second.end):
         return False
     if get_point_side(second, first.begin) == get_point_side(second, first.end):
         return False
     return True
+
+
+def are_collinear(first, second):
+    return get_point_side(first, second.begin) == 'center' and get_point_side(first,
+                                                                              second.end) == 'center'
