@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import math
 from dataclasses import dataclass
 
 
@@ -16,6 +17,9 @@ class Point:
             self.x - other.x,
             self.y - other.y,
         )
+
+    def magnitude(self) -> float:
+        return math.sqrt(self.x ** 2 + self.y ** 2)
 
 
 @dataclass(frozen=True)
@@ -64,4 +68,5 @@ def are_collinear(first, second):
 
 
 def get_distance_to_line(point: Point, line: Line) -> float:
-    pass
+    cross_product = (point - line.begin) * (line.end - line.begin)
+    return abs(cross_product) / (line.end - line.begin).magnitude()
