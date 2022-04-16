@@ -61,3 +61,7 @@ def are_collinear(first, second):
     begin_side = get_point_side(first, second.begin)
     end_side = get_point_side(first, second.end)
     return begin_side == 'center' and end_side == 'center'
+
+
+def get_distance_to_line(point: Point, line: Line) -> float:
+    pass

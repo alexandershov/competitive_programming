@@ -60,3 +60,9 @@ def test_get_point_side(line, point, expected):
 ])
 def test_segments_intersect(first, second, expected):
     assert chapter_13.segments_intersect(first, second) is expected
+
+
+@pytest.mark.parametrize('line, point, expected', [
+])
+def test_get_distance_to_line(line, point, expected):
+    assert chapter_13.get_distance_to_line(point, line) == pytest.approx(expected)
