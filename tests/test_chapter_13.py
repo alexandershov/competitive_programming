@@ -33,31 +33,31 @@ def test_get_point_side(line, point, expected):
         Line(Point(1, 1), Point(3, 3)),
         Line(Point(3, 1), Point(1, 3)),
         True,
-        id='it should return True when two line segments intersect'
+        id='it should return True when segments intersect'
     ),
     pytest.param(
         Line(Point(1, 1), Point(3, 3)),
         Line(Point(5, 3), Point(3, 5)),
         False,
-        id="it should return False when two line segments don't intersect"
+        id="it should return False when segments don't intersect"
     ),
     pytest.param(
         Line(Point(1, 1), Point(3, 3)),
         Line(Point(2, 2), Point(3, 1)),
         True,
-        id="it should return True when two lines has exactly one common point"
+        id="it should return True when segments has exactly one common point"
     ),
     pytest.param(
         Line(Point(1, 2), Point(5, 6)),
         Line(Point(2, 3), Point(4, 5)),
         True,
-        id='it should return True when two segments are collinear and have common points'
+        id='it should return True when segments are collinear and have common points'
     ),
     pytest.param(
         Line(Point(0, 0), Point(0, 2)),
         Line(Point(0, 0), Point(0, 1)),
         True,
-        id='it should return True when two segments are collinear to Y axis and have common points'
+        id='it should return True when segments are collinear to Y axis and have common points'
     ),
     pytest.param(
         Line(Point(0, 0), Point(0, 1)),
@@ -69,7 +69,7 @@ def test_get_point_side(line, point, expected):
         Line(Point(1, 2), Point(2, 3)),
         Line(Point(4, 5), Point(5, 6)),
         False,
-        id='it should return False when two segments are collinear and have no common points'
+        id='it should return False when segments are collinear and have no common points'
     )
 ])
 def test_segments_intersect(first, second, expected):
