@@ -68,7 +68,7 @@ def test_segments_intersect(first, second, expected):
     pytest.param(
         Line(Point(1, 2), Point(3, 4)), Point(2, 1),
         math.sqrt(2),
-        id='it should return distance to the common line'
+        id='it should return distance to the common line if point is lower'
     ),
     pytest.param(
         Line(Point(0, 0), Point(1, 0)), Point(2, 3),
