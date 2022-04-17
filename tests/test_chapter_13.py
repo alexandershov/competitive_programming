@@ -75,6 +75,11 @@ def test_segments_intersect(first, second, expected):
         3.0,
         id='it should return distance to the X axis'
     ),
+    pytest.param(
+        Line(Point(0, 0), Point(0, 1)), Point(2, 3),
+        2.0,
+        id='it should return distance to the Y axis'
+    ),
 ])
 def test_get_distance_to_line(line, point, expected):
     assert chapter_13.get_distance_to_line(point, line) == pytest.approx(expected)
