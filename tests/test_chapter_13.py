@@ -1,3 +1,5 @@
+import math
+
 import pytest
 
 from competitive_programming import chapter_13
@@ -67,6 +69,11 @@ def test_segments_intersect(first, second, expected):
         Line(Point(0, 0), Point(1, 0)), Point(2, 3),
         3.0,
         id='it should return distance to the X axis'
+    ),
+    pytest.param(
+        Line(Point(1, 2), Point(3, 4)), Point(2, 1),
+        math.sqrt(2),
+        id='it should return distance to the common line'
     )
 ])
 def test_get_distance_to_line(line, point, expected):
