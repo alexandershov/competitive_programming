@@ -54,6 +54,12 @@ def test_get_point_side(line, point, expected):
         id='it should return True when two segments are collinear and have common points'
     ),
     pytest.param(
+        Line(Point(0, 0), Point(0, 2)),
+        Line(Point(0, 0), Point(0, 1)),
+        True,
+        id='it should return True when two segments are collinear to Y axis and have common points'
+    ),
+    pytest.param(
         Line(Point(1, 2), Point(2, 3)),
         Line(Point(4, 5), Point(5, 6)),
         False,
