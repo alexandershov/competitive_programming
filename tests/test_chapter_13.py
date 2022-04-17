@@ -78,7 +78,12 @@ def test_segments_intersect(first, second, expected):
     pytest.param(
         Line(Point(1, 2), Point(3, 4)), Point(2, 3),
         0,
-        id='it should return zero if point is on the line'
+        id='it should return zero if point is on the line inside of the segment'
+    ),
+    pytest.param(
+        Line(Point(1, 2), Point(3, 4)), Point(7, 8),
+        0,
+        id='it should return zero if point is on the line outside of the segment'
     ),
     pytest.param(
         Line(Point(0, 0), Point(1, 0)), Point(2, 3),
