@@ -52,13 +52,17 @@ def segments_intersect(first: Line, second: Line) -> bool:
 
 
 def one_dimensional_intersect(first: Line, second: Line, get_dimension) -> bool:
-    first_values = sorted(map(get_dimension, [first.begin, first.end]))
-    second_values = sorted(map(get_dimension, [second.begin, second.end]))
+    first_values = get_sorted_dimension(first, get_dimension)
+    second_values = get_sorted_dimension(second, get_dimension)
     if second_values[0] <= first_values[0] <= second_values[1]:
         return True
     if first_values[0] <= second_values[0] <= first_values[1]:
         return True
     return False
+
+
+def get_sorted_dimension(line: Line, get_dimension) -> list[float]:
+    return sorted(map(get_dimension, [line.begin, line.end]))
 
 
 def are_collinear(first, second):
