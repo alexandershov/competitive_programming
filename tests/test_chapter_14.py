@@ -10,6 +10,11 @@ from competitive_programming import chapter_14
         id='it should return longest common subsequence'
     ),
     pytest.param(
+        '', 'opera',
+        '',
+        id='it should return an empty string if left is empty'
+    ),
+    pytest.param(
         'tokurz', 'zuvrxzok',
         'urz',
         id='it should not fail into local maximum trap'
