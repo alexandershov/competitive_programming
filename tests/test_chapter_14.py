@@ -30,6 +30,11 @@ def test_find_longest_common_subsequence(left, right, expected):
 
 
 @pytest.mark.parametrize('left, right, expected', [
+    pytest.param(
+        'test', 'ktes',
+        2,
+        id='it should return minimum edit distance between two words',
+    )
 ])
 def test_find_minimum_edit_distance(left, right, expected):
     assert chapter_14.find_minimum_edit_distance(left, right) == expected
