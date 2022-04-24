@@ -45,6 +45,11 @@ def test_find_longest_common_subsequence(left, right, expected):
         4,
         id='it should return length of destination if the source is empty',
     ),
+    pytest.param(
+        'test', 'jest',
+        1,
+        id='it should 1 if we need one change of the character',
+    ),
 ])
 def test_find_minimum_edit_distance(left, right, expected):
     assert chapter_14.find_minimum_edit_distance(left, right) == expected
