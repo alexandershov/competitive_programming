@@ -34,7 +34,12 @@ def test_find_longest_common_subsequence(left, right, expected):
         'test', 'ktes',
         2,
         id='it should return minimum edit distance between two words',
-    )
+    ),
+    pytest.param(
+        'test', '',
+        4,
+        id='it should return length of string if the goal is empty',
+    ),
 ])
 def test_find_minimum_edit_distance(left, right, expected):
     assert chapter_14.find_minimum_edit_distance(left, right) == expected
