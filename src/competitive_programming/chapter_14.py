@@ -27,6 +27,7 @@ def find_minimum_edit_distance(left: str, right: str) -> int:
         distances[(i, - 1)] = i + 1
     for j in range(len(right)):
         distances[(-1, j)] = j + 1
+
     for i in range(len(left)):
         for j in range(len(right)):
             key = (i, j)
