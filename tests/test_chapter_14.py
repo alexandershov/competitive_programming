@@ -38,7 +38,12 @@ def test_find_longest_common_subsequence(left, right, expected):
     pytest.param(
         'test', '',
         4,
-        id='it should return length of string if the goal is empty',
+        id='it should return length of source if the destination is empty',
+    ),
+    pytest.param(
+        '', 'test',
+        4,
+        id='it should return length of destination if the source is empty',
     ),
 ])
 def test_find_minimum_edit_distance(left, right, expected):
