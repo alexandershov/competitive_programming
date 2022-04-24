@@ -17,3 +17,7 @@ def find_longest_common_subsequence(left: str, right: str, cache=None) -> str:
     result = max(first, second, key=len)
     cache[key] = result
     return result
+
+
+def find_minimum_edit_distance(left: str, right: str) -> int:
+    pass

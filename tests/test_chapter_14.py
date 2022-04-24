@@ -27,3 +27,9 @@ from competitive_programming import chapter_14
 ])
 def test_find_longest_common_subsequence(left, right, expected):
     assert chapter_14.find_longest_common_subsequence(left, right) == expected
+
+
+@pytest.mark.parametrize('left, right, expected', [
+])
+def test_find_minimum_edit_distance(left, right, expected):
+    assert chapter_14.find_minimum_edit_distance(left, right) == expected
